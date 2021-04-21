@@ -1,0 +1,45 @@
+{
+  "name": "three.math",
+  "version": "0.127.0",
+  "description": "copy from three math to ts module",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "typings": "es/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "es",
+    "lib"
+  ],
+  "scripts": {
+    "prepare": "rm -rf es lib && tsc -p tsconfig.es.json && tsc -p tsconfig.lib.json"
+  },
+  "lint-staged": {
+    "*.{js,ts}": "eslint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run check-type && lint-staged"
+    }
+  },
+  "author": {
+    "name": "chenhebing",
+    "email": "1025263994@qq.com",
+    "url": "https://github.com/chenhebing"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chenhebing/three.math"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "eslint": "^7.24.0",
+    "eslint-config-ali": "^12.0.1",
+    "eslint-plugin-import": "^2.22.1",
+    "husky": "^6.0.0",
+    "lint-staged": "^10.5.4",
+    "tslib": "^2.2.0",
+    "typescript": "^4.2.4"
+  }
+}
