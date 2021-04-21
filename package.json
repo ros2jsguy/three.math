@@ -1,5 +1,5 @@
 {
-  "name": "three.math",
+  "name": "three-math-ts",
   "version": "0.127.0",
   "description": "copy from three math to ts module",
   "main": "lib/index.js",
