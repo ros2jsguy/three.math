@@ -1,7 +1,18 @@
 {
   "name": "three-math-ts",
   "version": "0.127.1",
-  "description": "copy from three math to ts module",
+  "description": "Stand-alone TypeScript version of three.js math",
+  "keywords": [
+    "math",
+    "vector math",
+    "matrix math",
+    "matrix",
+    "vector",
+    "vector3",
+    "euler",
+    "quaternion",
+    "linear algebra"
+  ],
   "main": "lib/index.js",
   "module": "es/index.js",
   "typings": "es/index.d.ts",
