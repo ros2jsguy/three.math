@@ -22,7 +22,10 @@
     "lib"
   ],
   "scripts": {
-    "prepare": "rm -rf es lib && tsc -p tsconfig.es.json && tsc -p tsconfig.lib.json"
+    "prepare": "npx rimraf -rf es lib && tsc -p tsconfig.es.json && tsc -p tsconfig.lib.json",
+    "pretest": "tsc -p tsconfig.test.json",
+    "test": "mocha build-test",
+    "testx": "set TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' && set && mocha -r 'ts-node/register test/**/*.ts' "
   },
   "lint-staged": {
     "*.{js,ts}": "eslint"
@@ -43,13 +46,20 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/chai": "^4.2.21",
+    "@types/mocha": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
+    "chai": "^4.3.4",
+    "cpy-cli": "^3.1.1",
     "eslint": "^7.24.0",
     "eslint-config-ali": "^12.0.1",
     "eslint-plugin-import": "^2.22.1",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
+    "mocha": "^9.0.3",
+    "ts-node": "^10.1.0",
     "typescript": "^4.2.4"
-  }
+  },
+  "dependencies": {}
 }

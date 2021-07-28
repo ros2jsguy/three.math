@@ -2,6 +2,7 @@ import { Vector3 } from './Vector3';
 import type { Sphere } from './Sphere';
 import type { Triangle } from './Triangle';
 import type { Matrix4 } from './Matrix4';
+import type { Plane } from './Plane';
 
 class Box3 {
   readonly isBox3 = true;
@@ -180,6 +181,38 @@ class Box3 {
     // If that point is inside the sphere, the AABB and sphere intersect.
     return _vector.distanceToSquared(sphere.center) <= (sphere.radius * sphere.radius);
   }
+
+  intersectsPlane(plane: Plane): boolean {
+		// We compute the minimum and maximum dot product values. If those values
+		// are on the same side (back or front) of the plane, then there is no intersection.
+		let min, max;
+
+		if (plane.normal.x > 0) {
+			min = plane.normal.x * this.min.x;
+			max = plane.normal.x * this.max.x;
+		} else {
+			min = plane.normal.x * this.max.x;
+			max = plane.normal.x * this.min.x;
+		}
+
+		if (plane.normal.y > 0) {
+			min += plane.normal.y * this.min.y;
+			max += plane.normal.y * this.max.y;
+		} else {
+			min += plane.normal.y * this.max.y;
+			max += plane.normal.y * this.min.y;
+		}
+
+		if (plane.normal.z > 0) {
+			min += plane.normal.z * this.min.z;
+			max += plane.normal.z * this.max.z;
+		} else {
+			min += plane.normal.z * this.max.z;
+			max += plane.normal.z * this.min.z;
+		}
+
+		return (min <= - plane.constant && max >= - plane.constant);
+	}
 
   intersectsTriangle(triangle: Triangle) {
     if (this.isEmpty()) {

@@ -1,6 +1,7 @@
 import { Box3 } from './Box3';
 import { Vector3 } from './Vector3';
 import type { Matrix4 } from './Matrix4';
+import { Plane } from './Plane';
 
 const _box = new Box3();
 const _v1 = new Vector3();
@@ -80,6 +81,10 @@ class Sphere {
     return box.intersectsSphere(this);
   }
 
+  intersectsPlane(plane: Plane): boolean {
+		return Math.abs(plane.distanceToPoint(this.center)) <= this.radius;
+  }
+  
   clampPoint(point: Vector3, target?: Vector3) {
     const deltaLengthSq = this.center.distanceToSquared(point);
 

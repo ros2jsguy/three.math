@@ -4,5 +4,7 @@
     "outDir": "lib",
     "target": "ES6",
     "module": "CommonJS",
-  }
+    "noUnusedLocals": true
+  },
+  "include": ["src"]
 }

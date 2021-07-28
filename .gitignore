@@ -1,10 +1,12 @@
 .idea
 .vscode
+.project
 
 node_modules
 
 es
 lib
+build-test
 .check-type
 
 .DS_Store
