@@ -222,7 +222,7 @@ class Euler {
     && (euler._z === this._z) && (euler._order === this._order);
   }
 
-  fromArray(array: [number, number, number, IOrder]) {
+  fromArray(array: [number, number, number, IOrder?]) {
     this._x = array[0];
     this._y = array[1];
     this._z = array[2];

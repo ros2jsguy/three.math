@@ -1,6 +1,7 @@
 import type { Box3 } from './Box3';
 import type { Vector2 } from './Vector2';
 import { Vector3 } from './Vector3';
+import { Plane } from './Plane';
 
 const _v0 = new Vector3();
 const _v1 = new Vector3();
@@ -15,12 +16,7 @@ const _vbp = new Vector3();
 const _vcp = new Vector3();
 
 class Triangle {
-  static getNormal(a: Vector3, b: Vector3, c: Vector3, target?: Vector3) {
-    if (target === undefined) {
-      console.warn('THREE.Triangle: .getNormal() target is now required');
-      target = new Vector3();
-    }
-
+  static getNormal(a: Vector3, b: Vector3, c: Vector3, target=new Vector3()): Vector3 {
     target.subVectors(c, b);
     _v0.subVectors(a, b);
     target.cross(_v0);
@@ -35,7 +31,7 @@ class Triangle {
 
   // static/instance method to calculate barycentric coordinates
   // based on: http://www.blackpawn.com/texts/pointinpoly/default.html
-  static getBarycoord(point: Vector3, a: Vector3, b: Vector3, c: Vector3, target?: Vector3) {
+  static getBarycoord(point: Vector3, a: Vector3, b: Vector3, c: Vector3, target=new Vector3()): Vector3 {
     _v0.subVectors(c, a);
     _v1.subVectors(b, a);
     _v2.subVectors(point, a);
@@ -47,11 +43,6 @@ class Triangle {
     const dot12 = _v1.dot(_v2);
 
     const denom = (dot00 * dot11 - dot01 * dot01);
-
-    if (target === undefined) {
-      console.warn('THREE.Triangle: .getBarycoord() target is now required');
-      target = new Vector3();
-    }
 
     // collinear or singular triangle
     if (denom === 0) {
@@ -68,14 +59,14 @@ class Triangle {
     return target.set(1 - u - v, v, u);
   }
 
-  static containsPoint(point: Vector3, a: Vector3, b: Vector3, c: Vector3) {
+  static containsPoint(point: Vector3, a: Vector3, b: Vector3, c: Vector3): boolean {
     this.getBarycoord(point, a, b, c, _v3);
 
     return (_v3.x >= 0) && (_v3.y >= 0) && ((_v3.x + _v3.y) <= 1);
   }
 
   static getUV(point: Vector3, p1: Vector3, p2: Vector3, p3: Vector3,
-    uv1: Vector2, uv2: Vector2, uv3: Vector2, target: Vector2) {
+    uv1: Vector2, uv2: Vector2, uv3: Vector2, target: Vector2): Vector2 {
     this.getBarycoord(point, p1, p2, p3, _v3);
 
     target.set(0, 0);
@@ -86,7 +77,7 @@ class Triangle {
     return target;
   }
 
-  static isFrontFacing(a: Vector3, b: Vector3, c: Vector3, direction: Vector3) {
+  static isFrontFacing(a: Vector3, b: Vector3, c: Vector3, direction: Vector3): boolean {
     _v0.subVectors(c, b);
     _v1.subVectors(a, b);
 
@@ -105,7 +96,7 @@ class Triangle {
     this.c = c;
   }
 
-  set(a: Vector3, b: Vector3, c: Vector3) {
+  set(a: Vector3, b: Vector3, c: Vector3): Triangle {
     this.a.copy(a);
     this.b.copy(b);
     this.c.copy(c);
@@ -113,7 +104,7 @@ class Triangle {
     return this;
   }
 
-  setFromPointsAndIndices(points: Vector3[], i0: number, i1: number, i2: number) {
+  setFromPointsAndIndices(points: Vector3[], i0: number, i1: number, i2: number): Triangle {
     this.a.copy(points[i0]);
     this.b.copy(points[i1]);
     this.c.copy(points[i2]);
@@ -121,11 +112,11 @@ class Triangle {
     return this;
   }
 
-  clone() {
+  clone(): Triangle {
     return new Triangle().copy(this);
   }
 
-  copy(triangle: Triangle) {
+  copy(triangle: Triangle): Triangle {
     this.a.copy(triangle.a);
     this.b.copy(triangle.b);
     this.c.copy(triangle.c);
@@ -133,51 +124,46 @@ class Triangle {
     return this;
   }
 
-  getArea() {
+  getArea(): number {
     _v0.subVectors(this.c, this.b);
     _v1.subVectors(this.a, this.b);
 
     return _v0.cross(_v1).length() * 0.5;
   }
 
-  getMidpoint(target?: Vector3) {
-    if (target === undefined) {
-      console.warn('THREE.Triangle: .getMidpoint() target is now required');
-      target = new Vector3();
-    }
-
+  getMidpoint(target= new Vector3()): Vector3 {
     return target.addVectors(this.a, this.b).add(this.c).multiplyScalar(1 / 3);
   }
 
-  getNormal(target: Vector3) {
+  getNormal(target: Vector3): Vector3 {
     return Triangle.getNormal(this.a, this.b, this.c, target);
   }
 
-  getBarycoord(point: Vector3, target: Vector3) {
+  getPlane(target=new Plane()): Plane {
+		return target.setFromCoplanarPoints( this.a, this.b, this.c );
+	}
+
+  getBarycoord(point: Vector3, target: Vector3): Vector3 {
     return Triangle.getBarycoord(point, this.a, this.b, this.c, target);
   }
 
-  getUV(point: Vector3, uv1: Vector2, uv2: Vector2, uv3: Vector2, target: Vector2) {
+  getUV(point: Vector3, uv1: Vector2, uv2: Vector2, uv3: Vector2, target: Vector2): Vector2 {
     return Triangle.getUV(point, this.a, this.b, this.c, uv1, uv2, uv3, target);
   }
 
-  containsPoint(point: Vector3) {
+  containsPoint(point: Vector3): boolean {
     return Triangle.containsPoint(point, this.a, this.b, this.c);
   }
 
-  isFrontFacing(direction: Vector3) {
+  isFrontFacing(direction: Vector3): boolean {
     return Triangle.isFrontFacing(this.a, this.b, this.c, direction);
   }
 
-  intersectsBox(box: Box3) {
+  intersectsBox(box: Box3): boolean {
     return box.intersectsTriangle(this);
   }
 
-  closestPointToPoint(p: Vector3, target?: Vector3) {
-    if (target === undefined) {
-      console.warn('THREE.Triangle: .closestPointToPoint() target is now required');
-      target = new Vector3();
-    }
+  closestPointToPoint(p: Vector3, target=new Vector3()): Vector3 {
 
     const { a, b, c } = this;
     let v; let w;
@@ -245,7 +231,7 @@ class Triangle {
     return target.copy(a).addScaledVector(_vab, v).addScaledVector(_vac, w);
   }
 
-  equals(triangle: Triangle) {
+  equals(triangle: Triangle): boolean {
     return triangle.a.equals(this.a) && triangle.b.equals(this.b) && triangle.c.equals(this.c);
   }
 }
