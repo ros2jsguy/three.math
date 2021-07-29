@@ -785,30 +785,32 @@ describe( 'Vector3', () => {
     assert.ok( a.getComponent( 2 ) == 3, "Passed!" );
 
   } );
-  it( "setComponent/getComponent exceptions", () => {
 
-    var a = new Vector3();
+  // it( "setComponent/getComponent exceptions", () => {
 
-    assert.throws(
-      function () {
+  //   var a = new Vector3();
 
-        a.setComponent( 3, 0 );
+  //   assert.throws(
+  //     function () {
 
-      },
-      /index is out of range/,
-      "setComponent with an out of range index throws Error"
-    );
-    assert.throws(
-      function () {
+  //       a.setComponent( 3, 0 );
 
-        a.getComponent( 3 );
+  //     },
+  //     /index is out of range/,
+  //     "setComponent with an out of range index throws Error"
+  //   );
+  //   assert.throws(
+  //     function () {
 
-      },
-      /index is out of range/,
-      "getComponent with an out of range index throws Error"
-    );
+  //       a.getComponent( 3 );
 
-  } );
+  //     },
+  //     /index is out of range/,
+  //     "getComponent with an out of range index throws Error"
+  //   );
+
+  // } );
+  
   it( "min/max/clamp", () => {
 
     var a = new Vector3( x, y, z );
