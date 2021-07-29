@@ -187,13 +187,15 @@ class Color {
   g = 1;
   b = 1;
 
-  constructor(...params: [number, number, number] | [IColor]) {
-    if (params.length === 1) {
+  constructor(r?: IColor, g?: number, b?: number) {
+    if (r === undefined) return;
+
+    if (g === undefined && b === undefined) {
       // r is THREE.Color, hex or string
-      return this.set(params[0]);
+      return this.set(r);
     }
 
-    return this.setRGB(...params);
+    return this.setRGB(r as number, g??0, b??0);
   }
 
   set(value: IColor) {
