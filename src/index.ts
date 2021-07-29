@@ -7,6 +7,7 @@ export * from './Line3';
 export * from './MathUtils';
 export * from './Matrix3';
 export * from './Matrix4';
+export * from './Plane';
 export * from './Quaternion';
 export * from './Ray';
 export * from './Sphere';
