@@ -176,12 +176,7 @@ class Vector3 {
    * @param v - The vector to add to this vector.
    * @returns This instance.
    */
-  add(v: Vector3, w?: Vector3): Vector3 {
-    if (w !== undefined) {
-      console.warn('Vector3: .add() now only accepts one argument. Use .addVectors( a, b ) instead.');
-      return this.addVectors(v, w);
-    }
-
+  add(v: Vector3): Vector3 {
     this.x += v.x;
     this.y += v.y;
     this.z += v.z;
@@ -235,13 +230,8 @@ class Vector3 {
    * @param v - The vector to subtract.
    * @returns This instance.
    */
-  sub(v: Vector3, w?: Vector3): Vector3 {
-    if (w !== undefined) {
-      console.warn('THREE.Vector3: .sub() now only accepts one argument. Use .subVectors( a, b ) instead.');
-      return this.subVectors(v, w);
-    }
-
-    this.x -= v.x;
+  sub(v: Vector3): Vector3 {
+   this.x -= v.x;
     this.y -= v.y;
     this.z -= v.z;
 
@@ -280,12 +270,7 @@ class Vector3 {
    * @param v 
    * @returns This instance.
    */
-  multiply(v: Vector3, w?: Vector3): Vector3 {
-    if (w !== undefined) {
-      console.warn('THREE.Vector3: .multiply() now only accepts one argument. Use .multiplyVectors( a, b ) instead.');
-      return this.multiplyVectors(v, w);
-    }
-
+  multiply(v: Vector3): Vector3 {
     this.x *= v.x;
     this.y *= v.y;
     this.z *= v.z;
@@ -326,10 +311,6 @@ class Vector3 {
    * @returns This instance.
    */
   applyEuler(euler: Euler): Vector3 {
-    if (!(euler && euler.isEuler)) {
-      console.error('THREE.Vector3: .applyEuler() now expects an Euler rotation rather than a Vector3 and order.');
-    }
-
     return this.applyQuaternion(_quaternion.setFromEuler(euler));
   }
 
@@ -695,12 +676,7 @@ class Vector3 {
    * @param v 
    * @returns This instance.
    */
-  cross(v: Vector3, w?: Vector3): Vector3 {
-    if (w !== undefined) {
-      console.warn('THREE.Vector3: .cross() now only accepts one argument. Use .crossVectors( a, b ) instead.');
-      return this.crossVectors(v, w);
-    }
-
+  cross(v: Vector3): Vector3 {
     return this.crossVectors(this, v);
   }
 

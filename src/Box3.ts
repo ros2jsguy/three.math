@@ -98,23 +98,13 @@ class Box3 {
     return (this.max.x < this.min.x) || (this.max.y < this.min.y) || (this.max.z < this.min.z);
   }
 
-  getCenter(target?: Vector3) {
-    if (target === undefined) {
-      console.warn('THREE.Box3: .getCenter() target is now required');
-      target = new Vector3();
-    }
-
+  getCenter(target = new Vector3()) {
     return this.isEmpty()
       ? target.set(0, 0, 0)
       : target.addVectors(this.min, this.max).multiplyScalar(0.5);
   }
 
-  getSize(target?: Vector3) {
-    if (target === undefined) {
-      console.warn('THREE.Box3: .getSize() target is now required');
-      target = new Vector3();
-    }
-
+  getSize(target = new Vector3()) {
     return this.isEmpty() ? target.set(0, 0, 0) : target.subVectors(this.max, this.min);
   }
 
@@ -151,14 +141,9 @@ class Box3 {
 			this.min.z <= box.min.z && box.max.z <= this.max.z;
   }
 
-  getParameter(point: Vector3, target?: Vector3) {
+  getParameter(point: Vector3, target = new Vector3()) {
     // This can potentially have a divide by zero if the box
     // has a size dimension of 0.
-
-    if (target === undefined) {
-      console.warn('THREE.Box3: .getParameter() target is now required');
-      target = new Vector3();
-    }
 
     return target.set(
       (point.x - this.min.x) / (this.max.x - this.min.x),
@@ -256,12 +241,7 @@ class Box3 {
     return satForAxes(axes, _v0, _v1, _v2, _extents);
   }
 
-  clampPoint(point: Vector3, target?: Vector3) {
-    if (target === undefined) {
-      console.warn('THREE.Box3: .clampPoint() target is now required');
-      target = new Vector3();
-    }
-
+  clampPoint(point: Vector3, target = new Vector3()): Vector3 {
     return target.copy(point).clamp(this.min, this.max);
   }
 

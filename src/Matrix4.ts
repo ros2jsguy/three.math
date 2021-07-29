@@ -142,10 +142,6 @@ class Matrix4 {
   }
 
   makeRotationFromEuler(euler: Euler) {
-    if (!(euler && euler.isEuler)) {
-      console.error('THREE.Matrix4: .makeRotationFromEuler() now expects a Euler rotation rather than a Vector3 and order.');
-    }
-
     const te = this.elements;
 
     const { x } = euler; const { y } = euler; const
@@ -304,12 +300,7 @@ class Matrix4 {
     return this;
   }
 
-  multiply(m: Matrix4, n?: Matrix4) {
-    if (n !== undefined) {
-      console.warn('THREE.Matrix4: .multiply() now only accepts one argument. Use .multiplyMatrices( a, b ) instead.');
-      return this.multiplyMatrices(m, n);
-    }
-
+  multiply(m: Matrix4) {
     return this.multiplyMatrices(this, m);
   }
 

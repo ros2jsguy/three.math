@@ -29,21 +29,11 @@ class Line3 {
     return this;
   }
 
-  getCenter(target?: Vector3) {
-    if (target === undefined) {
-      console.warn('THREE.Line3: .getCenter() target is now required');
-      target = new Vector3();
-    }
-
-    return target.addVectors(this.start, this.end).multiplyScalar(0.5);
+  getCenter(target = new Vector3()) {
+     return target.addVectors(this.start, this.end).multiplyScalar(0.5);
   }
 
-  delta(target?: Vector3) {
-    if (target === undefined) {
-      console.warn('THREE.Line3: .delta() target is now required');
-      target = new Vector3();
-    }
-
+  delta(target = new Vector3()) {
     return target.subVectors(this.end, this.start);
   }
 
@@ -55,12 +45,7 @@ class Line3 {
     return this.start.distanceTo(this.end);
   }
 
-  at(t: number, target?: Vector3) {
-    if (target === undefined) {
-      console.warn('THREE.Line3: .at() target is now required');
-      target = new Vector3();
-    }
-
+  at(t: number, target = new Vector3()) {
     return this.delta(target).multiplyScalar(t).add(this.start);
   }
 
@@ -80,14 +65,8 @@ class Line3 {
     return t;
   }
 
-  closestPointToPoint(point: Vector3, clampToLine?: boolean, target?: Vector3) {
+  closestPointToPoint(point: Vector3, clampToLine?: boolean, target = new Vector3()) {
     const t = this.closestPointToPointParameter(point, clampToLine);
-
-    if (target === undefined) {
-      console.warn('THREE.Line3: .closestPointToPoint() target is now required');
-      target = new Vector3();
-    }
-
     return this.delta(target).multiplyScalar(t).add(this.start);
   }
 

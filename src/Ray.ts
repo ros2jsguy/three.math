@@ -37,13 +37,8 @@ class Ray {
     return this;
   }
 
-  at(t: number, target?: Vector3): Vector3 {
-    if (target === undefined) {
-      console.warn('THREE.Ray: .at() target is now required');
-      target = new Vector3();
-    }
-
-    return target.copy(this.direction).multiplyScalar(t).add(this.origin);
+  at(t: number, target = new Vector3()): Vector3 {
+   return target.copy(this.direction).multiplyScalar(t).add(this.origin);
   }
 
   lookAt(v: Vector3): Ray {
@@ -58,12 +53,7 @@ class Ray {
     return this;
   }
 
-  closestPointToPoint(point: Vector3, target?: Vector3): Vector3 {
-    if (target === undefined) {
-      console.warn('THREE.Ray: .closestPointToPoint() target is now required');
-      target = new Vector3();
-    }
-
+  closestPointToPoint(point: Vector3, target = new Vector3()): Vector3 {
     target.subVectors(point, this.origin);
 
     const directionDistance = target.dot(this.direction);

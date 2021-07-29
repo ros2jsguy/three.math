@@ -109,12 +109,7 @@ class Vector4 {
     return this;
   }
 
-  add(v: Vector4, w?: Vector4) {
-    if (w !== undefined) {
-      console.warn('THREE.Vector4: .add() now only accepts one argument. Use .addVectors( a, b ) instead.');
-      return this.addVectors(v, w);
-    }
-
+  add(v: Vector4) {
     this.x += v.x;
     this.y += v.y;
     this.z += v.z;
@@ -150,12 +145,7 @@ class Vector4 {
     return this;
   }
 
-  sub(v: Vector4, w?: Vector4) {
-    if (w !== undefined) {
-      console.warn('THREE.Vector4: .sub() now only accepts one argument. Use .subVectors( a, b ) instead.');
-      return this.subVectors(v, w);
-    }
-
+  sub(v: Vector4) {
     this.x -= v.x;
     this.y -= v.y;
     this.z -= v.z;

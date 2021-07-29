@@ -552,12 +552,7 @@ class Quaternion {
    * @param q
    * @returns This instance.
    */
-  multiply(q: Quaternion, p?: Quaternion): Quaternion {
-    if (p !== undefined) {
-      console.warn('THREE.Quaternion: .multiply() now only accepts one argument. Use .multiplyQuaternions( a, b ) instead.');
-      return this.multiplyQuaternions(q, p);
-    }
-
+  multiply(q: Quaternion): Quaternion {
     return this.multiplyQuaternions(this, q);
   }
 

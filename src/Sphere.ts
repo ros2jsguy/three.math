@@ -85,14 +85,8 @@ class Sphere {
 		return Math.abs(plane.distanceToPoint(this.center)) <= this.radius;
   }
   
-  clampPoint(point: Vector3, target?: Vector3) {
+  clampPoint(point: Vector3, target =  new Vector3()) {
     const deltaLengthSq = this.center.distanceToSquared(point);
-
-    if (target === undefined) {
-      console.warn('THREE.Sphere: .clampPoint() target is now required');
-      target = new Vector3();
-    }
-
     target.copy(point);
 
     if (deltaLengthSq > (this.radius * this.radius)) {
@@ -103,13 +97,8 @@ class Sphere {
     return target;
   }
 
-  getBoundingBox(target?: Box3) {
-    if (target === undefined) {
-      console.warn('THREE.Sphere: .getBoundingBox() target is now required');
-      target = new Box3();
-    }
-
-    if (this.isEmpty()) {
+  getBoundingBox(target = new Box3()) {
+   if (this.isEmpty()) {
       // Empty sphere produces empty bounding box
       target.makeEmpty();
       return target;
