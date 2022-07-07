@@ -1,18 +1,24 @@
 import { Vector3 } from './Vector3';
 import { MathUtils } from './MathUtils';
 import type { Matrix4 } from './Matrix4';
+import { Base } from './Base';
 
 const _startP = new Vector3();
 const _startEnd = new Vector3();
 
-class Line3 {
-  readonly isLine3 = true;
+class Line3 extends Base {
   start: Vector3;
   end: Vector3;
 
   constructor(start = new Vector3(), end = new Vector3()) {
+    super();
     this.start = start;
     this.end = end;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get isLine3(): boolean {
+    return true;
   }
 
   set(start: Vector3, end: Vector3) {
@@ -30,7 +36,7 @@ class Line3 {
   }
 
   getCenter(target = new Vector3()) {
-     return target.addVectors(this.start, this.end).multiplyScalar(0.5);
+    return target.addVectors(this.start, this.end).multiplyScalar(0.5);
   }
 
   delta(target = new Vector3()) {

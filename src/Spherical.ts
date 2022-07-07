@@ -5,21 +5,27 @@
  * The azimuthal angle (theta) is measured from the positive z-axis.
  */
 
+import { Base } from './Base';
 import { MathUtils } from './MathUtils';
 import type { Vector3 } from './Vector3';
 
-class Spherical {
-  readonly isSpherical = true;
+class Spherical extends Base {
   radius: number;
   theta: number;
   phi: number;
 
   constructor(radius = 1, phi = 0, theta = 0) {
+    super();
     this.radius = radius;
     this.phi = phi; // polar angle
     this.theta = theta; // azimuthal angle
 
     return this;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get isSpherical(): boolean {
+    return true;
   }
 
   set(radius: number, phi: number, theta: number) {

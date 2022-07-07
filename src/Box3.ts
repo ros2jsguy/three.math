@@ -3,17 +3,23 @@ import type { Sphere } from './Sphere';
 import type { Triangle } from './Triangle';
 import type { Matrix4 } from './Matrix4';
 import type { Plane } from './Plane';
+import { Base } from './Base';
 
-class Box3 {
-  readonly isBox3 = true;
+class Box3 extends Base {
   min: Vector3;
   max: Vector3;
   constructor(
     min = new Vector3(+Infinity, +Infinity, +Infinity),
     max = new Vector3(-Infinity, -Infinity, -Infinity),
   ) {
+    super();
     this.min = min;
     this.max = max;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get isBox3(): boolean {
+    return true;
   }
 
   set(min: Vector3, max: Vector3) {
@@ -168,36 +174,37 @@ class Box3 {
   }
 
   intersectsPlane(plane: Plane): boolean {
-		// We compute the minimum and maximum dot product values. If those values
-		// are on the same side (back or front) of the plane, then there is no intersection.
-		let min, max;
+    // We compute the minimum and maximum dot product values. If those values
+    // are on the same side (back or front) of the plane, then there is no intersection.
+    let min;
+    let max;
 
-		if (plane.normal.x > 0) {
-			min = plane.normal.x * this.min.x;
-			max = plane.normal.x * this.max.x;
-		} else {
-			min = plane.normal.x * this.max.x;
-			max = plane.normal.x * this.min.x;
-		}
+    if (plane.normal.x > 0) {
+      min = plane.normal.x * this.min.x;
+      max = plane.normal.x * this.max.x;
+    } else {
+      min = plane.normal.x * this.max.x;
+      max = plane.normal.x * this.min.x;
+    }
 
-		if (plane.normal.y > 0) {
-			min += plane.normal.y * this.min.y;
-			max += plane.normal.y * this.max.y;
-		} else {
-			min += plane.normal.y * this.max.y;
-			max += plane.normal.y * this.min.y;
-		}
+    if (plane.normal.y > 0) {
+      min += plane.normal.y * this.min.y;
+      max += plane.normal.y * this.max.y;
+    } else {
+      min += plane.normal.y * this.max.y;
+      max += plane.normal.y * this.min.y;
+    }
 
-		if (plane.normal.z > 0) {
-			min += plane.normal.z * this.min.z;
-			max += plane.normal.z * this.max.z;
-		} else {
-			min += plane.normal.z * this.max.z;
-			max += plane.normal.z * this.min.z;
-		}
+    if (plane.normal.z > 0) {
+      min += plane.normal.z * this.min.z;
+      max += plane.normal.z * this.max.z;
+    } else {
+      min += plane.normal.z * this.max.z;
+      max += plane.normal.z * this.min.z;
+    }
 
-		return (min <= - plane.constant && max >= - plane.constant);
-	}
+    return (min <= -plane.constant && max >= -plane.constant);
+  }
 
   intersectsTriangle(triangle: Triangle) {
     if (this.isEmpty()) {

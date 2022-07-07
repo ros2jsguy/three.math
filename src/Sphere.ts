@@ -1,21 +1,28 @@
 import { Box3 } from './Box3';
 import { Vector3 } from './Vector3';
 import type { Matrix4 } from './Matrix4';
+// eslint-disable-next-line import/no-cycle
 import { Plane } from './Plane';
+import { Base } from './Base';
 
 const _box = new Box3();
 const _v1 = new Vector3();
 const _toFarthestPoint = new Vector3();
 const _toPoint = new Vector3();
 
-class Sphere {
-  readonly isSphere = true;
+class Sphere extends Base {
   center: Vector3;
   radius: number;
 
   constructor(center = new Vector3(), radius = -1) {
+    super();
     this.center = center;
     this.radius = radius;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get isSphere(): boolean {
+    return true;
   }
 
   set(center: Vector3, radius: number) {
@@ -82,10 +89,10 @@ class Sphere {
   }
 
   intersectsPlane(plane: Plane): boolean {
-		return Math.abs(plane.distanceToPoint(this.center)) <= this.radius;
+    return Math.abs(plane.distanceToPoint(this.center)) <= this.radius;
   }
-  
-  clampPoint(point: Vector3, target =  new Vector3()) {
+
+  clampPoint(point: Vector3, target = new Vector3()) {
     const deltaLengthSq = this.center.distanceToSquared(point);
     target.copy(point);
 
@@ -98,7 +105,7 @@ class Sphere {
   }
 
   getBoundingBox(target = new Box3()) {
-   if (this.isEmpty()) {
+    if (this.isEmpty()) {
       // Empty sphere produces empty bounding box
       target.makeEmpty();
       return target;

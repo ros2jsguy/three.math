@@ -1,3 +1,4 @@
+import { Base } from './Base';
 import { Vector2 } from './Vector2';
 
 const _vector = new Vector2();
@@ -5,8 +6,7 @@ const _vector = new Vector2();
 /**
  * Represents an axis-aligned bounding box (AABB) in 2D space.
  */
-class Box2 {
-  readonly isBox2 = true;
+class Box2 extends Base {
   /**
    * The lower (x, y) boundary of the box. Default is ( + Infinity, + Infinity ).
    */
@@ -23,8 +23,14 @@ class Box2 {
    * @param max - the upper (x, y) boundary of the box. Default is ( - Infinity, - Infinity ).
    */
   constructor(min = new Vector2(+Infinity, +Infinity), max = new Vector2(-Infinity, -Infinity)) {
+    super();
     this.min = min;
     this.max = max;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get isBox2(): boolean {
+    return true;
   }
 
   /**
@@ -117,10 +123,10 @@ class Box2 {
 
   /**
    * Compute the center point of the box as a Vector2.
-   * @param target — the result will be copied into this Vector2.
+   * @param target ï¿½ the result will be copied into this Vector2.
    * @returns The center point.
    */
-  getCenter(target=new Vector2()): Vector2 {
+  getCenter(target = new Vector2()): Vector2 {
     return this.isEmpty()
       ? target.set(0, 0)
       : target.addVectors(this.min, this.max).multiplyScalar(0.5);
@@ -128,7 +134,7 @@ class Box2 {
 
   /**
    * The width and height of this box.
-   * @param target — the result will be copied into this Vector2.
+   * @param target ï¿½ the result will be copied into this Vector2.
    * @returns The width and height of this box.
    */
   getSize(target = new Vector2()): Vector2 {
@@ -198,11 +204,11 @@ class Box2 {
 
   /**
    * Computes a point as a proportion of this box's width and height.
-   * @param point 
+   * @param point
    * @param target - the result will be copied into this Vector2.
    * @returns The target vector
    */
-  getParameter(point: Vector2, target= new Vector2()): Vector2 {
+  getParameter(point: Vector2, target = new Vector2()): Vector2 {
     // This can potentially have a divide by zero if the box
     // has a size dimension of 0.
     return target.set(
@@ -263,7 +269,7 @@ class Box2 {
    * greater of the two boxes' upper bounds and the lower bound of this
    * box to the lesser of the two boxes' lower bounds.
    * @param box - Box that will be unioned with this box.
-   * @param This instance. 
+   * @param This instance.
    */
   union(box: Box2) {
     this.min.min(box.min);

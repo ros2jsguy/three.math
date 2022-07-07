@@ -1,3 +1,5 @@
+/* eslint-disable no-redeclare */
+/* eslint-disable no-var */
 /* global QUnit */
 
 import { assert } from 'chai';
@@ -9,321 +11,274 @@ import { Sphere } from '../lib/Sphere';
 import { Box3 } from '../lib/Box3';
 import { Matrix4 } from '../lib/Matrix4';
 import {
-	x,
-	y,
-	z,
-	w,
-	zero3,
-	one3
+  x,
+  y,
+  z,
+  w,
+  zero3,
+  one3,
 } from './Constants.tests';
 
-function comparePlane( a, b, threshold=0.0001 ) {
-
-  return ( a.normal.distanceTo( b.normal ) < threshold &&
-  Math.abs( a.constant - b.constant ) < threshold );
-
+function comparePlane(a, b, threshold = 0.0001) {
+  return (a.normal.distanceTo(b.normal) < threshold &&
+  Math.abs(a.constant - b.constant) < threshold);
 }
 
-describe( 'Plane', () => {
-
+describe('Plane', () => {
   // INSTANCING
-  it( "Instancing", () => {
-
+  it('Instancing', () => {
     var a = new Plane();
-    assert.ok( a.normal.x == 1, "Passed!" );
-    assert.ok( a.normal.y == 0, "Passed!" );
-    assert.ok( a.normal.z == 0, "Passed!" );
-    assert.ok( a.constant == 0, "Passed!" );
+    assert.ok(a.normal.x === 1, 'Passed!');
+    assert.ok(a.normal.y === 0, 'Passed!');
+    assert.ok(a.normal.z === 0, 'Passed!');
+    assert.ok(a.constant === 0, 'Passed!');
 
-    var a = new Plane( one3.clone(), 0 );
-    assert.ok( a.normal.x == 1, "Passed!" );
-    assert.ok( a.normal.y == 1, "Passed!" );
-    assert.ok( a.normal.z == 1, "Passed!" );
-    assert.ok( a.constant == 0, "Passed!" );
+    var a = new Plane(one3.clone(), 0);
+    assert.ok(a.normal.x === 1, 'Passed!');
+    assert.ok(a.normal.y === 1, 'Passed!');
+    assert.ok(a.normal.z === 1, 'Passed!');
+    assert.ok(a.constant === 0, 'Passed!');
 
-    var a = new Plane( one3.clone(), 1 );
-    assert.ok( a.normal.x == 1, "Passed!" );
-    assert.ok( a.normal.y == 1, "Passed!" );
-    assert.ok( a.normal.z == 1, "Passed!" );
-    assert.ok( a.constant == 1, "Passed!" );
-
-  } );
+    var a = new Plane(one3.clone(), 1);
+    assert.ok(a.normal.x === 1, 'Passed!');
+    assert.ok(a.normal.y === 1, 'Passed!');
+    assert.ok(a.normal.z === 1, 'Passed!');
+    assert.ok(a.constant === 1, 'Passed!');
+  });
 
   // PUBLIC STUFF
-  it( "isPlane", () => {
+  it('isPlane', () => {
+    const a = new Plane();
+    assert.ok(a.isPlane === true, 'Passed!');
+  });
 
-    var a = new Plane();
-    assert.ok( a.isPlane === true, "Passed!" );
+  it('set', () => {
+    const a = new Plane();
+    assert.ok(a.normal.x === 1, 'Passed!');
+    assert.ok(a.normal.y === 0, 'Passed!');
+    assert.ok(a.normal.z === 0, 'Passed!');
+    assert.ok(a.constant === 0, 'Passed!');
 
-    var b = new Vector3();
-    assert.ok( ! b['isPlane'], "Passed!" );
+    const b = a.clone().set(new Vector3(x, y, z), w);
+    assert.ok(b.normal.x === x, 'Passed!');
+    assert.ok(b.normal.y === y, 'Passed!');
+    assert.ok(b.normal.z === z, 'Passed!');
+    assert.ok(b.constant === w, 'Passed!');
+  });
 
+  it('setComponents', () => {
+    const a = new Plane();
+    assert.ok(a.normal.x === 1, 'Passed!');
+    assert.ok(a.normal.y === 0, 'Passed!');
+    assert.ok(a.normal.z === 0, 'Passed!');
+    assert.ok(a.constant === 0, 'Passed!');
 
-  } );
+    const b = a.clone().setComponents(x, y, z, w);
+    assert.ok(b.normal.x === x, 'Passed!');
+    assert.ok(b.normal.y === y, 'Passed!');
+    assert.ok(b.normal.z === z, 'Passed!');
+    assert.ok(b.constant === w, 'Passed!');
+  });
 
-  it( "set", () => {
+  it('setFromNormalAndCoplanarPoint', () => {
+    const normal = one3.clone().normalize();
+    const a = new Plane().setFromNormalAndCoplanarPoint(normal, zero3);
 
-    var a = new Plane();
-    assert.ok( a.normal.x == 1, "Passed!" );
-    assert.ok( a.normal.y == 0, "Passed!" );
-    assert.ok( a.normal.z == 0, "Passed!" );
-    assert.ok( a.constant == 0, "Passed!" );
+    assert.ok(a.normal.equals(normal), 'Passed!');
+    assert.ok(a.constant === 0, 'Passed!');
+  });
 
-    var b = a.clone().set( new Vector3( x, y, z ), w );
-    assert.ok( b.normal.x == x, "Passed!" );
-    assert.ok( b.normal.y == y, "Passed!" );
-    assert.ok( b.normal.z == z, "Passed!" );
-    assert.ok( b.constant == w, "Passed!" );
+  it('setFromCoplanarPoints', () => {
+    const a = new Plane();
+    const v1 = new Vector3(2.0, 0.5, 0.25);
+    const v2 = new Vector3(2.0, -0.5, 1.25);
+    const v3 = new Vector3(2.0, -3.5, 2.2);
+    const normal = new Vector3(1, 0, 0);
+    const constant = -2;
 
-  } );
+    a.setFromCoplanarPoints(v1, v2, v3);
 
-  it( "setComponents", () => {
+    assert.ok(a.normal.equals(normal), 'Check normal');
+    assert.strictEqual(a.constant, constant, 'Check constant');
+  });
 
-    var a = new Plane();
-    assert.ok( a.normal.x == 1, "Passed!" );
-    assert.ok( a.normal.y == 0, "Passed!" );
-    assert.ok( a.normal.z == 0, "Passed!" );
-    assert.ok( a.constant == 0, "Passed!" );
+  it('clone', () => {
+    const a = new Plane(new Vector3(2.0, 0.5, 0.25));
+    const b = a.clone();
 
-    var b = a.clone().setComponents( x, y, z, w );
-    assert.ok( b.normal.x == x, "Passed!" );
-    assert.ok( b.normal.y == y, "Passed!" );
-    assert.ok( b.normal.z == z, "Passed!" );
-    assert.ok( b.constant == w, "Passed!" );
+    assert.ok(a.equals(b), 'clones are equal');
+  });
 
-  } );
-
-  it( "setFromNormalAndCoplanarPoint", () => {
-
-    var normal = one3.clone().normalize();
-    var a = new Plane().setFromNormalAndCoplanarPoint( normal, zero3 );
-
-    assert.ok( a.normal.equals( normal ), "Passed!" );
-    assert.ok( a.constant == 0, "Passed!" );
-
-  } );
-
-  it( "setFromCoplanarPoints", () => {
-
-    var a = new Plane();
-    var v1 = new Vector3( 2.0, 0.5, 0.25 );
-    var v2 = new Vector3( 2.0, - 0.5, 1.25 );
-    var v3 = new Vector3( 2.0, - 3.5, 2.2 );
-    var normal = new Vector3( 1, 0, 0 );
-    var constant = - 2;
-
-    a.setFromCoplanarPoints( v1, v2, v3 );
-
-    assert.ok( a.normal.equals( normal ), "Check normal" );
-    assert.strictEqual( a.constant, constant, "Check constant" );
-
-  } );
-
-  it( "clone", () => {
-
-    var a = new Plane( new Vector3( 2.0, 0.5, 0.25 ) );
-    var b = a.clone();
-
-    assert.ok( a.equals( b ), "clones are equal" );
-
-
-  } );
-
-  it( "copy", () => {
-
-    var a = new Plane( new Vector3( x, y, z ), w );
-    var b = new Plane().copy( a );
-    assert.ok( b.normal.x == x, "Passed!" );
-    assert.ok( b.normal.y == y, "Passed!" );
-    assert.ok( b.normal.z == z, "Passed!" );
-    assert.ok( b.constant == w, "Passed!" );
+  it('copy', () => {
+    const a = new Plane(new Vector3(x, y, z), w);
+    const b = new Plane().copy(a);
+    assert.ok(b.normal.x === x, 'Passed!');
+    assert.ok(b.normal.y === y, 'Passed!');
+    assert.ok(b.normal.z === z, 'Passed!');
+    assert.ok(b.constant === w, 'Passed!');
 
     // ensure that it is a true copy
     a.normal.x = 0;
-    a.normal.y = - 1;
-    a.normal.z = - 2;
-    a.constant = - 3;
-    assert.ok( b.normal.x == x, "Passed!" );
-    assert.ok( b.normal.y == y, "Passed!" );
-    assert.ok( b.normal.z == z, "Passed!" );
-    assert.ok( b.constant == w, "Passed!" );
+    a.normal.y = -1;
+    a.normal.z = -2;
+    a.constant = -3;
+    assert.ok(b.normal.x === x, 'Passed!');
+    assert.ok(b.normal.y === y, 'Passed!');
+    assert.ok(b.normal.z === z, 'Passed!');
+    assert.ok(b.constant === w, 'Passed!');
+  });
 
-  } );
-
-  it( "normalize", () => {
-
-    var a = new Plane( new Vector3( 2, 0, 0 ), 2 );
+  it('normalize', () => {
+    const a = new Plane(new Vector3(2, 0, 0), 2);
 
     a.normalize();
-    assert.ok( a.normal.length() == 1, "Passed!" );
-    assert.ok( a.normal.equals( new Vector3( 1, 0, 0 ) ), "Passed!" );
-    assert.ok( a.constant == 1, "Passed!" );
+    assert.ok(a.normal.length() === 1, 'Passed!');
+    assert.ok(a.normal.equals(new Vector3(1, 0, 0)), 'Passed!');
+    assert.ok(a.constant === 1, 'Passed!');
+  });
 
-  } );
-
-  it( "negate/distanceToPoint", () => {
-
-    var a = new Plane( new Vector3( 2, 0, 0 ), - 2 );
+  it('negate/distanceToPoint', () => {
+    const a = new Plane(new Vector3(2, 0, 0), -2);
 
     a.normalize();
-    assert.ok( a.distanceToPoint( new Vector3( 4, 0, 0 ) ) === 3, "Passed!" );
-    assert.ok( a.distanceToPoint( new Vector3( 1, 0, 0 ) ) === 0, "Passed!" );
+    assert.ok(a.distanceToPoint(new Vector3(4, 0, 0)) === 3, 'Passed!');
+    assert.ok(a.distanceToPoint(new Vector3(1, 0, 0)) === 0, 'Passed!');
 
     a.negate();
-    assert.ok( a.distanceToPoint( new Vector3( 4, 0, 0 ) ) === - 3, "Passed!" );
-    assert.ok( a.distanceToPoint( new Vector3( 1, 0, 0 ) ) === 0, "Passed!" );
+    assert.ok(a.distanceToPoint(new Vector3(4, 0, 0)) === -3, 'Passed!');
+    assert.ok(a.distanceToPoint(new Vector3(1, 0, 0)) === 0, 'Passed!');
+  });
 
-  } );
+  it('distanceToPoint', () => {
+    const a = new Plane(new Vector3(2, 0, 0), -2);
+    const point = new Vector3();
 
-  it( "distanceToPoint", () => {
+    a.normalize().projectPoint(zero3.clone(), point);
+    assert.ok(a.distanceToPoint(point) === 0, 'Passed!');
+    assert.ok(a.distanceToPoint(new Vector3(4, 0, 0)) === 3, 'Passed!');
+  });
 
-    var a = new Plane( new Vector3( 2, 0, 0 ), - 2 );
-    var point = new Vector3();
+  it('distanceToSphere', () => {
+    const a = new Plane(new Vector3(1, 0, 0), 0);
 
-    a.normalize().projectPoint( zero3.clone(), point );
-    assert.ok( a.distanceToPoint( point ) === 0, "Passed!" );
-    assert.ok( a.distanceToPoint( new Vector3( 4, 0, 0 ) ) === 3, "Passed!" );
+    const b = new Sphere(new Vector3(2, 0, 0), 1);
 
-  } );
+    assert.ok(a.distanceToSphere(b) === 1, 'Passed!');
 
-  it( "distanceToSphere", () => {
+    a.set(new Vector3(1, 0, 0), 2);
+    assert.ok(a.distanceToSphere(b) === 3, 'Passed!');
+    a.set(new Vector3(1, 0, 0), -2);
+    assert.ok(a.distanceToSphere(b) === -1, 'Passed!');
+  });
 
-    var a = new Plane( new Vector3( 1, 0, 0 ), 0 );
+  it('projectPoint', () => {
+    var a = new Plane(new Vector3(1, 0, 0), 0);
+    const point = new Vector3();
 
-    var b = new Sphere( new Vector3( 2, 0, 0 ), 1 );
+    a.projectPoint(new Vector3(10, 0, 0), point);
+    assert.ok(point.equals(zero3), 'Passed!');
+    a.projectPoint(new Vector3(-10, 0, 0), point);
+    assert.ok(point.equals(zero3), 'Passed!');
 
-    assert.ok( a.distanceToSphere( b ) === 1, "Passed!" );
+    var a = new Plane(new Vector3(0, 1, 0), -1);
+    a.projectPoint(new Vector3(0, 0, 0), point);
+    assert.ok(point.equals(new Vector3(0, 1, 0)), 'Passed!');
+    a.projectPoint(new Vector3(0, 1, 0), point);
+    assert.ok(point.equals(new Vector3(0, 1, 0)), 'Passed!');
+  });
 
-    a.set( new Vector3( 1, 0, 0 ), 2 );
-    assert.ok( a.distanceToSphere( b ) === 3, "Passed!" );
-    a.set( new Vector3( 1, 0, 0 ), - 2 );
-    assert.ok( a.distanceToSphere( b ) === - 1, "Passed!" );
+  it('isInterestionLine/intersectLine', () => {
+    var a = new Plane(new Vector3(1, 0, 0), 0);
+    const point = new Vector3();
 
-  } );
+    const l1 = new Line3(new Vector3(-10, 0, 0), new Vector3(10, 0, 0));
+    a.intersectLine(l1, point);
+    assert.ok(point.equals(new Vector3(0, 0, 0)), 'Passed!');
 
-  it( "projectPoint", () => {
+    var a = new Plane(new Vector3(1, 0, 0), -3);
+    a.intersectLine(l1, point);
+    assert.ok(point.equals(new Vector3(3, 0, 0)), 'Passed!');
+  });
 
-    var a = new Plane( new Vector3( 1, 0, 0 ), 0 );
-    var point = new Vector3();
+  it('intersectsBox', () => {
+    const a = new Box3(zero3.clone(), one3.clone());
+    const b = new Plane(new Vector3(0, 1, 0), 1);
+    const c = new Plane(new Vector3(0, 1, 0), 1.25);
+    const d = new Plane(new Vector3(0, -1, 0), 1.25);
+    const e = new Plane(new Vector3(0, 1, 0), 0.25);
+    const f = new Plane(new Vector3(0, 1, 0), -0.25);
+    const g = new Plane(new Vector3(0, 1, 0), -0.75);
+    const h = new Plane(new Vector3(0, 1, 0), -1);
+    const i = new Plane(new Vector3(1, 1, 1).normalize(), -1.732);
+    const j = new Plane(new Vector3(1, 1, 1).normalize(), -1.733);
 
-    a.projectPoint( new Vector3( 10, 0, 0 ), point );
-    assert.ok( point.equals( zero3 ), "Passed!" );
-    a.projectPoint( new Vector3( - 10, 0, 0 ), point );
-    assert.ok( point.equals( zero3 ), "Passed!" );
+    assert.ok(!b.intersectsBox(a), 'Passed!');
+    assert.ok(!c.intersectsBox(a), 'Passed!');
+    assert.ok(!d.intersectsBox(a), 'Passed!');
+    assert.ok(!e.intersectsBox(a), 'Passed!');
+    assert.ok(f.intersectsBox(a), 'Passed!');
+    assert.ok(g.intersectsBox(a), 'Passed!');
+    assert.ok(h.intersectsBox(a), 'Passed!');
+    assert.ok(i.intersectsBox(a), 'Passed!');
+    assert.ok(!j.intersectsBox(a), 'Passed!');
+  });
 
-    var a = new Plane( new Vector3( 0, 1, 0 ), - 1 );
-    a.projectPoint( new Vector3( 0, 0, 0 ), point );
-    assert.ok( point.equals( new Vector3( 0, 1, 0 ) ), "Passed!" );
-    a.projectPoint( new Vector3( 0, 1, 0 ), point );
-    assert.ok( point.equals( new Vector3( 0, 1, 0 ) ), "Passed!" );
+  it('intersectsSphere', () => {
+    const a = new Sphere(zero3.clone(), 1);
+    const b = new Plane(new Vector3(0, 1, 0), 1);
+    const c = new Plane(new Vector3(0, 1, 0), 1.25);
+    const d = new Plane(new Vector3(0, -1, 0), 1.25);
 
-  } );
+    assert.ok(b.intersectsSphere(a), 'Passed!');
+    assert.ok(!c.intersectsSphere(a), 'Passed!');
+    assert.ok(!d.intersectsSphere(a), 'Passed!');
+  });
 
-  it( "isInterestionLine/intersectLine", () => {
+  it('coplanarPoint', () => {
+    const point = new Vector3();
 
-    var a = new Plane( new Vector3( 1, 0, 0 ), 0 );
-    var point = new Vector3();
+    var a = new Plane(new Vector3(1, 0, 0), 0);
+    a.coplanarPoint(point);
+    assert.ok(a.distanceToPoint(point) === 0, 'Passed!');
 
-    var l1 = new Line3( new Vector3( - 10, 0, 0 ), new Vector3( 10, 0, 0 ) );
-    a.intersectLine( l1, point );
-    assert.ok( point.equals( new Vector3( 0, 0, 0 ) ), "Passed!" );
+    var a = new Plane(new Vector3(0, 1, 0), -1);
+    a.coplanarPoint(point);
+    assert.ok(a.distanceToPoint(point) === 0, 'Passed!');
+  });
 
-    var a = new Plane( new Vector3( 1, 0, 0 ), - 3 );
-    a.intersectLine( l1, point );
-    assert.ok( point.equals( new Vector3( 3, 0, 0 ) ), "Passed!" );
+  it('applyMatrix4/translate', () => {
+    var a = new Plane(new Vector3(1, 0, 0), 0);
 
-  } );
+    const m = new Matrix4();
+    m.makeRotationZ(Math.PI * 0.5);
 
-  it( "intersectsBox", () => {
+    assert.ok(comparePlane(a.clone().applyMatrix4(m), new Plane(new Vector3(0, 1, 0), 0)), 'Passed!');
 
-    var a = new Box3( zero3.clone(), one3.clone() );
-    var b = new Plane( new Vector3( 0, 1, 0 ), 1 );
-    var c = new Plane( new Vector3( 0, 1, 0 ), 1.25 );
-    var d = new Plane( new Vector3( 0, - 1, 0 ), 1.25 );
-    var e = new Plane( new Vector3( 0, 1, 0 ), 0.25 );
-    var f = new Plane( new Vector3( 0, 1, 0 ), - 0.25 );
-    var g = new Plane( new Vector3( 0, 1, 0 ), - 0.75 );
-    var h = new Plane( new Vector3( 0, 1, 0 ), - 1 );
-    var i = new Plane( new Vector3( 1, 1, 1 ).normalize(), - 1.732 );
-    var j = new Plane( new Vector3( 1, 1, 1 ).normalize(), - 1.733 );
+    var a = new Plane(new Vector3(0, 1, 0), -1);
+    assert.ok(comparePlane(a.clone().applyMatrix4(m), new Plane(new Vector3(-1, 0, 0), -1)), 'Passed!');
 
-    assert.ok( ! b.intersectsBox( a ), "Passed!" );
-    assert.ok( ! c.intersectsBox( a ), "Passed!" );
-    assert.ok( ! d.intersectsBox( a ), "Passed!" );
-    assert.ok( ! e.intersectsBox( a ), "Passed!" );
-    assert.ok( f.intersectsBox( a ), "Passed!" );
-    assert.ok( g.intersectsBox( a ), "Passed!" );
-    assert.ok( h.intersectsBox( a ), "Passed!" );
-    assert.ok( i.intersectsBox( a ), "Passed!" );
-    assert.ok( ! j.intersectsBox( a ), "Passed!" );
+    m.makeTranslation(1, 1, 1);
+    assert.ok(comparePlane(a.clone().applyMatrix4(m), a.clone().translate(new Vector3(1, 1, 1))), 'Passed!');
+  });
 
-  } );
+  it('equals', () => {
+    const a = new Plane(new Vector3(1, 0, 0), 0);
+    const b = new Plane(new Vector3(1, 0, 0), 1);
+    const c = new Plane(new Vector3(0, 1, 0), 0);
 
-  it( "intersectsSphere", () => {
+    assert.ok(a.normal.equals(b.normal), 'Normals: equal');
+    assert.notOk(a.normal.equals(c.normal), 'Normals: not equal');
 
-    var a = new Sphere( zero3.clone(), 1 );
-    var b = new Plane( new Vector3( 0, 1, 0 ), 1 );
-    var c = new Plane( new Vector3( 0, 1, 0 ), 1.25 );
-    var d = new Plane( new Vector3( 0, - 1, 0 ), 1.25 );
+    assert.notStrictEqual(a.constant, b.constant, 'Constants: not equal');
+    assert.strictEqual(a.constant, c.constant, 'Constants: equal');
 
-    assert.ok( b.intersectsSphere( a ), "Passed!" );
-    assert.ok( ! c.intersectsSphere( a ), "Passed!" );
-    assert.ok( ! d.intersectsSphere( a ), "Passed!" );
+    assert.notOk(a.equals(b), 'Planes: not equal');
+    assert.notOk(a.equals(c), 'Planes: not equal');
 
-  } );
-
-  it( "coplanarPoint", () => {
-
-    var point = new Vector3();
-
-    var a = new Plane( new Vector3( 1, 0, 0 ), 0 );
-    a.coplanarPoint( point );
-    assert.ok( a.distanceToPoint( point ) === 0, "Passed!" );
-
-    var a = new Plane( new Vector3( 0, 1, 0 ), - 1 );
-    a.coplanarPoint( point );
-    assert.ok( a.distanceToPoint( point ) === 0, "Passed!" );
-
-  } );
-
-  it( "applyMatrix4/translate", () => {
-
-    var a = new Plane( new Vector3( 1, 0, 0 ), 0 );
-
-    var m = new Matrix4();
-    m.makeRotationZ( Math.PI * 0.5 );
-
-    assert.ok( comparePlane( a.clone().applyMatrix4( m ), new Plane( new Vector3( 0, 1, 0 ), 0 ) ), "Passed!" );
-
-    var a = new Plane( new Vector3( 0, 1, 0 ), - 1 );
-    assert.ok( comparePlane( a.clone().applyMatrix4( m ), new Plane( new Vector3( - 1, 0, 0 ), - 1 ) ), "Passed!" );
-
-    m.makeTranslation( 1, 1, 1 );
-    assert.ok( comparePlane( a.clone().applyMatrix4( m ), a.clone().translate( new Vector3( 1, 1, 1 ) ) ), "Passed!" );
-
-  } );
-
-  it( "equals", () => {
-
-    var a = new Plane( new Vector3( 1, 0, 0 ), 0 );
-    var b = new Plane( new Vector3( 1, 0, 0 ), 1 );
-    var c = new Plane( new Vector3( 0, 1, 0 ), 0 );
-
-    assert.ok( a.normal.equals( b.normal ), "Normals: equal" );
-    assert.notOk( a.normal.equals( c.normal ), "Normals: not equal" );
-
-    assert.notStrictEqual( a.constant, b.constant, "Constants: not equal" );
-    assert.strictEqual( a.constant, c.constant, "Constants: equal" );
-
-    assert.notOk( a.equals( b ), "Planes: not equal" );
-    assert.notOk( a.equals( c ), "Planes: not equal" );
-
-    a.copy( b );
-    assert.ok( a.normal.equals( b.normal ), "Normals after copy(): equal" );
-    assert.strictEqual( a.constant, b.constant, "Constants after copy(): equal" );
-    assert.ok( a.equals( b ), "Planes after copy(): equal" );
-
-  } );
-
-} );
+    a.copy(b);
+    assert.ok(a.normal.equals(b.normal), 'Normals after copy(): equal');
+    assert.strictEqual(a.constant, b.constant, 'Constants after copy(): equal');
+    assert.ok(a.equals(b), 'Planes after copy(): equal');
+  });
+});
 

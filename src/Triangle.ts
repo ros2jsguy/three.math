@@ -2,6 +2,7 @@ import type { Box3 } from './Box3';
 import type { Vector2 } from './Vector2';
 import { Vector3 } from './Vector3';
 import { Plane } from './Plane';
+import { Base } from './Base';
 
 const _v0 = new Vector3();
 const _v1 = new Vector3();
@@ -15,8 +16,8 @@ const _vap = new Vector3();
 const _vbp = new Vector3();
 const _vcp = new Vector3();
 
-class Triangle {
-  static getNormal(a: Vector3, b: Vector3, c: Vector3, target=new Vector3()): Vector3 {
+class Triangle extends Base {
+  static getNormal(a: Vector3, b: Vector3, c: Vector3, target = new Vector3()): Vector3 {
     target.subVectors(c, b);
     _v0.subVectors(a, b);
     target.cross(_v0);
@@ -31,7 +32,8 @@ class Triangle {
 
   // static/instance method to calculate barycentric coordinates
   // based on: http://www.blackpawn.com/texts/pointinpoly/default.html
-  static getBarycoord(point: Vector3, a: Vector3, b: Vector3, c: Vector3, target=new Vector3()): Vector3 {
+  // eslint-disable-next-line max-len
+  static getBarycoord(point: Vector3, a: Vector3, b: Vector3, c: Vector3, target = new Vector3()): Vector3 {
     _v0.subVectors(c, a);
     _v1.subVectors(b, a);
     _v2.subVectors(point, a);
@@ -85,15 +87,20 @@ class Triangle {
     return (_v0.cross(_v1).dot(direction) < 0);
   }
 
-  readonly isTriangle = true;
   a: Vector3;
   b: Vector3;
   c: Vector3;
 
   constructor(a = new Vector3(), b = new Vector3(), c = new Vector3()) {
+    super();
     this.a = a;
     this.b = b;
     this.c = c;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get isTriangle(): boolean {
+    return true;
   }
 
   set(a: Vector3, b: Vector3, c: Vector3): Triangle {
@@ -131,7 +138,7 @@ class Triangle {
     return _v0.cross(_v1).length() * 0.5;
   }
 
-  getMidpoint(target= new Vector3()): Vector3 {
+  getMidpoint(target = new Vector3()): Vector3 {
     return target.addVectors(this.a, this.b).add(this.c).multiplyScalar(1 / 3);
   }
 
@@ -139,9 +146,9 @@ class Triangle {
     return Triangle.getNormal(this.a, this.b, this.c, target);
   }
 
-  getPlane(target=new Plane()): Plane {
-		return target.setFromCoplanarPoints( this.a, this.b, this.c );
-	}
+  getPlane(target = new Plane()): Plane {
+    return target.setFromCoplanarPoints(this.a, this.b, this.c);
+  }
 
   getBarycoord(point: Vector3, target: Vector3): Vector3 {
     return Triangle.getBarycoord(point, this.a, this.b, this.c, target);
@@ -163,8 +170,7 @@ class Triangle {
     return box.intersectsTriangle(this);
   }
 
-  closestPointToPoint(p: Vector3, target=new Vector3()): Vector3 {
-
+  closestPointToPoint(p: Vector3, target = new Vector3()): Vector3 {
     const { a, b, c } = this;
     let v; let w;
 

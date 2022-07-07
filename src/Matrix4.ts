@@ -1,13 +1,14 @@
+import { Base } from './Base';
 import type { Euler } from './Euler';
 import type{ Matrix3 } from './Matrix3';
 import type { Quaternion } from './Quaternion';
 import { Vector3 } from './Vector3';
 
-class Matrix4 {
-  readonly isMatrix4 = true;
+class Matrix4 extends Base {
   elements: number[];
 
   constructor() {
+    super();
     this.elements = [
       1, 0, 0, 0,
       0, 1, 0, 0,
@@ -18,6 +19,11 @@ class Matrix4 {
     if (arguments.length > 0) {
       console.error('THREE.Matrix4: the constructor no longer reads arguments. use .set() instead.');
     }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get isMatrix4(): boolean {
+    return true;
   }
 
   set(n11: number, n12: number, n13: number, n14: number,

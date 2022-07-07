@@ -3,6 +3,7 @@ import type { Matrix4 } from './Matrix4';
 import type { Sphere } from './Sphere';
 import { Vector3 } from './Vector3';
 import { Plane } from './Plane';
+import { Base } from './Base';
 
 const _vector = new Vector3();
 const _segCenter = new Vector3();
@@ -13,14 +14,19 @@ const _edge1 = new Vector3();
 const _edge2 = new Vector3();
 const _normal = new Vector3();
 
-class Ray {
-  readonly isRay = true;
+class Ray extends Base {
   origin: Vector3;
   direction: Vector3;
 
   constructor(origin = new Vector3(), direction = new Vector3(0, 0, -1)) {
+    super();
     this.origin = origin;
     this.direction = direction;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get isRay(): boolean {
+    return true;
   }
 
   set(origin: Vector3, direction: Vector3): Ray {
@@ -38,7 +44,7 @@ class Ray {
   }
 
   at(t: number, target = new Vector3()): Vector3 {
-   return target.copy(this.direction).multiplyScalar(t).add(this.origin);
+    return target.copy(this.direction).multiplyScalar(t).add(this.origin);
   }
 
   lookAt(v: Vector3): Ray {
@@ -209,48 +215,48 @@ class Ray {
   }
 
   distanceToPlane(plane: Plane): number | null {
-		const denominator = plane.normal.dot(this.direction);
-		if (denominator === 0) {
-			// line is coplanar, return origin
-			if (plane.distanceToPoint(this.origin) === 0) {
-				return 0;
-			}
+    const denominator = plane.normal.dot(this.direction);
+    if (denominator === 0) {
+      // line is coplanar, return origin
+      if (plane.distanceToPoint(this.origin) === 0) {
+        return 0;
+      }
 
-			// Null is preferable to undefined since undefined means.... it is undefined
-			return null;
-		}
+      // Null is preferable to undefined since undefined means.... it is undefined
+      return null;
+    }
 
-		const t = - (this.origin.dot( plane.normal ) + plane.constant) / denominator;
+    const t = -(this.origin.dot(plane.normal) + plane.constant) / denominator;
 
-		// Return if the ray never intersects the plane
-		return t >= 0 ? t : null;
-	}
-
-	intersectPlane(plane: Plane, target): Vector3 | null  {
-		const t = this.distanceToPlane(plane);
-		if (t === null) {
-			return null;
-		}
-
-		return this.at(t, target);
-	}
-
-	intersectsPlane(plane: Plane): boolean {
-		// check if the ray lies on the plane first
-		const distToPoint = plane.distanceToPoint( this.origin );
-		if ( distToPoint === 0 ) {
-			return true;
-		}
-
-		const denominator = plane.normal.dot( this.direction );
-		if ( denominator * distToPoint < 0 ) {
-			return true;
-		}
-
-		// ray origin is behind the plane (and is pointing behind it)
-		return false;
+    // Return if the ray never intersects the plane
+    return t >= 0 ? t : null;
   }
-  
+
+  intersectPlane(plane: Plane, target): Vector3 | null {
+    const t = this.distanceToPlane(plane);
+    if (t === null) {
+      return null;
+    }
+
+    return this.at(t, target);
+  }
+
+  intersectsPlane(plane: Plane): boolean {
+    // check if the ray lies on the plane first
+    const distToPoint = plane.distanceToPoint(this.origin);
+    if (distToPoint === 0) {
+      return true;
+    }
+
+    const denominator = plane.normal.dot(this.direction);
+    if (denominator * distToPoint < 0) {
+      return true;
+    }
+
+    // ray origin is behind the plane (and is pointing behind it)
+    return false;
+  }
+
   intersectBox(box: Box3, target: Vector3): Vector3 | null {
     let tmin; let tmax; let tymin; let tymax; let tzmin; let
       tzmax;

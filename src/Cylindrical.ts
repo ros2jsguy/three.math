@@ -2,15 +2,16 @@
  * Ref: https://en.wikipedia.org/wiki/Cylindrical_coordinate_system
  */
 
+import { Base } from './Base';
 import type { Vector3 } from './Vector3';
 
-class Cylindrical {
-  readonly isCylindrical = true;
+class Cylindrical extends Base {
   radius: number;
   theta: number;
   y: number;
 
   constructor(radius = 1, theta = 0, y = 0) {
+    super();
     // distance from the origin to a point in the x-z plane
     this.radius = radius;
     // counterclockwise angle in the x-z plane measured in radians from the positive z-axis
@@ -19,6 +20,11 @@ class Cylindrical {
     this.y = y;
 
     return this;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get isCylindrical(): boolean {
+    return true;
   }
 
   set(radius: number, theta: number, y: number) {

@@ -1,13 +1,19 @@
+import { Base } from './Base';
 import type { Matrix3 } from './Matrix3';
 
-class Vector2 {
-  readonly isVector2 = true;
+class Vector2 extends Base {
   x: number;
   y: number;
 
   constructor(x = 0, y = 0) {
+    super();
     this.x = x;
     this.y = y;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get isVector2(): boolean {
+    return true;
   }
 
   get width() {

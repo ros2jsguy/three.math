@@ -1,3 +1,4 @@
+import { Base } from './Base';
 import { MathUtils } from './MathUtils';
 
 export interface HSL {
@@ -179,15 +180,15 @@ function LinearToSRGB(c: number) {
 
 type IColor = Color | string | number ;
 
-class Color {
+class Color extends Base {
   static readonly NAMES = _colorKeywords;
 
-  readonly isColor = true;
   r = 1;
   g = 1;
   b = 1;
 
   constructor(r?: IColor, g?: number, b?: number) {
+    super();
     if (r === undefined) return;
 
     if (g === undefined && b === undefined) {
@@ -195,7 +196,12 @@ class Color {
       return this.set(r);
     }
 
-    return this.setRGB(r as number, g??0, b??0);
+    return this.setRGB(r as number, g ?? 0, b ?? 0);
+  }
+
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get isColor(): boolean {
+    return true;
   }
 
   set(value: IColor) {

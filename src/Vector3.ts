@@ -5,6 +5,7 @@ import type { Matrix3 } from './Matrix3';
 import type { Matrix4 } from './Matrix4';
 import type { Spherical } from './Spherical';
 import type { Cylindrical } from './Cylindrical';
+import { Base } from './Base';
 
 
 /**
@@ -18,20 +19,18 @@ import type { Cylindrical } from './Cylindrical';
  * ```
  * There are other things a 3D vector can be used to represent,
  * such as momentum vectors and so on.
- * 
+ *
  * @example
  * ```
  * const a = new Vector3( 0, 1, 0 );
- * 
+ *
  * //no arguments; will be initialised to (0, 0, 0)
  * const b = new Vector3( );
- * 
+ *
  * const d = a.distanceTo( b );
  * ```
  */
-class Vector3 {
-  readonly isVector3 = true;
-
+class Vector3 extends Base {
   x: number;
   y: number;
   z: number;
@@ -43,9 +42,15 @@ class Vector3 {
    * @param [z=0] - The z value of this vector.
    */
   constructor(x = 0, y = 0, z = 0) {
+    super();
     this.x = x;
     this.y = y;
     this.z = z;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get isVector3(): boolean {
+    return true;
   }
 
   /**
@@ -116,7 +121,7 @@ class Vector3 {
    * If index equals 0 set x to value.
    * If index equals 1 set y to value.
    * If index equals 2 set z to value
-   * 
+   *
    * @param index - The component to update
    * @param value - New value
    * @returns This instance.
@@ -137,7 +142,7 @@ class Vector3 {
    * If index equals 0 returns the x value.
    * If index equals 1 returns the y value.
    * If index equals 2 returns the z value.
-   * 
+   *
    * @param index - Index of component to access.
    * @return The x, y or z component specified by index.
    */
@@ -199,8 +204,8 @@ class Vector3 {
 
   /**
    * Sets this vector to a + b.
-   * @param a 
-   * @param b 
+   * @param a
+   * @param b
    * @returns This instance.
    */
   addVectors(a: Vector3, b: Vector3): Vector3 {
@@ -231,7 +236,7 @@ class Vector3 {
    * @returns This instance.
    */
   sub(v: Vector3): Vector3 {
-   this.x -= v.x;
+    this.x -= v.x;
     this.y -= v.y;
     this.z -= v.z;
 
@@ -240,7 +245,7 @@ class Vector3 {
 
   /**
    * Subtracts s from this vector's x, y and z compnents.
-   * @param s - The subtracting vector 
+   * @param s - The subtracting vector
    * @returns This instance.
    */
   subScalar(s: number): Vector3 {
@@ -253,8 +258,8 @@ class Vector3 {
 
   /**
    * Sets this vector to a - b.
-   * @param a 
-   * @param b 
+   * @param a
+   * @param b
    * @returns This instance.
    */
   subVectors(a: Vector3, b: Vector3): Vector3 {
@@ -267,7 +272,7 @@ class Vector3 {
 
   /**
    * Multiplies this vector by v.
-   * @param v 
+   * @param v
    * @returns This instance.
    */
   multiply(v: Vector3): Vector3 {
@@ -280,7 +285,7 @@ class Vector3 {
 
   /**
    * Multiplies this vector by scalar s.
-   * @param scalar 
+   * @param scalar
    * @returns This instance.
    */
   multiplyScalar(scalar: number): Vector3 {
@@ -293,8 +298,8 @@ class Vector3 {
 
   /**
    * Sets this vector equal to a * b, component-wise.
-   * @param a 
-   * @param b 
+   * @param a
+   * @param b
    * @returns This instance.
    */
   multiplyVectors(a: Vector3, b: Vector3): Vector3 {
@@ -307,7 +312,7 @@ class Vector3 {
 
   /**
    * Applies euler transform to this vector by converting the Euler object to a Quaternion and applying.
-   * @param euler 
+   * @param euler
    * @returns This instance.
    */
   applyEuler(euler: Euler): Vector3 {
@@ -316,9 +321,9 @@ class Vector3 {
 
   /**
    * Applies a rotation specified by an axis and an angle to this vector.
-   * @param axis 
+   * @param axis
    * @param angle
-   * @returns This instance. 
+   * @returns This instance.
    */
   applyAxisAngle(axis: Vector3, angle: number): Vector3 {
     return this.applyQuaternion(_quaternion.setFromAxisAngle(axis, angle));
@@ -326,7 +331,7 @@ class Vector3 {
 
   /**
    * Multiplies this vector by m
-   * @param m 
+   * @param m
    * @returns This instance.
    */
   applyMatrix3(m: Matrix3): Vector3 {
@@ -342,7 +347,7 @@ class Vector3 {
 
   /**
    * Multiplies this vector by normal matrix m and normalizes the result.
-   * @param m 
+   * @param m
    * @returns This instance.
    */
   applyNormalMatrix(m: Matrix3): Vector3 {
@@ -351,7 +356,7 @@ class Vector3 {
 
   /**
    * Multiplies this vector (with an implicit 1 in the 4th dimension) and m, and divides by perspective.
-   * @param m 
+   * @param m
    * @returns This instance.
    */
   applyMatrix4(m: Matrix4): Vector3 {
@@ -369,7 +374,7 @@ class Vector3 {
 
   /**
    * Applies a Quaternion transform to this vector.
-   * @param q 
+   * @param q
    * @returns This instance.
    */
   applyQuaternion(q: Quaternion): Vector3 {
@@ -398,7 +403,7 @@ class Vector3 {
   /**
    * Transforms the direction of this vector by a matrix
    * (the upper left 3 x 3 subset of a m) and then normalizes the result.
-   * @param m 
+   * @param m
    * @returns This instance.
    */
   transformDirection(m: Matrix4): Vector3 {
@@ -417,7 +422,7 @@ class Vector3 {
 
   /**
    * Divides this vector by v.
-   * @param v 
+   * @param v
    * @returns This instance.
    */
   divide(v: Vector3): Vector3 {
@@ -431,7 +436,7 @@ class Vector3 {
   /**
    * Divides this vector by scalar s.
    * Sets vector to ( 0, 0, 0 ) if *s = 0*.
-   * @param scalar 
+   * @param scalar
    * @returns This instance.
    */
   divideScalar(scalar: number): Vector3 {
@@ -441,7 +446,7 @@ class Vector3 {
   /**
    * If this vector's x, y or z value is greater than v's x, y or z value,
    * replace that value with the corresponding min value.
-   * @param v 
+   * @param v
    * @returns This instance.
    */
   min(v: Vector3): Vector3 {
@@ -455,7 +460,7 @@ class Vector3 {
   /**
    * If this vector's x, y or z value is less than v's x, y or z value,
    * replace that value with the corresponding max value.
-   * @param v 
+   * @param v
    * @returns This instance.
    */
   max(v: Vector3): Vector3 {
@@ -468,9 +473,9 @@ class Vector3 {
 
   /**
    * Restrict this vector component values to the range of their respective min and max vector component values.
-   * 
+   *
    * If this vector's x, y or z value is greater than the max vector's x, y or z value, it is replaced by the corresponding value.
-   * 
+   *
    * If this vector's x, y or z value is less than the min vector's x, y or z value, it is replaced by the corresponding value.
    * @param min - The minimum x, y and z values.
    * @param max - The maximum x, y and z values in the desired range
@@ -488,11 +493,11 @@ class Vector3 {
 
   /**
    * Restrict this vector component values to the range [minVal,maxVal].
-   * 
+   *
    * If this vector's x, y or z values are greater than the max value, they are replaced by the max value.
-   * 
+   *
    * If this vector's x, y or z values are less than the min value, they are replaced by the min value.
-   * 
+   *
    * @param minVal - The minimum component value
    * @param maxVal - The maximum component value
    * @returns This instance.
@@ -505,11 +510,11 @@ class Vector3 {
     return this;
   }
 
-   /**
+  /**
    * Restrict this vector length the range [min,max].
-   * 
+   *
    * If this vector's length is greater than the max value, the vector will be scaled down so its length is the max value.
-   * 
+   *
    * If this vector's length is less than the min value, the vector will be scaled up so its length is the min value.
    * @param min - The minimum value the length will be clamped to
    * @param max - The maximum value the length will be clamped to
@@ -584,7 +589,7 @@ class Vector3 {
 
   /**
    * Calculate the dot product of this vector and v.
-   * @param v 
+   * @param v
    * @returns The dot product.
    */
   dot(v: Vector3): number {
@@ -592,12 +597,12 @@ class Vector3 {
   }
 
   /**
-   * Computes the square of the Euclidean length (straight-line length) from 
+   * Computes the square of the Euclidean length (straight-line length) from
    * (0, 0, 0) to (x, y, z). If you are comparing the lengths of vectors,
    * you should compare the length squared instead as it is slightly more
    * efficient to calculate.
-   * 
-   * @returns The sum of the components squared. 
+   *
+   * @returns The sum of the components squared.
    */
   lengthSq(): number {
     return this.x * this.x + this.y * this.y + this.z * this.z;
@@ -622,7 +627,7 @@ class Vector3 {
   /**
    * Convert this vector to a unit vector - that is, sets it equal to a
    * vector with the same direction as this one, but length 1.
-   * @returns This instance. 
+   * @returns This instance.
    */
   normalize(): Vector3 {
     return this.divideScalar(this.length() || 1);
@@ -631,7 +636,7 @@ class Vector3 {
   /**
    * Set this vector to a vector with the same direction as this one,
    * but the specified length.
-   * @param length 
+   * @param length
    * @returns This instance.
    */
   setLength(length: number): Vector3 {
@@ -644,7 +649,7 @@ class Vector3 {
    * and alpha = 1 will be v.
    * @param v - The vector to interpolate towards.
    * @param alpha - The interpolation factor, typically in the closed interval [0, 1].
-   * @returns This instance. 
+   * @returns This instance.
    */
   lerp(v: Vector3, alpha: number): Vector3 {
     this.x += (v.x - this.x) * alpha;
@@ -661,7 +666,7 @@ class Vector3 {
    * @param v1 - The starting Vector3.
    * @param v2 - The vector to interpolate towards.
    * @param alpha - The interpolation factor, typically in the closed interval [0, 1].
-   * @returns This instance. 
+   * @returns This instance.
    */
   lerpVectors(v1: Vector3, v2: Vector3, alpha: number): Vector3 {
     this.x = v1.x + (v2.x - v1.x) * alpha;
@@ -673,7 +678,7 @@ class Vector3 {
 
   /**
    * Sets this vector to the cross product of itself and v.
-   * @param v 
+   * @param v
    * @returns This instance.
    */
   cross(v: Vector3): Vector3 {
@@ -682,8 +687,8 @@ class Vector3 {
 
   /**
    * Sets this vector to cross product of a and b.
-   * @param a 
-   * @param b 
+   * @param a
+   * @param b
    * @returns This instance.
    */
   crossVectors(a: Vector3, b: Vector3): Vector3 {
@@ -704,8 +709,8 @@ class Vector3 {
 
   /**
    * Projects this vector onto v.
-   * @param v 
-   * 
+   * @param v
+   *
    */
   projectOnVector(v: Vector3): Vector3 {
     const denominator = v.lengthSq();
@@ -744,7 +749,7 @@ class Vector3 {
 
   /**
    * Returns the angle between this vector and vector v in radians.
-   * @param v 
+   * @param v
    * @returns The angle.
    */
   angleTo(v: Vector3): number {
@@ -761,7 +766,7 @@ class Vector3 {
 
   /**
    * Computes the distance from this vector to v.
-   * @param v 
+   * @param v
    * @returns The distance.
    */
   distanceTo(v: Vector3): number {
@@ -773,8 +778,8 @@ class Vector3 {
    * If you are just comparing the distance with another distance,
    * you should compare the distance squared instead as it is
    * slightly more efficient to calculate.
-   * @param v 
-   * @returns The squared distance. 
+   * @param v
+   * @returns The squared distance.
    */
   distanceToSquared(v: Vector3): number {
     const dx = this.x - v.x;
@@ -786,7 +791,7 @@ class Vector3 {
 
   /**
    * Computes the Manhattan distance from this vector to v.
-   * @param v 
+   * @param v
    * @returns The Manhattan distance.
    */
   manhattanDistanceTo(v: Vector3): number {
@@ -795,7 +800,7 @@ class Vector3 {
 
   /**
    * Sets this vector from the spherical coordinates s.
-   * @param s 
+   * @param s
    * @returns This instance.
    */
   setFromSpherical(s: Spherical): Vector3 {
@@ -804,9 +809,9 @@ class Vector3 {
 
   /**
    * Sets this vector from the spherical coordinates radius, phi and theta.
-   * @param radius 
-   * @param phi 
-   * @param theta 
+   * @param radius
+   * @param phi
+   * @param theta
    * @returns This instance.
    */
   setFromSphericalCoords(radius: number, phi: number, theta: number): Vector3 {
@@ -821,7 +826,7 @@ class Vector3 {
 
   /**
    * Sets this vector from the cylindrical coordinates c.
-   * @param c 
+   * @param c
    * @returns This instance.
    */
   setFromCylindrical(c: Cylindrical): Vector3 {
@@ -830,9 +835,9 @@ class Vector3 {
 
   /**
    * Sets this vector from the cylindrical coordinates radius, theta and y.
-   * @param radius 
-   * @param theta 
-   * @param y 
+   * @param radius
+   * @param theta
+   * @param y
    * @returns This instance.
    */
   setFromCylindricalCoords(radius: number, theta: number, y: number): Vector3 {
@@ -845,7 +850,7 @@ class Vector3 {
 
   /**
    * Sets this vector to the position elements of the transformation matrix m.
-   * @param m 
+   * @param m
    * @returns This instance.
    */
   setFromMatrixPosition(m: Matrix4): Vector3 {
@@ -860,7 +865,7 @@ class Vector3 {
 
   /**
    * Sets this vector to the scale elements of the transformation matrix m.
-   * @param m 
+   * @param m
    * @returns This instance.
    */
   setFromMatrixScale(m: Matrix4): Vector3 {
@@ -877,9 +882,9 @@ class Vector3 {
 
   /**
    * Sets this vector's x, y and z components from index column of matrix.
-   * @param m 
+   * @param m
    * @param index
-   * @returns This instance. 
+   * @returns This instance.
    */
   setFromMatrixColumn(m: Matrix4, index: number): Vector3 {
     return this.fromArray(m.elements, index * 4);
@@ -887,9 +892,9 @@ class Vector3 {
 
   /**
    * Sets this vector's x, y and z components from index column of matrix.
-   * @param m 
+   * @param m
    * @param index
-   * @returns This instance. 
+   * @returns This instance.
    */
   setFromMatrix3Column(m: Matrix3, index: number): Vector3 {
     return this.fromArray(m.elements, index * 3);
@@ -897,7 +902,7 @@ class Vector3 {
 
   /**
    * Checks for strict equality of this vector and v.
-   * @param v 
+   * @param v
    * @returns true if equal; false otherwise.
    */
   equals(v: Vector3): boolean {
@@ -909,7 +914,7 @@ class Vector3 {
    * y value to be array[ offset + 1 ] and z value to be array[ offset + 2 ].
    * @param array - The source array.
    * @param [offset=0] - Offset into the array.
-   * @returns This instance. 
+   * @returns This instance.
    */
   fromArray(array: number[], offset = 0): Vector3 {
     this.x = array[offset];

@@ -1,19 +1,20 @@
+import { Base } from './Base';
 import type { Matrix4 } from './Matrix4';
 import type { Vector3 } from './Vector3';
 
 /**
  * A class representing a 3x3 matrix.
- * 
+ *
  * @example
  * ```
  * const m = new Matrix3();
  * ```
- * 
+ *
  * @remark
  * A Note on Row-Major and Column-Major Ordering
- * The set() method takes arguments in row-major order, while internally 
+ * The set() method takes arguments in row-major order, while internally
  * they are stored in the elements array in column-major order.
- * 
+ *
  * This means that calling
  * ```
  * m.set( 11, 12, 13,
@@ -34,9 +35,7 @@ import type { Vector3 } from './Vector3';
  * to take the transpose of any matrices outlined here to make sense of the calculations.
 
  */
-class Matrix3 {
-  readonly isMatrix3 = true;
-
+class Matrix3 extends Base {
   /**
    * A column-major list of matrix values.
    */
@@ -46,6 +45,7 @@ class Matrix3 {
    * Creates and initializes the Matrix3 to the 3x3 identity matrix.
    */
   constructor() {
+    super();
     this.elements = [
       1, 0, 0,
       0, 1, 0,
@@ -55,6 +55,11 @@ class Matrix3 {
     if (arguments.length > 0) {
       console.error('THREE.Matrix3: the constructor no longer reads arguments. use .set() instead.');
     }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get isMatrix3(): boolean {
+    return true;
   }
 
   /**
@@ -131,9 +136,9 @@ class Matrix3 {
    * yAxis = (b, e, h)
    * zAxis = (c, f, i)
    * ```
-   * @param xAxis 
-   * @param yAxis 
-   * @param zAxis 
+   * @param xAxis
+   * @param yAxis
+   * @param zAxis
    * @returns This instance.
    */
   extractBasis(xAxis: Vector3, yAxis: Vector3, zAxis: Vector3): Matrix3 {
@@ -396,7 +401,7 @@ class Matrix3 {
   /**
    * Test if this instance is equivalent to another matrix.
    * @param matrix
-   * @returns True if this matrix and m are equal. 
+   * @returns True if this matrix and m are equal.
    */
   equals(matrix: Matrix3): boolean {
     const te = this.elements;
@@ -413,7 +418,7 @@ class Matrix3 {
    * Sets the elements of this matrix based on an array in column-major format.
    * @param array -  the array to read the elements from.
    * @param [offset] -  index of first element in the array. Default is 0.
-   * @returns This instance. 
+   * @returns This instance.
    */
   fromArray(array: number[], offset = 0): Matrix3 {
     for (let i = 0; i < 9; i++) {

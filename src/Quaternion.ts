@@ -2,6 +2,7 @@ import { MathUtils } from './MathUtils';
 import type { Euler } from './Euler';
 import type{ Matrix4 } from './Matrix4';
 import type { Vector3 } from './Vector3';
+import { Base } from './Base';
 
 /**
  * Implementation of a quaternion.
@@ -16,7 +17,7 @@ import type { Vector3 } from './Vector3';
  * vector.applyQuaternion( quaternion );
  * ```
  */
-class Quaternion {
+class Quaternion extends Base {
   /**
    * Like the static slerp method, but operates directly on flat arrays of numbers.
    * @param dist - The output array.
@@ -24,7 +25,7 @@ class Quaternion {
    * @param src0 - The source array of the starting quaternion.
    * @param srcOffset0 - An offset into the array src0.
    * @param src1 -The source array of the target quatnerion.
-   * @param srcOffset1 - An offset into the array src1. 
+   * @param srcOffset1 - An offset into the array src1.
    * @param t - Normalized interpolation factor (between 0 and 1).
    */
   static slerpFlat(dst: number[], dstOffset: number,
@@ -129,7 +130,6 @@ class Quaternion {
     return dst;
   }
 
-  readonly isQuaternion = true;
   _x: number;
   _y: number;
   _z: number;
@@ -143,10 +143,16 @@ class Quaternion {
    * @param w - w coordinate
    */
   constructor(x = 0, y = 0, z = 0, w = 1) {
+    super();
     this._x = x;
     this._y = y;
     this._z = z;
     this._w = w;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get isQuaternion(): boolean {
+    return true;
   }
 
   get x() {
@@ -430,7 +436,7 @@ class Quaternion {
   /**
    * Find the angle between this quaternion and quaternion q in radians.
    * @param q
-   * @returns The angle. 
+   * @returns The angle.
    */
   angleTo(q: Quaternion): number {
     return 2 * Math.acos(Math.abs(MathUtils.clamp(this.dot(q), -1, 1)));
@@ -493,7 +499,7 @@ class Quaternion {
 
   /**
    * Calculates the dot product of quaternions v and this one.
-   * @param v 
+   * @param v
    * @returns The dot product.
    */
   dot(v: Quaternion): number {
@@ -702,7 +708,7 @@ class Quaternion {
   }
 
   /**
-   * Calculates the numerical elements of this quaternion 
+   * Calculates the numerical elements of this quaternion
    * in an array of format [x, y, z, w].
    * @param array - An optional array to store the quaternion. If not specified, a new array will be created.
    * @param offset - if specified, the result will be copied into this Array.

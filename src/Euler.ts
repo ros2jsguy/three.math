@@ -2,29 +2,56 @@ import { Quaternion } from './Quaternion';
 import { Vector3 } from './Vector3';
 import { Matrix4 } from './Matrix4';
 import { MathUtils } from './MathUtils';
+import { Base } from './Base';
 
 const _matrix = new Matrix4();
 const _quaternion = new Quaternion();
 
 export type IOrder = 'XYZ' | 'YZX' | 'ZXY' | 'XZY' | 'YXZ' | 'ZYX';
-
-class Euler {
+/**
+ * A class representing Euler Angles.
+ * Euler angles describe a rotational transformation by rotating an object
+ * on its various axes in specified amounts per axis, and a specified axis order.
+ *
+ * @example
+ * ```
+ * const a = new Euler( 0, 1, 1.57, 'XYZ' );
+ * const b = new Vector3( 1, 0, 1 );
+ * b.applyEuler(a);
+ * ```
+ */
+class Euler extends Base {
   static readonly DefaultOrder: IOrder = 'XYZ';
   static readonly RotationOrders: IOrder[] = ['XYZ', 'YZX', 'ZXY', 'XZY', 'YXZ', 'ZYX'];
 
-  readonly isEuler = true;
   _x: number;
   _y: number;
   _z: number;
   _order: IOrder;
 
+  /**
+   *
+   * @param x
+   * @param y
+   * @param z
+   * @param order
+   */
   constructor(x = 0, y = 0, z = 0, order = Euler.DefaultOrder) {
+    super();
     this._x = x;
     this._y = y;
     this._z = z;
     this._order = order;
   }
 
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get isEuler(): boolean {
+    return true;
+  }
+
+  /**
+   * The current value of the x component.
+   */
   get x() {
     return this._x;
   }
@@ -34,6 +61,9 @@ class Euler {
     this._onChangeCallback();
   }
 
+  /**
+   * The current value of the y component.
+   */
   get y() {
     return this._y;
   }
@@ -43,6 +73,9 @@ class Euler {
     this._onChangeCallback();
   }
 
+  /**
+   * The current value of the z component.
+   */
   get z() {
     return this._z;
   }
@@ -52,6 +85,19 @@ class Euler {
     this._onChangeCallback();
   }
 
+  /**
+   * The order in which to apply rotations. Default is 'XYZ', which means
+   * that the object will first be rotated around its X axis, then its Y axis
+   * and finally its Z axis. Other possibilities are: 'YZX', 'ZXY', 'XZY',
+   * 'YXZ' and 'ZYX'. These must be in upper case.
+   *
+   *  Three.js uses intrinsic Tait-Bryan angles. This means that rotations are
+   * performed with respect to the local coordinate system. That is, for
+   * order 'XYZ', the rotation is first around the local-X axis
+   * (which is the same as the world-X axis), then around local-Y
+   * (which may now be different from the world Y-axis), then local-Z
+   * (which may be different from the world Z-axis).
+   */
   get order() {
     return this._order;
   }
@@ -61,7 +107,15 @@ class Euler {
     this._onChangeCallback();
   }
 
-  set(x: number, y: number, z: number, order: IOrder) {
+  /**
+   *
+   * @param x - the angle of the x axis in radians.
+   * @param y - the angle of the y axis in radians.
+   * @param z - the angle of the z axis in radians.
+   * @param [order] - a string representing the order that the rotations are applied.
+   * @returns THis instance.
+   */
+  set(x: number, y: number, z: number, order: IOrder): Euler {
     this._x = x;
     this._y = y;
     this._z = z;
@@ -72,11 +126,20 @@ class Euler {
     return this;
   }
 
+  /**
+   * Create new Euler with the same parameters as this one.
+   * @returns The new instance.
+   */
   clone() {
     return new Euler(this._x, this._y, this._z, this._order);
   }
 
-  copy(euler: Euler) {
+  /**
+   * Copies value of euler to this euler.
+   * @param euler -
+   * @returns This instance.
+   */
+  copy(euler: Euler): Euler {
     this._x = euler._x;
     this._y = euler._y;
     this._z = euler._z;
@@ -209,6 +272,13 @@ class Euler {
     return this.set(v.x, v.y, v.z, order || this._order);
   }
 
+  /**
+   * Resets the euler angle with a new order by creating a quaternion from this euler angle and then setting this euler angle with the quaternion and the new order.
+
+WARNING: this discards revolution information.
+   * @param newOrder
+   * @returns
+   */
   reorder(newOrder: IOrder) {
     // WARNING: this discards revolution information -bhouston
 
@@ -217,11 +287,26 @@ class Euler {
     return this.setFromQuaternion(_quaternion, newOrder);
   }
 
+  /**
+   * Checks for strict equality of this euler and euler.
+   * @param euler
+   * @returns True when equality is determined.
+   */
   equals(euler: Euler) {
     return (euler._x === this._x) && (euler._y === this._y)
     && (euler._z === this._z) && (euler._order === this._order);
   }
 
+  /**
+   *
+   * @param array array of length 3 or 4. The optional 4th argument corresponds to the order.
+
+Assigns this euler's x angle to array[0].
+Assigns this euler's y angle to array[1].
+Assigns this euler's z angle to array[2].
+Optionally assigns this euler's order to array[3].
+   * @returns
+   */
   fromArray(array: [number, number, number, IOrder?]) {
     this._x = array[0];
     this._y = array[1];

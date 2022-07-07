@@ -1,19 +1,24 @@
+import { Base } from './Base';
 import type { Matrix4 } from './Matrix4';
 import type { Quaternion } from './Quaternion';
 
-class Vector4 {
-  readonly isVector4 = true;
-
+class Vector4 extends Base {
   x: number;
   y: number;
   z: number;
   w: number;
 
   constructor(x = 0, y = 0, z = 0, w = 1) {
+    super();
     this.x = x;
     this.y = y;
     this.z = z;
     this.w = w;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get isVector4(): boolean {
+    return true;
   }
 
   get width() {
