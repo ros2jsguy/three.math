@@ -2,8 +2,8 @@
  * @author bhouston / http://exocortex.com
  */
 
-import { Vector2 } from '../lib/vector2';
-import { Vector3 } from '../lib/vector3';
+import { Vector2 } from '../lib/Vector2';
+import { Vector3 } from '../lib/Vector3';
 
 export const x = 2;
 export const y = 3;

@@ -544,5 +544,13 @@ describe('Color', () => {
     c.setStyle('powderblue');
     assert.ok(c.getHex() == 0xB0E0E6, `Hex c: ${ c.getHex()}`);
   });
+
+  it('iterable', () => {
+    const c = new Color( 0.5, 0.75, 1 );
+    const array = [ ...c ];
+    assert.strictEqual( array[ 0 ], 0.5, 'Color is iterable.' );
+    assert.strictEqual( array[ 1 ], 0.75, 'Color is iterable.' );
+    assert.strictEqual( array[ 2 ], 1, 'Color is iterable.' );
+  } );
 });
 

@@ -639,4 +639,12 @@ describe('Vector2', () => {
     assert.strictEqual(b.x, 0.5, 'divide: check x');
     assert.strictEqual(b.y, 0.5, 'divide: check y');
   });
+
+  it( 'iterable', () => {
+    const v = new Vector2( 0, 1 );
+    const array = [ ...v ];
+    assert.strictEqual( array[ 0 ], 0, 'Vector2 is iterable.' );
+    assert.strictEqual( array[ 1 ], 1, 'Vector2 is iterable.' );
+  } );
+
 });

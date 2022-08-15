@@ -938,25 +938,29 @@ describe( 'Vector3', () => {
     assert.ok( a.length() == Math.sqrt( x * x + y * y + z * z ), "Passed!" );
     assert.ok( a.lengthSq() == ( x * x + y * y + z * z ), "Passed!" );
 
-  } );
+  });
   
   it( "lerp/clone", () => {
-
     var a = new Vector3( x, 0, z );
     var b = new Vector3( 0, - y, 0 );
 
     assert.ok( a.lerp( a, 0 ).equals( a.lerp( a, 0.5 ) ), "Passed!" );
     assert.ok( a.lerp( a, 0 ).equals( a.lerp( a, 1 ) ), "Passed!" );
-
     assert.ok( a.clone().lerp( b, 0 ).equals( a ), "Passed!" );
-
     assert.ok( a.clone().lerp( b, 0.5 ).x == x * 0.5, "Passed!" );
     assert.ok( a.clone().lerp( b, 0.5 ).y == - y * 0.5, "Passed!" );
     assert.ok( a.clone().lerp( b, 0.5 ).z == z * 0.5, "Passed!" );
-
     assert.ok( a.clone().lerp( b, 1 ).equals( b ), "Passed!" );
+  });
 
-  } );
+  it('iterable', () => {
+    const v = new Vector4( 0, 0.3, 0.7, 1 );
+    const array = [ ...v ];
+    assert.strictEqual( array[ 0 ], 0, 'Vector4 is iterable.' );
+    assert.strictEqual( array[ 1 ], 0.3, 'Vector4 is iterable.' );
+    assert.strictEqual( array[ 2 ], 0.7, 'Vector4 is iterable.' );
+    assert.strictEqual( array[ 3 ], 1, 'Vector4 is iterable.' );
+  });
 
-} );
+});
 

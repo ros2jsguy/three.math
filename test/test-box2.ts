@@ -18,7 +18,7 @@ import {
   zero2,
   one2,
   two2,
-} from './constants.tests';
+} from './Constants.tests';
 
 
 describe('Box2 Tests', () => {

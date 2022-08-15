@@ -6,7 +6,7 @@ const _vector = new Vector2();
 /**
  * Represents an axis-aligned bounding box (AABB) in 2D space.
  */
-class Box2 extends Base {
+export class Box2 extends Base {
   /**
    * The lower (x, y) boundary of the box. Default is ( + Infinity, + Infinity ).
    */
@@ -40,7 +40,7 @@ class Box2 extends Base {
    * @param max - Vector2 representing the upper (x, y) boundary of the box.
    * @returns This instance.
    */
-  set(min: Vector2, max: Vector2): Box2 {
+  set(min: Vector2, max: Vector2): this {
     this.min.copy(min);
     this.max.copy(max);
 
@@ -53,7 +53,7 @@ class Box2 extends Base {
    * @param points - Array of Vector2s that the resulting box will contain.
    * @returns This instance.
    */
-  setFromPoints(points: Vector2[]): Box2 {
+  setFromPoints(points: Vector2[]): this {
     this.makeEmpty();
 
     for (let i = 0, il = points.length; i < il; i++) {
@@ -70,7 +70,7 @@ class Box2 extends Base {
    * @param size - Desired x and y dimensions of the box
    * @returns This instance.
    */
-  setFromCenterAndSize(center: Vector2, size: Vector2): Box2 {
+  setFromCenterAndSize(center: Vector2, size: Vector2): this {
     const halfSize = _vector.copy(size).multiplyScalar(0.5);
     this.min.copy(center).sub(halfSize);
     this.max.copy(center).add(halfSize);
@@ -91,7 +91,7 @@ class Box2 extends Base {
    * @param box - The box to copy.
    * @returns This instance.
    */
-  copy(box: Box2): Box2 {
+  copy(box: Box2): this {
     this.min.copy(box.min);
     this.max.copy(box.max);
 
@@ -102,7 +102,7 @@ class Box2 extends Base {
    * Makes this box empty.
    * @returns This instance.
    */
-  makeEmpty(): Box2 {
+  makeEmpty(): this {
     this.min.x = +Infinity;
     this.min.y = +Infinity;
     this.max.x = -Infinity;
@@ -146,7 +146,7 @@ class Box2 extends Base {
    * @param point - Vector2 that should be included in the box.
    * @returns This instance.
    */
-  expandByPoint(point: Vector2): Box2 {
+  expandByPoint(point: Vector2): this {
     this.min.min(point);
     this.max.max(point);
 
@@ -161,7 +161,7 @@ class Box2 extends Base {
    * @param vector - Vector2 to expand the box by.
    * @returns This instance.
    */
-  expandByVector(vector: Vector2): Box2 {
+  expandByVector(vector: Vector2): this {
     this.min.sub(vector);
     this.max.add(vector);
 
@@ -174,7 +174,7 @@ class Box2 extends Base {
    * @param scalar - Distance to expand the box by.
    * @returns This instance.
    */
-  expandByScalar(scalar: number): Box2 {
+  expandByScalar(scalar: number): this {
     this.min.addScalar(-scalar);
     this.max.addScalar(scalar);
 
@@ -257,7 +257,7 @@ class Box2 extends Base {
    * @param box - Box to intersect with.
    * @returns This instance.
    */
-  intersect(box: Box2): Box2 {
+  intersect(box: Box2): this {
     this.min.max(box.min);
     this.max.min(box.max);
 
@@ -271,7 +271,7 @@ class Box2 extends Base {
    * @param box - Box that will be unioned with this box.
    * @param This instance.
    */
-  union(box: Box2) {
+  union(box: Box2): this {
     this.min.min(box.min);
     this.max.max(box.max);
 
@@ -284,7 +284,7 @@ class Box2 extends Base {
    * @param offset - Direction and distance of offset.
    * @returns This instance.
    */
-  translate(offset: Vector2): Box2 {
+  translate(offset: Vector2): this {
     this.min.add(offset);
     this.max.add(offset);
 
@@ -300,5 +300,3 @@ class Box2 extends Base {
     return box.min.equals(this.min) && box.max.equals(this.max);
   }
 }
-
-export { Box2 };

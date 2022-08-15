@@ -5,4 +5,3 @@ build-test/
 wip/
 .editorconfig
 .eslint*
-tsconfig*

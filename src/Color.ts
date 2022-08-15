@@ -1,6 +1,11 @@
 import { Base } from './Base';
 import { MathUtils } from './MathUtils';
 
+export type ColorRepresentation = Color | string | number;
+
+/** @deprecated Use ColorRepresentation */
+export type IColor = ColorRepresentation;
+
 export interface HSL {
   h: number;
   s: number;
@@ -178,16 +183,16 @@ function LinearToSRGB(c: number) {
   return (c < 0.0031308) ? c * 12.92 : 1.055 * (Math.pow(c, 0.41666)) - 0.055;
 }
 
-type IColor = Color | string | number ;
-
-class Color extends Base {
+export class Color extends Base {
   static readonly NAMES = _colorKeywords;
 
   r = 1;
   g = 1;
   b = 1;
 
-  constructor(r?: IColor, g?: number, b?: number) {
+  constructor(color?: ColorRepresentation);
+  constructor(r: number, g: number, b: number);
+  constructor(r?: ColorRepresentation, g?: number, b?: number) {
     super();
     if (r === undefined) return;
 
@@ -204,7 +209,7 @@ class Color extends Base {
     return true;
   }
 
-  set(value: IColor) {
+  set(value: ColorRepresentation): Color {
     if (value && (value as Color).isColor) {
       this.copy(value as Color);
     } else if (typeof value === 'number') {
@@ -216,7 +221,7 @@ class Color extends Base {
     return this;
   }
 
-  setScalar(scalar: number) {
+  setScalar(scalar: number): this {
     this.r = scalar;
     this.g = scalar;
     this.b = scalar;
@@ -224,7 +229,7 @@ class Color extends Base {
     return this;
   }
 
-  setHex(hex: number) {
+  setHex(hex: number): this {
     hex = Math.floor(hex);
 
     /* eslint-disable */
@@ -236,7 +241,7 @@ class Color extends Base {
     return this;
   }
 
-  setRGB(r: number, g: number, b: number) {
+  setRGB(r: number, g: number, b: number): this {
     this.r = r;
     this.g = g;
     this.b = b;
@@ -244,7 +249,7 @@ class Color extends Base {
     return this;
   }
 
-  setHSL(h: number, s: number, l: number) {
+  setHSL(h: number, s: number, l: number): this {
     // h,s,l ranges are in 0.0 - 1.0
     h = MathUtils.euclideanModulo(h, 1);
     s = MathUtils.clamp(s, 0, 1);
@@ -266,7 +271,7 @@ class Color extends Base {
     return this;
   }
 
-  setStyle(style: string) {
+  setStyle(style: string): this {
     function handleAlpha(string) {
       if (string === undefined) return;
 
@@ -360,7 +365,7 @@ class Color extends Base {
     return this;
   }
 
-  setColorName(style: string) {
+  setColorName(style: string): this {
     // color keywords
     const hex = _colorKeywords[style];
 
@@ -375,11 +380,11 @@ class Color extends Base {
     return this;
   }
 
-  clone() {
+  clone(): Color {
     return new Color(this.r, this.g, this.b);
   }
 
-  copy(color: Color) {
+  copy(color: Color): this {
     this.r = color.r;
     this.g = color.g;
     this.b = color.b;
@@ -387,7 +392,7 @@ class Color extends Base {
     return this;
   }
 
-  copyGammaToLinear(color: Color, gammaFactor = 2.0) {
+  copyGammaToLinear(color: Color, gammaFactor = 2.0): this {
     this.r = Math.pow(color.r, gammaFactor);
     this.g = Math.pow(color.g, gammaFactor);
     this.b = Math.pow(color.b, gammaFactor);
@@ -395,7 +400,7 @@ class Color extends Base {
     return this;
   }
 
-  copyLinearToGamma(color: Color, gammaFactor = 2.0) {
+  copyLinearToGamma(color: Color, gammaFactor = 2.0): this {
     const safeInverse = (gammaFactor > 0) ? (1.0 / gammaFactor) : 1.0;
 
     this.r = Math.pow(color.r, safeInverse);
@@ -405,19 +410,19 @@ class Color extends Base {
     return this;
   }
 
-  convertGammaToLinear(gammaFactor?: number) {
+  convertGammaToLinear(gammaFactor?: number): this {
     this.copyGammaToLinear(this, gammaFactor);
 
     return this;
   }
 
-  convertLinearToGamma(gammaFactor?: number) {
+  convertLinearToGamma(gammaFactor?: number): this {
     this.copyLinearToGamma(this, gammaFactor);
 
     return this;
   }
 
-  copySRGBToLinear(color: Color) {
+  copySRGBToLinear(color: Color): this {
     this.r = SRGBToLinear(color.r);
     this.g = SRGBToLinear(color.g);
     this.b = SRGBToLinear(color.b);
@@ -425,7 +430,7 @@ class Color extends Base {
     return this;
   }
 
-  copyLinearToSRGB(color: Color) {
+  copyLinearToSRGB(color: Color): this {
     this.r = LinearToSRGB(color.r);
     this.g = LinearToSRGB(color.g);
     this.b = LinearToSRGB(color.b);
@@ -433,28 +438,28 @@ class Color extends Base {
     return this;
   }
 
-  convertSRGBToLinear() {
+  convertSRGBToLinear(): this {
     this.copySRGBToLinear(this);
 
     return this;
   }
 
-  convertLinearToSRGB() {
+  convertLinearToSRGB(): this {
     this.copyLinearToSRGB(this);
 
     return this;
   }
 
-  getHex() {
+  getHex(): number {
     // eslint-disable-next-line
     return (this.r * 255) << 16 ^ (this.g * 255) << 8 ^ (this.b * 255) << 0;
   }
 
-  getHexString() {
+  getHexString(): string {
     return (`000000${ this.getHex().toString(16)}`).slice(-6);
   }
 
-  getHSL(target?: HSL) {
+  getHSL(target?: HSL): HSL {
     // h,s,l ranges are in 0.0 - 1.0
 
     if (target === undefined) {
@@ -496,12 +501,12 @@ class Color extends Base {
     return target;
   }
 
-  getStyle() {
+  getStyle(): string {
     // eslint-disable-next-line
     return `rgb(${ (this.r * 255) | 0 },${ (this.g * 255) | 0 },${ (this.b * 255) | 0 })`;
   }
 
-  offsetHSL(h: number, s: number, l: number) {
+  offsetHSL(h: number, s: number, l: number): this {
     this.getHSL(_hslA);
 
     _hslA.h += h; _hslA.s += s; _hslA.l += l;
@@ -511,7 +516,7 @@ class Color extends Base {
     return this;
   }
 
-  add(color: Color) {
+  add(color: Color): this {
     this.r += color.r;
     this.g += color.g;
     this.b += color.b;
@@ -519,7 +524,7 @@ class Color extends Base {
     return this;
   }
 
-  addColors(color1: Color, color2: Color) {
+  addColors(color1: Color, color2: Color): this {
     this.r = color1.r + color2.r;
     this.g = color1.g + color2.g;
     this.b = color1.b + color2.b;
@@ -527,7 +532,7 @@ class Color extends Base {
     return this;
   }
 
-  addScalar(s: number) {
+  addScalar(s: number): this {
     this.r += s;
     this.g += s;
     this.b += s;
@@ -535,7 +540,7 @@ class Color extends Base {
     return this;
   }
 
-  sub(color: Color) {
+  sub(color: Color): this {
     this.r = Math.max(0, this.r - color.r);
     this.g = Math.max(0, this.g - color.g);
     this.b = Math.max(0, this.b - color.b);
@@ -543,7 +548,7 @@ class Color extends Base {
     return this;
   }
 
-  multiply(color: Color) {
+  multiply(color: Color): this {
     this.r *= color.r;
     this.g *= color.g;
     this.b *= color.b;
@@ -551,7 +556,7 @@ class Color extends Base {
     return this;
   }
 
-  multiplyScalar(s: number) {
+  multiplyScalar(s: number): this {
     this.r *= s;
     this.g *= s;
     this.b *= s;
@@ -559,7 +564,7 @@ class Color extends Base {
     return this;
   }
 
-  lerp(color: Color, alpha: number) {
+  lerp(color: Color, alpha: number): this {
     this.r += (color.r - this.r) * alpha;
     this.g += (color.g - this.g) * alpha;
     this.b += (color.b - this.b) * alpha;
@@ -567,7 +572,7 @@ class Color extends Base {
     return this;
   }
 
-  lerpColors(color1: Color, color2: Color, alpha: number) {
+  lerpColors(color1: Color, color2: Color, alpha: number): this {
     this.r = color1.r + (color2.r - color1.r) * alpha;
     this.g = color1.g + (color2.g - color1.g) * alpha;
     this.b = color1.b + (color2.b - color1.b) * alpha;
@@ -575,7 +580,7 @@ class Color extends Base {
     return this;
   }
 
-  lerpHSL(color: Color, alpha: number) {
+  lerpHSL(color: Color, alpha: number): this {
     this.getHSL(_hslA);
     color.getHSL(_hslB);
 
@@ -588,11 +593,16 @@ class Color extends Base {
     return this;
   }
 
-  equals(c: Color) {
+  equals(c: Color): boolean {
     return (c.r === this.r) && (c.g === this.g) && (c.b === this.b);
   }
 
-  fromArray(array: number[], offset = 0) {
+  /**
+   * Sets this color's red, green and blue value from the provided array or array-like.
+   * @param array the source array or array-like.
+   * @param offset (optional) offset into the array-like. Default is 0.
+  */
+  fromArray(array: number[], offset = 0): this {
     this.r = array[offset];
     this.g = array[offset + 1];
     this.b = array[offset + 2];
@@ -600,7 +610,13 @@ class Color extends Base {
     return this;
   }
 
-  toArray(array: number[] = [], offset = 0) {
+  /**
+   * Returns an array [red, green, blue], or copies red, green and blue into the provided array.
+   * @param array (optional) array to store the color to. If this is not provided, a new array will be created.
+   * @param offset (optional) optional offset into the array.
+   * @return The created or provided array.
+   */
+  toArray(array: number[] = [], offset = 0): number[] {
     array[offset] = this.r;
     array[offset + 1] = this.g;
     array[offset + 2] = this.b;
@@ -611,6 +627,11 @@ class Color extends Base {
   toJSON() {
     return this.getHex();
   }
-}
 
-export { Color };
+  *[ Symbol.iterator ](): IterableIterator<number> {
+    yield this.r;
+    yield this.g;
+    yield this.b;
+  }
+
+}

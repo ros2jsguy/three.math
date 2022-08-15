@@ -4,9 +4,11 @@ import type { Euler } from './Euler';
 import type { Matrix3 } from './Matrix3';
 import type { Matrix4 } from './Matrix4';
 import type { Spherical } from './Spherical';
-import type { Cylindrical } from './Cylindrical';
+import type { Cylindrical } from './Cylindrical'; 
+import type { Vector } from './Vector';
 import { Base } from './Base';
 
+export type Vector3Tuple = [number, number, number];
 
 /**
  * Represents a 3D vector.
@@ -20,6 +22,9 @@ import { Base } from './Base';
  * There are other things a 3D vector can be used to represent,
  * such as momentum vectors and so on.
  *
+ * Iterating through a Vector3 instance will yield its
+ * components (x, y, z) in the corresponding order.
+ * 
  * @example
  * ```
  * const a = new Vector3( 0, 1, 0 );
@@ -30,10 +35,21 @@ import { Base } from './Base';
  * const d = a.distanceTo( b );
  * ```
  */
-class Vector3 extends Base {
-  x: number;
-  y: number;
-  z: number;
+export class Vector3 extends Base implements Vector {
+    /**
+     * @default 0
+     */
+     x: number;
+
+     /**
+      * @default 0
+      */
+     y: number;
+ 
+     /**
+      * @default 0
+      */
+     z: number;
 
   /**
    * Creates a new Vector3.
@@ -48,6 +64,17 @@ class Vector3 extends Base {
     this.z = z;
   }
 
+  /**
+   * Read-only flag to check if a given object is of type Vector.
+   */
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get isVector(): boolean {
+    return true;
+  }
+
+  /**
+   * Read-only flag to check if a given object is of type Vector3.
+   */
   // eslint-disable-next-line @typescript-eslint/class-literal-property-style
   get isVector3(): boolean {
     return true;
@@ -60,7 +87,7 @@ class Vector3 extends Base {
    * @param z - The z value of this vector.
    * @returns This instance.
    */
-  set(x: number, y: number, z?: number): Vector3 {
+  set(x: number, y: number, z?: number): this {
     if (z === undefined) z = this.z; // sprite.scale.set(x,y)
 
     this.x = x;
@@ -75,7 +102,7 @@ class Vector3 extends Base {
    * @param scalar - The scalar value
    * @returns This instance.
    */
-  setScalar(scalar: number): Vector3 {
+  setScalar(scalar: number): this {
     this.x = scalar;
     this.y = scalar;
     this.z = scalar;
@@ -88,7 +115,7 @@ class Vector3 extends Base {
    * @param x - The new x value.
    * @returns This instance.
    */
-  setX(x: number): Vector3 {
+  setX(x: number): this {
     this.x = x;
 
     return this;
@@ -99,7 +126,7 @@ class Vector3 extends Base {
    * @param y - The new x value.
    * @returns This instance.
    */
-  setY(y: number): Vector3 {
+  setY(y: number): this {
     this.y = y;
 
     return this;
@@ -110,7 +137,7 @@ class Vector3 extends Base {
    * @param z - The new z value.
    * @returns This instance.
    */
-  setZ(z: number): Vector3 {
+  setZ(z: number): this {
     this.z = z;
 
     return this;
@@ -126,7 +153,7 @@ class Vector3 extends Base {
    * @param value - New value
    * @returns This instance.
    */
-  setComponent(index: 0|1|2, value: number): Vector3 {
+  setComponent(index: 0|1|2, value: number): this {
     switch (index) {
       case 0: this.x = value; break;
       case 1: this.y = value; break;
@@ -146,7 +173,7 @@ class Vector3 extends Base {
    * @param index - Index of component to access.
    * @return The x, y or z component specified by index.
    */
-  getComponent(index: 0|1|2) {
+  getComponent(index: 0|1|2): number {
     switch (index) {
       case 0: return this.x;
       case 1: return this.y;
@@ -168,7 +195,7 @@ class Vector3 extends Base {
    * @param v - The vector to copy onto this vector instance.
    * @returns This instance.
    */
-  copy(v: Vector3): Vector3 {
+  copy(v: Vector3): this {
     this.x = v.x;
     this.y = v.y;
     this.z = v.z;
@@ -181,7 +208,7 @@ class Vector3 extends Base {
    * @param v - The vector to add to this vector.
    * @returns This instance.
    */
-  add(v: Vector3): Vector3 {
+  add(v: Vector3): this {
     this.x += v.x;
     this.y += v.y;
     this.z += v.z;
@@ -194,7 +221,7 @@ class Vector3 extends Base {
    * @param s - The scalar
    * @returns This instance.
    */
-  addScalar(s: number): Vector3 {
+  addScalar(s: number): this {
     this.x += s;
     this.y += s;
     this.z += s;
@@ -208,7 +235,7 @@ class Vector3 extends Base {
    * @param b
    * @returns This instance.
    */
-  addVectors(a: Vector3, b: Vector3): Vector3 {
+  addVectors(a: Vector3, b: Vector3): this {
     this.x = a.x + b.x;
     this.y = a.y + b.y;
     this.z = a.z + b.z;
@@ -222,7 +249,7 @@ class Vector3 extends Base {
    * @param s - The scale factor.
    * @returns This instance.
    */
-  addScaledVector(v: Vector3, s: number): Vector3 {
+  addScaledVector(v: Vector3, s: number): this {
     this.x += v.x * s;
     this.y += v.y * s;
     this.z += v.z * s;
@@ -235,7 +262,7 @@ class Vector3 extends Base {
    * @param v - The vector to subtract.
    * @returns This instance.
    */
-  sub(v: Vector3): Vector3 {
+  sub(v: Vector3): this {
     this.x -= v.x;
     this.y -= v.y;
     this.z -= v.z;
@@ -262,7 +289,7 @@ class Vector3 extends Base {
    * @param b
    * @returns This instance.
    */
-  subVectors(a: Vector3, b: Vector3): Vector3 {
+  subVectors(a: Vector3, b: Vector3): this {
     this.x = a.x - b.x;
     this.y = a.y - b.y;
     this.z = a.z - b.z;
@@ -275,7 +302,7 @@ class Vector3 extends Base {
    * @param v
    * @returns This instance.
    */
-  multiply(v: Vector3): Vector3 {
+  multiply(v: Vector3): this {
     this.x *= v.x;
     this.y *= v.y;
     this.z *= v.z;
@@ -288,7 +315,7 @@ class Vector3 extends Base {
    * @param scalar
    * @returns This instance.
    */
-  multiplyScalar(scalar: number): Vector3 {
+  multiplyScalar(scalar: number): this {
     this.x *= scalar;
     this.y *= scalar;
     this.z *= scalar;
@@ -302,7 +329,7 @@ class Vector3 extends Base {
    * @param b
    * @returns This instance.
    */
-  multiplyVectors(a: Vector3, b: Vector3): Vector3 {
+  multiplyVectors(a: Vector3, b: Vector3): this {
     this.x = a.x * b.x;
     this.y = a.y * b.y;
     this.z = a.z * b.z;
@@ -315,7 +342,7 @@ class Vector3 extends Base {
    * @param euler
    * @returns This instance.
    */
-  applyEuler(euler: Euler): Vector3 {
+  applyEuler(euler: Euler): this {
     return this.applyQuaternion(_quaternion.setFromEuler(euler));
   }
 
@@ -325,7 +352,7 @@ class Vector3 extends Base {
    * @param angle
    * @returns This instance.
    */
-  applyAxisAngle(axis: Vector3, angle: number): Vector3 {
+  applyAxisAngle(axis: Vector3, angle: number): this {
     return this.applyQuaternion(_quaternion.setFromAxisAngle(axis, angle));
   }
 
@@ -334,7 +361,7 @@ class Vector3 extends Base {
    * @param m
    * @returns This instance.
    */
-  applyMatrix3(m: Matrix3): Vector3 {
+  applyMatrix3(m: Matrix3): this {
     const { x, y, z } = this;
     const e = m.elements;
 
@@ -350,7 +377,7 @@ class Vector3 extends Base {
    * @param m
    * @returns This instance.
    */
-  applyNormalMatrix(m: Matrix3): Vector3 {
+  applyNormalMatrix(m: Matrix3): this {
     return this.applyMatrix3(m).normalize();
   }
 
@@ -359,7 +386,7 @@ class Vector3 extends Base {
    * @param m
    * @returns This instance.
    */
-  applyMatrix4(m: Matrix4): Vector3 {
+  applyMatrix4(m: Matrix4): this {
     const { x, y, z } = this;
     const e = m.elements;
 
@@ -377,7 +404,7 @@ class Vector3 extends Base {
    * @param q
    * @returns This instance.
    */
-  applyQuaternion(q: Quaternion): Vector3 {
+  applyQuaternion(q: Quaternion): this {
     const { x, y, z } = this;
     const qx = q.x;
     const qy = q.y;
@@ -406,7 +433,7 @@ class Vector3 extends Base {
    * @param m
    * @returns This instance.
    */
-  transformDirection(m: Matrix4): Vector3 {
+  transformDirection(m: Matrix4): this {
     // input: THREE.Matrix4 affine matrix
     // vector interpreted as a direction
 
@@ -425,7 +452,7 @@ class Vector3 extends Base {
    * @param v
    * @returns This instance.
    */
-  divide(v: Vector3): Vector3 {
+  divide(v: Vector3): this {
     this.x /= v.x;
     this.y /= v.y;
     this.z /= v.z;
@@ -439,7 +466,7 @@ class Vector3 extends Base {
    * @param scalar
    * @returns This instance.
    */
-  divideScalar(scalar: number): Vector3 {
+  divideScalar(scalar: number): this {
     return this.multiplyScalar(1 / scalar);
   }
 
@@ -449,7 +476,7 @@ class Vector3 extends Base {
    * @param v
    * @returns This instance.
    */
-  min(v: Vector3): Vector3 {
+  min(v: Vector3): this {
     this.x = Math.min(this.x, v.x);
     this.y = Math.min(this.y, v.y);
     this.z = Math.min(this.z, v.z);
@@ -463,7 +490,7 @@ class Vector3 extends Base {
    * @param v
    * @returns This instance.
    */
-  max(v: Vector3): Vector3 {
+  max(v: Vector3): this {
     this.x = Math.max(this.x, v.x);
     this.y = Math.max(this.y, v.y);
     this.z = Math.max(this.z, v.z);
@@ -481,7 +508,7 @@ class Vector3 extends Base {
    * @param max - The maximum x, y and z values in the desired range
    * @returns This instance.
    */
-  clamp(min: Vector3, max: Vector3): Vector3 {
+  clamp(min: Vector3, max: Vector3): this {
     // assumes min < max, componentwise
 
     this.x = Math.max(min.x, Math.min(max.x, this.x));
@@ -502,7 +529,7 @@ class Vector3 extends Base {
    * @param maxVal - The maximum component value
    * @returns This instance.
    */
-  clampScalar(minVal: number, maxVal: number): Vector3 {
+  clampScalar(minVal: number, maxVal: number): this {
     this.x = Math.max(minVal, Math.min(maxVal, this.x));
     this.y = Math.max(minVal, Math.min(maxVal, this.y));
     this.z = Math.max(minVal, Math.min(maxVal, this.z));
@@ -520,7 +547,7 @@ class Vector3 extends Base {
    * @param max - The maximum value the length will be clamped to
    * @returns This instance.
    */
-  clampLength(min: number, max: number) {
+  clampLength(min: number, max: number): this {
     const length = this.length();
 
     return this.divideScalar(length || 1).multiplyScalar(Math.max(min, Math.min(max, length)));
@@ -530,7 +557,7 @@ class Vector3 extends Base {
    * The components of this vector are rounded down to the nearest integer value.
    * @returns This instance.
    */
-  floor(): Vector3 {
+  floor(): this {
     this.x = Math.floor(this.x);
     this.y = Math.floor(this.y);
     this.z = Math.floor(this.z);
@@ -542,7 +569,7 @@ class Vector3 extends Base {
    * The x, y and z components of this vector are rounded up to the nearest integer value.
    * @returns This instance.
    */
-  ceil(): Vector3 {
+  ceil(): this {
     this.x = Math.ceil(this.x);
     this.y = Math.ceil(this.y);
     this.z = Math.ceil(this.z);
@@ -554,7 +581,7 @@ class Vector3 extends Base {
    * The components of this vector are rounded to the nearest integer value.
    * @returns This instance.
    */
-  round(): Vector3 {
+  round(): this {
     this.x = Math.round(this.x);
     this.y = Math.round(this.y);
     this.z = Math.round(this.z);
@@ -567,7 +594,7 @@ class Vector3 extends Base {
    * (up if negative, down if positive) to an integer value.
    * @returns This instance.
    */
-  roundToZero(): Vector3 {
+  roundToZero(): this {
     this.x = (this.x < 0) ? Math.ceil(this.x) : Math.floor(this.x);
     this.y = (this.y < 0) ? Math.ceil(this.y) : Math.floor(this.y);
     this.z = (this.z < 0) ? Math.ceil(this.z) : Math.floor(this.z);
@@ -579,7 +606,7 @@ class Vector3 extends Base {
    * Inverts this vector - i.e. sets x = -x, y = -y and z = -z.
    * @returns This instance.
    */
-  negate(): Vector3 {
+  negate(): this {
     this.x = -this.x;
     this.y = -this.y;
     this.z = -this.z;
@@ -629,7 +656,7 @@ class Vector3 extends Base {
    * vector with the same direction as this one, but length 1.
    * @returns This instance.
    */
-  normalize(): Vector3 {
+  normalize(): this {
     return this.divideScalar(this.length() || 1);
   }
 
@@ -639,7 +666,7 @@ class Vector3 extends Base {
    * @param length
    * @returns This instance.
    */
-  setLength(length: number): Vector3 {
+  setLength(length: number): this {
     return this.normalize().multiplyScalar(length);
   }
 
@@ -651,7 +678,7 @@ class Vector3 extends Base {
    * @param alpha - The interpolation factor, typically in the closed interval [0, 1].
    * @returns This instance.
    */
-  lerp(v: Vector3, alpha: number): Vector3 {
+  lerp(v: Vector3, alpha: number): this {
     this.x += (v.x - this.x) * alpha;
     this.y += (v.y - this.y) * alpha;
     this.z += (v.z - this.z) * alpha;
@@ -668,7 +695,7 @@ class Vector3 extends Base {
    * @param alpha - The interpolation factor, typically in the closed interval [0, 1].
    * @returns This instance.
    */
-  lerpVectors(v1: Vector3, v2: Vector3, alpha: number): Vector3 {
+  lerpVectors(v1: Vector3, v2: Vector3, alpha: number): this {
     this.x = v1.x + (v2.x - v1.x) * alpha;
     this.y = v1.y + (v2.y - v1.y) * alpha;
     this.z = v1.z + (v2.z - v1.z) * alpha;
@@ -681,7 +708,7 @@ class Vector3 extends Base {
    * @param v
    * @returns This instance.
    */
-  cross(v: Vector3): Vector3 {
+  cross(v: Vector3): this {
     return this.crossVectors(this, v);
   }
 
@@ -691,7 +718,7 @@ class Vector3 extends Base {
    * @param b
    * @returns This instance.
    */
-  crossVectors(a: Vector3, b: Vector3): Vector3 {
+  crossVectors(a: Vector3, b: Vector3): this {
     const ax = a.x;
     const ay = a.y;
     const az = a.z;
@@ -712,7 +739,7 @@ class Vector3 extends Base {
    * @param v
    *
    */
-  projectOnVector(v: Vector3): Vector3 {
+  projectOnVector(v: Vector3): this {
     const denominator = v.lengthSq();
 
     if (denominator === 0) return this.set(0, 0, 0);
@@ -728,7 +755,7 @@ class Vector3 extends Base {
    * @param planeNormal - A vector representing a plane normal.
    * @returns This instance.
    */
-  projectOnPlane(planeNormal: Vector3): Vector3 {
+  projectOnPlane(planeNormal: Vector3): this {
     _vector.copy(this).projectOnVector(planeNormal);
 
     return this.sub(_vector);
@@ -740,7 +767,7 @@ class Vector3 extends Base {
    * @param normal - A vector representing a plane normal.
    * @returns This instance.
    */
-  reflect(normal: Vector3): Vector3 {
+  reflect(normal: Vector3): this {
     // reflect incident vector off plane orthogonal to normal
     // normal is assumed to have unit length
 
@@ -901,6 +928,18 @@ class Vector3 extends Base {
   }
 
   /**
+   * Sets this vector's x, y and z components from an euler's state.
+   * @param e - The euler from which to set this state.
+   * @returns This instance.
+   */
+  setFromEuler(e: Euler): this {
+    this.x = e._x;
+    this.y = e._y;
+    this.z = e._z;
+    return this;
+  }
+
+  /**
    * Checks for strict equality of this vector and v.
    * @param v
    * @returns true if equal; false otherwise.
@@ -930,10 +969,11 @@ class Vector3 extends Base {
    * @param offset - Optional offset into the array.
    * @returns Array with this vector compoonent values, [x,y,z].
    */
-  toArray(array: number[] = [], offset = 0): number[] {
-    array[offset] = this.x;
-    array[offset + 1] = this.y;
-    array[offset + 2] = this.z;
+  toArray(array: number[] | Vector3Tuple = new Array<number>(3), offset = 0): number[] {
+    const idx = typeof offset === 'number' ? offset : 0;
+    array[idx] = this.x;
+    array[idx + 1] = this.y;
+    array[idx + 2] = this.z;
 
     return array;
   }
@@ -949,9 +989,32 @@ class Vector3 extends Base {
 
     return this;
   }
+
+  /**
+   * Sets each component of this vector to a pseudo-random value between 0 and 1, excluding 1.
+   * @returns This instance.
+   */
+  randomDirection(): this {
+    
+		// Derived from https://mathworld.wolfram.com/SpherePointPicking.html
+
+		const u = ( Math.random() - 0.5 ) * 2;
+		const t = Math.random() * Math.PI * 2;
+		const f = Math.sqrt( 1 - u ** 2 );
+
+		this.x = f * Math.cos( t );
+		this.y = f * Math.sin( t );
+		this.z = u;
+
+		return this;
+  }
+
+  *[ Symbol.iterator ](): IterableIterator<number> {
+    yield this.x;
+    yield this.y;
+    yield this.z;
+  }
 }
 
 const _vector = new Vector3();
 const _quaternion = new Quaternion();
-
-export { Vector3 };

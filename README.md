@@ -9,6 +9,7 @@ This module is a rewrite of the following [three.js math](https://threejs.org/do
 * Euler
 * Line3
 * MathUtils
+* Matrix (interface)
 * Matrix3
 * Matrix4
 * Plane
@@ -17,6 +18,7 @@ This module is a rewrite of the following [three.js math](https://threejs.org/do
 * Sphere
 * Spherical
 * Triangle
+* Vector (interface)
 * Vector2
 * Vector3
 * Vector4

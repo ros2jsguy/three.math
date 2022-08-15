@@ -5,7 +5,7 @@
 import { Base } from './Base';
 import type { Vector3 } from './Vector3';
 
-class Cylindrical extends Base {
+export class Cylindrical extends Base {
   radius: number;
   theta: number;
   y: number;
@@ -27,7 +27,7 @@ class Cylindrical extends Base {
     return true;
   }
 
-  set(radius: number, theta: number, y: number) {
+  set(radius: number, theta: number, y: number): this {
     this.radius = radius;
     this.theta = theta;
     this.y = y;
@@ -35,7 +35,7 @@ class Cylindrical extends Base {
     return this;
   }
 
-  copy(other: Cylindrical) {
+  copy(other: Cylindrical): this {
     this.radius = other.radius;
     this.theta = other.theta;
     this.y = other.y;
@@ -43,11 +43,11 @@ class Cylindrical extends Base {
     return this;
   }
 
-  setFromVector3(v: Vector3) {
+  setFromVector3(v: Vector3): this {
     return this.setFromCartesianCoords(v.x, v.y, v.z);
   }
 
-  setFromCartesianCoords(x: number, y: number, z: number) {
+  setFromCartesianCoords(x: number, y: number, z: number): this {
     this.radius = Math.sqrt(x * x + z * z);
     this.theta = Math.atan2(x, z);
     this.y = y;
@@ -55,9 +55,8 @@ class Cylindrical extends Base {
     return this;
   }
 
-  clone() {
+  clone(): Cylindrical {
     return new Cylindrical().copy(this);
   }
 }
 
-export { Cylindrical };

@@ -6,5 +6,5 @@
     "module": "CommonJS",
     "noUnusedLocals": true
   },
-  "include": ["src"]
+  "include": ["src/**/*"]
 }

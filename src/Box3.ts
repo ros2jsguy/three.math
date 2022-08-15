@@ -5,9 +5,29 @@ import type { Matrix4 } from './Matrix4';
 import type { Plane } from './Plane';
 import { Base } from './Base';
 
-class Box3 extends Base {
+/**
+ * Represents an axis-aligned bounding box (AABB) in 3D space.
+ */
+export class Box3 extends Base {
+  /**
+   * Vector3 representing the lower (x, y, z) boundary of the box.
+   * Default is ( + Infinity, + Infinity, + Infinity ).
+   */
   min: Vector3;
+
+  /**
+   * Vector3 representing the upper (x, y, z) boundary of the box.
+   * Default is ( - Infinity, - Infinity, - Infinity ).
+   */
   max: Vector3;
+
+  /**
+   * Creates a Box3 bounded by min and max.
+   * @param min - (optional) Vector3 representing the lower (x, y, z) boundary of the box.
+   *              Default is ( + Infinity, + Infinity, + Infinity ).
+   * @param max - (optional) Vector3 representing the upper (x, y, z) boundary of the box.
+   *              Default is ( - Infinity, - Infinity, - Infinity ).
+   */
   constructor(
     min = new Vector3(+Infinity, +Infinity, +Infinity),
     max = new Vector3(-Infinity, -Infinity, -Infinity),
@@ -17,19 +37,34 @@ class Box3 extends Base {
     this.max = max;
   }
 
+  /**
+   * Read-only flag to check if a given object is of type Box3.
+   */
   // eslint-disable-next-line @typescript-eslint/class-literal-property-style
   get isBox3(): boolean {
     return true;
   }
 
-  set(min: Vector3, max: Vector3) {
+  /**
+   * Sets the lower and upper (x, y, z) boundaries of this box.
+   * Note that this method only copies the values from the given objects.
+   * @param min - Vector3 representing the lower (x, y, z) boundary of the box.
+   * @param max  - Vector3 representing the upper (x, y, z) boundary of the box.
+   * @returns This instance.
+   */
+  set(min: Vector3, max: Vector3): this {
     this.min.copy(min);
     this.max.copy(max);
 
     return this;
   }
 
-  setFromArray(array: number[]) {
+  /**
+   * Sets the upper and lower bounds of this box to include all of the data in array.
+   * @param array - An array of position data that the resulting box will envelop.
+   * @returns This instance.
+   */
+  setFromArray(array: number[]): this {
     let minX = +Infinity;
     let minY = +Infinity;
     let minZ = +Infinity;
@@ -58,7 +93,12 @@ class Box3 extends Base {
     return this;
   }
 
-  setFromPoints(points: Vector3[]) {
+  /**
+   * Sets the upper and lower bounds of this box to include all of the points in points.
+   * @param points - Array of Vector3s that the resulting box will contain.
+   * @returns This instance.
+   */
+  setFromPoints(points: Vector3[]): this {
     this.makeEmpty();
 
     for (let i = 0, il = points.length; i < il; i++) {
@@ -68,7 +108,14 @@ class Box3 extends Base {
     return this;
   }
 
-  setFromCenterAndSize(center: Vector3, size: Vector3) {
+  /**
+   * Centers this box on center and sets this box's width, height and
+   * depth to the values specified in size.
+   * @param center  - Desired center position of the box.
+   * @param size - Desired x, y and z dimensions of the box.
+   * @returns This instance.
+   */
+  setFromCenterAndSize(center: Vector3, size: Vector3): this {
     const halfSize = _vector.copy(size).multiplyScalar(0.5);
 
     this.min.copy(center).sub(halfSize);
@@ -77,18 +124,31 @@ class Box3 extends Base {
     return this;
   }
 
-  clone() {
+  /**
+   * Returns a new Box3 with the same min and max as this one.
+   * @returns A new instance.
+   */
+  clone(): Box3 {
     return new Box3().copy(this);
   }
 
-  copy(box: Box3) {
+  /**
+   * Copies the min and max from box to this box.
+   * @param box - Box3 to copy.
+   * @returns This instance.
+   */
+  copy(box: Box3): this {
     this.min.copy(box.min);
     this.max.copy(box.max);
 
     return this;
   }
 
-  makeEmpty() {
+  /**
+   * Makes this box empty.
+   * @returns This instance.
+   */
+  makeEmpty(): this {
     this.min.x = +Infinity;
     this.min.y = +Infinity;
     this.min.z = +Infinity;
@@ -100,54 +160,107 @@ class Box3 extends Base {
     return this;
   }
 
-  isEmpty() {
+  /**
+   * Returns true if this box includes zero points within its bounds.
+   * Note that a box with equal lower and upper bounds still includes
+   * one point, the one both bounds share.
+   * @returns True if box includes zero points.
+   */
+  isEmpty(): boolean {
     return (this.max.x < this.min.x) || (this.max.y < this.min.y) || (this.max.z < this.min.z);
   }
 
-  getCenter(target = new Vector3()) {
+  /**
+   * Find the center point of the box as a Vector3.
+   * @param target - The result will be copied into this Vector3.
+   * @returns The center point.
+   */
+  getCenter(target = new Vector3()): Vector3 {
     return this.isEmpty()
       ? target.set(0, 0, 0)
       : target.addVectors(this.min, this.max).multiplyScalar(0.5);
   }
 
-  getSize(target = new Vector3()) {
+  /**
+   * Get the width, height and depth of this box.
+   * @param target - The result will be copied into this Vector3.
+   * @returns The box dimensions.
+   */
+  getSize(target = new Vector3()): Vector3 {
     return this.isEmpty() ? target.set(0, 0, 0) : target.subVectors(this.max, this.min);
   }
 
-  expandByPoint(point: Vector3) {
+  /**
+   * Expands the boundaries of this box to include point.
+   * @param point - Vector3 that should be included in the box.
+   * @returns This instance.
+   */
+  expandByPoint(point: Vector3): this {
     this.min.min(point);
     this.max.max(point);
 
     return this;
   }
 
-  expandByVector(vector: Vector3) {
+  /**
+   * Expands this box equilaterally by vector. The width of this box will be 
+   * expanded by the x component of vector in both directions. The height of 
+   * this box will be expanded by the y component of vector in both directions. 
+   * The depth of this box will be expanded by the z component of vector in 
+   * both directions.
+   * @param vector - Vector3 to expand the box by.
+   * @returns This instance.
+   */
+  expandByVector(vector: Vector3): this {
     this.min.sub(vector);
     this.max.add(vector);
 
     return this;
   }
 
-  expandByScalar(scalar: number) {
+  /**
+   * Expands each dimension of the box by scalar.
+   * If negative, the dimensions of the box will be contracted.
+   * @param scalar - Distance to expand the box by.
+   * @returns This instance.
+   */
+  expandByScalar(scalar: number): this {
     this.min.addScalar(-scalar);
     this.max.addScalar(scalar);
 
     return this;
   }
 
-  containsPoint(point: Vector3) {
+  /**
+   * Test if the specified point lies within or on the boundaries of this box.
+   * @param point - Vector3 to check for inclusion.
+   * @returns True if the specified point lies within or on the boundaries of this box.
+   */
+  containsPoint(point: Vector3): boolean {
     return !(point.x < this.min.x || point.x > this.max.x ||
 			point.y < this.min.y || point.y > this.max.y ||
 			point.z < this.min.z || point.z > this.max.z);
   }
 
-  containsBox(box: Box3) {
+  /**
+   * Test if this box includes the entirety of box.
+   * @param box - Box3 to test for inclusion.
+   * @returns True if this box includes the entirety of box.
+   * If this and box are identical, this function also returns true.
+   */
+  containsBox(box: Box3): boolean {
     return this.min.x <= box.min.x && box.max.x <= this.max.x &&
 			this.min.y <= box.min.y && box.max.y <= this.max.y &&
 			this.min.z <= box.min.z && box.max.z <= this.max.z;
   }
 
-  getParameter(point: Vector3, target = new Vector3()) {
+  /**
+   * Given a point inside a box, find it's relative proportion to the box's width, height and depth.
+   * @param point - A point inside the box
+   * @param target - The result will be copied into this Vector3.
+   * @returns The 3D propportions. 
+   */
+  getParameter(point: Vector3, target = new Vector3()): Vector3 {
     // This can potentially have a divide by zero if the box
     // has a size dimension of 0.
 
@@ -158,14 +271,24 @@ class Box3 extends Base {
     );
   }
 
-  intersectsBox(box: Box3) {
+  /**
+   * Determines whether or not this box intersects box.
+   * @param box - Box to check for intersection against.
+   * @returns True if box intersects this box.
+   */
+  intersectsBox(box: Box3): boolean {
     // using 6 splitting planes to rule out intersections.
     return !(box.max.x < this.min.x || box.min.x > this.max.x ||
 			box.max.y < this.min.y || box.min.y > this.max.y ||
 			box.max.z < this.min.z || box.min.z > this.max.z);
   }
 
-  intersectsSphere(sphere: Sphere) {
+  /**
+   * Determines whether or not this box intersects sphere.
+   * @param sphere - Sphere to check for intersection against.
+   * @returns True if this box overlaps any part of a sphere.
+   */
+  intersectsSphere(sphere: Sphere): boolean {
     // Find the point on the AABB closest to the sphere center.
     this.clampPoint(sphere.center, _vector);
 
@@ -173,6 +296,12 @@ class Box3 extends Base {
     return _vector.distanceToSquared(sphere.center) <= (sphere.radius * sphere.radius);
   }
 
+
+  /**
+   * Determines whether or not this box intersects plane.
+   * @param plane - Plane to check for intersection against.
+   * @returns True if this box intersects the plane.
+   */
   intersectsPlane(plane: Plane): boolean {
     // We compute the minimum and maximum dot product values. If those values
     // are on the same side (back or front) of the plane, then there is no intersection.
@@ -206,7 +335,12 @@ class Box3 extends Base {
     return (min <= -plane.constant && max >= -plane.constant);
   }
 
-  intersectsTriangle(triangle: Triangle) {
+  /**
+   * Determines whether or not this box intersects triangle.
+   * @param triangle - Triangle to check for intersection against.
+   * @returns True if this box overlaps triangle anywhere.
+   */
+  intersectsTriangle(triangle: Triangle): boolean {
     if (this.isEmpty()) {
       return false;
     }
@@ -248,17 +382,34 @@ class Box3 extends Base {
     return satForAxes(axes, _v0, _v1, _v2, _extents);
   }
 
+  /**
+   * Clamps the point within the bounds of this box.
+   * @param point - Vector3 to clamp.
+   * @param target — the result will be copied into this Vector3.
+   * @returns A new clamped Vector3.
+   */
   clampPoint(point: Vector3, target = new Vector3()): Vector3 {
     return target.copy(point).clamp(this.min, this.max);
   }
 
-  distanceToPoint(point: Vector3) {
+  /**
+   * Find the distance from any edge of this box to the specified point. 
+   * If the point lies inside of this box, the distance will be 0.
+   * @param point - Vector3 to measure distance to.
+   * @returns Returns the distance.
+   */
+  distanceToPoint(point: Vector3): number {
     const clampedPoint = _vector.copy(point).clamp(this.min, this.max);
 
     return clampedPoint.sub(point).length();
   }
 
-  getBoundingSphere(target: Sphere) {
+  /**
+   * Gets a Sphere that bounds the box.
+   * @param target - The result will be copied into this Sphere.
+   * @returns The bounding sphere.
+   */
+  getBoundingSphere(target: Sphere): Sphere {
     this.getCenter(target.center);
 
     target.radius = this.getSize(_vector).length() * 0.5;
@@ -266,7 +417,15 @@ class Box3 extends Base {
     return target;
   }
 
-  intersect(box: Box3) {
+  /**
+   * Computes the intersection of this and box, setting the upper bound
+   * of this box to the lesser of the two boxes' upper bounds and the
+   * lower bound of this box to the greater of the two boxes' lower bounds.
+   * If there's no overlap, makes this box empty.
+   * @param box - Box to intersect with.
+   * @returns This instance.
+   */
+  intersect(box: Box3): this {
     this.min.max(box.min);
     this.max.min(box.max);
 
@@ -275,14 +434,26 @@ class Box3 extends Base {
     return this;
   }
 
-  union(box: Box3) {
+  /**
+   * Computes the union of this box and box, setting the upper bound of
+   * this box to the greater of the two boxes' upper bounds and the
+   * lower bound of this box to the lesser of the two boxes' lower bounds.
+   * @param box - Box that will be unioned with this box.
+   * @returns This instance.
+   */
+  union(box: Box3): this {
     this.min.min(box.min);
     this.max.max(box.max);
 
     return this;
   }
 
-  applyMatrix4(matrix: Matrix4) {
+  /**
+   * Transforms this Box3 with the supplied matrix.
+   * @param matrix - The Matrix4 to apply
+   * @returns This instance.
+   */
+  applyMatrix4(matrix: Matrix4): this {
     // transform of empty box is an empty box.
     if (this.isEmpty()) return this;
 
@@ -301,14 +472,25 @@ class Box3 extends Base {
     return this;
   }
 
-  translate(offset: Vector3) {
+  /**
+   * Adds offset to both the upper and lower bounds of this box,
+   * effectively moving this box offset units in 3D space.
+   * @param offset  - Direction and distance of offset.
+   * @returns This instance.
+   */
+  translate(offset: Vector3): this {
     this.min.add(offset);
     this.max.add(offset);
 
     return this;
   }
 
-  equals(box: Box3) {
+  /**
+   * Test if this box and box share the same lower and upper bounds.
+   * @param box - Box to compare with this one.
+   * @returns True if this box and box share the same lower and upper bounds.
+   */
+  equals(box: Box3): boolean {
     return box.min.equals(this.min) && box.max.equals(this.max);
   }
 }
@@ -364,5 +546,3 @@ function satForAxes(axes, v0, v1, v2, extents) {
 
   return true;
 }
-
-export { Box3 };

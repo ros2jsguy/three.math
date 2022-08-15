@@ -14,7 +14,7 @@ import { Euler, IOrder } from '../lib/Euler';
 import { Matrix4 } from '../lib/Matrix4';
 import { Quaternion } from '../lib/Quaternion';
 import { Vector3 } from '../lib/Vector3';
-import { x, y, z } from './constants.tests';
+import { x, y, z } from './Constants.tests';
 
 const eulerZero = new Euler(0, 0, 0, 'XYZ');
 const eulerAxyz = new Euler(1, 0, 0, 'XYZ');
@@ -170,23 +170,6 @@ describe('Euler', () => {
     assert.ok(a.isEuler, 'Passed!');
   });
 
-  it('set/setFromVector3/toVector3', () => {
-    const a = new Euler();
-
-    a.set(0, 1, 0, 'ZYX');
-    assert.ok(a.equals(eulerAzyx), 'Passed!');
-    assert.ok(!a.equals(eulerAxyz), 'Passed!');
-    assert.ok(!a.equals(eulerZero), 'Passed!');
-
-    const vec = new Vector3(0, 1, 0);
-
-    const b = new Euler().setFromVector3(vec, 'ZYX');
-    assert.ok(a.equals(b), 'Passed!');
-
-    const c = b.toVector3();
-    assert.ok(c.equals(vec), 'Passed!');
-  });
-
   it('clone/copy/equals', () => {
     const a = eulerAxyz.clone();
     assert.ok(a.equals(eulerAxyz), 'Passed!');
@@ -242,9 +225,7 @@ describe('Euler', () => {
   it('set/get properties, check callbacks', () => {
     const a = new Euler();
     // a._onChange( function () {
-
     // 	assert.step( "set: onChange called" );
-
     // } );
 
     a.x = 1;
@@ -385,5 +366,14 @@ describe('Euler', () => {
     // the results here are different
     assert.ok(eulerEquals(eViaQ1, eViaMViaQ1), 'Passed!'); // this result is correct
   });
+
+  it('iterable', () => {
+    const e = new Euler( 0.5, 0.75, 1, 'YZX' );
+    const array = [ ...e ];
+    assert.strictEqual( array[ 0 ], 0.5, 'Euler is iterable.' );
+    assert.strictEqual( array[ 1 ], 0.75, 'Euler is iterable.' );
+    assert.strictEqual( array[ 2 ], 1, 'Euler is iterable.' );
+    assert.strictEqual( array[ 3 ], 'YZX', 'Euler is iterable.' );
+  } );
 });
 

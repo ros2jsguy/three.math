@@ -6,20 +6,21 @@ import { Base } from './Base';
 
 /**
  * Implementation of a quaternion.
- * Quaternions are used in three.js to represent rotations.
+ * Quaternions are used to represent rotations.
  *
  * @example
  * ```
- * const quaternion = new THREE.Quaternion();
- * quaternion.setFromAxisAngle( new THREE.Vector3( 0, 1, 0 ), Math.PI / 2 );
+ * const quaternion = new Quaternion();
+ * quaternion.setFromAxisAngle( new Vector3( 0, 1, 0 ), Math.PI / 2 );
  *
- * const vector = new THREE.Vector3( 1, 0, 0 );
+ * const vector = new Vector3( 1, 0, 0 );
  * vector.applyQuaternion( quaternion );
  * ```
  */
-class Quaternion extends Base {
+export class Quaternion extends Base {
+
   /**
-   * Like the static slerp method, but operates directly on flat arrays of numbers.
+   * This SLERP implementation assumes the quaternion data are managed in flat arrays.
    * @param dist - The output array.
    * @param dstOffset - An offset into the output array.
    * @param src0 - The source array of the starting quaternion.
@@ -28,51 +29,59 @@ class Quaternion extends Base {
    * @param srcOffset1 - An offset into the array src1.
    * @param t - Normalized interpolation factor (between 0 and 1).
    */
-  static slerpFlat(dst: number[], dstOffset: number,
-    src0: number[], srcOffset0: number,
-    src1: number[], srcOffset1: number,
-    t: number): void {
+   static slerpFlat( dst: number[], dstOffset: number, 
+        src0: number[], srcOffset0: number, 
+        src1: number[], srcOffset1: number, 
+        t: number ): void {
+
     // fuzz-free, array-based Quaternion SLERP operation
 
-    let x0 = src0[srcOffset0 + 0];
-    let y0 = src0[srcOffset0 + 1];
-    let z0 = src0[srcOffset0 + 2];
-    let w0 = src0[srcOffset0 + 3];
+    let x0 = src0[ srcOffset0 + 0 ],
+      y0 = src0[ srcOffset0 + 1 ],
+      z0 = src0[ srcOffset0 + 2 ],
+      w0 = src0[ srcOffset0 + 3 ];
 
-    const x1 = src1[srcOffset1 + 0];
-    const y1 = src1[srcOffset1 + 1];
-    const z1 = src1[srcOffset1 + 2];
-    const w1 = src1[srcOffset1 + 3];
+    const x1 = src1[ srcOffset1 + 0 ],
+      y1 = src1[ srcOffset1 + 1 ],
+      z1 = src1[ srcOffset1 + 2 ],
+      w1 = src1[ srcOffset1 + 3 ];
 
-    if (t === 0) {
-      dst[dstOffset + 0] = x0;
-      dst[dstOffset + 1] = y0;
-      dst[dstOffset + 2] = z0;
-      dst[dstOffset + 3] = w0;
+    if ( t === 0 ) {
+
+      dst[ dstOffset + 0 ] = x0;
+      dst[ dstOffset + 1 ] = y0;
+      dst[ dstOffset + 2 ] = z0;
+      dst[ dstOffset + 3 ] = w0;
       return;
+
     }
 
-    if (t === 1) {
-      dst[dstOffset + 0] = x1;
-      dst[dstOffset + 1] = y1;
-      dst[dstOffset + 2] = z1;
-      dst[dstOffset + 3] = w1;
+    if ( t === 1 ) {
+
+      dst[ dstOffset + 0 ] = x1;
+      dst[ dstOffset + 1 ] = y1;
+      dst[ dstOffset + 2 ] = z1;
+      dst[ dstOffset + 3 ] = w1;
       return;
+
     }
 
-    if (w0 !== w1 || x0 !== x1 || y0 !== y1 || z0 !== z1) {
+    if ( w0 !== w1 || x0 !== x1 || y0 !== y1 || z0 !== z1 ) {
+
       let s = 1 - t;
-      const cos = x0 * x1 + y0 * y1 + z0 * z1 + w0 * w1;
-      const dir = (cos >= 0 ? 1 : -1);
-      const sqrSin = 1 - cos * cos;
+      const cos = x0 * x1 + y0 * y1 + z0 * z1 + w0 * w1,
+        dir = ( cos >= 0 ? 1 : - 1 ),
+        sqrSin = 1 - cos * cos;
 
       // Skip the Slerp for tiny steps to avoid numeric problems:
-      if (sqrSin > Number.EPSILON) {
-        const sin = Math.sqrt(sqrSin);
-        const len = Math.atan2(sin, cos * dir);
+      if ( sqrSin > Number.EPSILON ) {
 
-        s = Math.sin(s * len) / sin;
-        t = Math.sin(t * len) / sin;
+        const sin = Math.sqrt( sqrSin ),
+          len = Math.atan2( sin, cos * dir );
+
+        s = Math.sin( s * len ) / sin;
+        t = Math.sin( t * len ) / sin;
+
       }
 
       const tDir = t * dir;
@@ -83,51 +92,58 @@ class Quaternion extends Base {
       w0 = w0 * s + w1 * tDir;
 
       // Normalize in case we just did a lerp:
-      if (s === 1 - t) {
-        const f = 1 / Math.sqrt(x0 * x0 + y0 * y0 + z0 * z0 + w0 * w0);
+      if ( s === 1 - t ) {
+
+        const f = 1 / Math.sqrt( x0 * x0 + y0 * y0 + z0 * z0 + w0 * w0 );
 
         x0 *= f;
         y0 *= f;
         z0 *= f;
         w0 *= f;
+
       }
+
     }
 
-    dst[dstOffset] = x0;
-    dst[dstOffset + 1] = y0;
-    dst[dstOffset + 2] = z0;
-    dst[dstOffset + 3] = w0;
+    dst[ dstOffset ] = x0;
+    dst[ dstOffset + 1 ] = y0;
+    dst[ dstOffset + 2 ] = z0;
+    dst[ dstOffset + 3 ] = w0;
+
   }
 
   /**
    * Multiply 2 quaterions.
-   * @param dst -
-   * @param dstOffset -
-   * @param src0 -
-   * @param srcOffset0 -
-   * @param src1 -
-   * @param srcOffset1
-   * @returns The dst parameter.
+   * This multiplication implementation assumes the quaternion data are managed in flat arrays.
+   * 
+   * @param dst - The output array.
+   * @param dstOffset - An offset into the output array.
+   * @param src0 - The source array of the starting quaternion.
+   * @param srcOffset0 - An offset into the array src0.
+   * @param src1 - The source array of the target quaternion.
+   * @param srcOffset1 - An offset into the array src1.
    */
-  static multiplyQuaternionsFlat(dst: number[], dstOffset: number,
-    src0: number[], srcOffset0: number,
-    src1: number[], srcOffset1: number): number[] {
-    const x0 = src0[srcOffset0];
-    const y0 = src0[srcOffset0 + 1];
-    const z0 = src0[srcOffset0 + 2];
-    const w0 = src0[srcOffset0 + 3];
+  static multiplyQuaternionsFlat( dst: number[], dstOffset: number, 
+        src0: number[], srcOffset0: number,
+        src1: number[], srcOffset1: number ) {
 
-    const x1 = src1[srcOffset1];
-    const y1 = src1[srcOffset1 + 1];
-    const z1 = src1[srcOffset1 + 2];
-    const w1 = src1[srcOffset1 + 3];
+    const x0 = src0[ srcOffset0 ];
+    const y0 = src0[ srcOffset0 + 1 ];
+    const z0 = src0[ srcOffset0 + 2 ];
+    const w0 = src0[ srcOffset0 + 3 ];
 
-    dst[dstOffset] = x0 * w1 + w0 * x1 + y0 * z1 - z0 * y1;
-    dst[dstOffset + 1] = y0 * w1 + w0 * y1 + z0 * x1 - x0 * z1;
-    dst[dstOffset + 2] = z0 * w1 + w0 * z1 + x0 * y1 - y0 * x1;
-    dst[dstOffset + 3] = w0 * w1 - x0 * x1 - y0 * y1 - z0 * z1;
+    const x1 = src1[ srcOffset1 ];
+    const y1 = src1[ srcOffset1 + 1 ];
+    const z1 = src1[ srcOffset1 + 2 ];
+    const w1 = src1[ srcOffset1 + 3 ];
+
+    dst[ dstOffset ] = x0 * w1 + w0 * x1 + y0 * z1 - z0 * y1;
+    dst[ dstOffset + 1 ] = y0 * w1 + w0 * y1 + z0 * x1 - x0 * z1;
+    dst[ dstOffset + 2 ] = z0 * w1 + w0 * z1 + x0 * y1 - y0 * x1;
+    dst[ dstOffset + 3 ] = w0 * w1 - x0 * x1 - y0 * y1 - z0 * z1;
 
     return dst;
+
   }
 
   _x: number;
@@ -150,6 +166,9 @@ class Quaternion extends Base {
     this._w = w;
   }
 
+  /**
+   * Read-only flag to check if a given object is of type Quaternion.
+   */
   // eslint-disable-next-line @typescript-eslint/class-literal-property-style
   get isQuaternion(): boolean {
     return true;
@@ -199,7 +218,7 @@ class Quaternion extends Base {
    * @param w
    * @returns This instance.
    */
-  set(x: number, y: number, z: number, w: number): Quaternion {
+  set(x: number, y: number, z: number, w: number): this {
     this._x = x;
     this._y = y;
     this._z = z;
@@ -223,7 +242,7 @@ class Quaternion extends Base {
    * @param quaternion
    * @returns This instance.
    */
-  copy(quaternion: Quaternion): Quaternion {
+  copy(quaternion: Quaternion): this {
     this._x = quaternion.x;
     this._y = quaternion.y;
     this._z = quaternion.z;
@@ -239,7 +258,7 @@ class Quaternion extends Base {
    * @param euler
    * @returns This instance.
    */
-  setFromEuler(euler: Euler, update?: boolean): Quaternion {
+  setFromEuler(euler: Euler, update?: boolean): this {
     if (!(euler && euler.isEuler)) {
       throw new Error('THREE.Quaternion: .setFromEuler() now expects an Euler rotation rather than a Vector3 and order.');
     }
@@ -322,7 +341,7 @@ class Quaternion extends Base {
    * @param angle
    * @returns This instance.
    */
-  setFromAxisAngle(axis: Vector3, angle: number): Quaternion {
+  setFromAxisAngle(axis: Vector3, angle: number): this {
     // http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm
 
     // assumes axis is normalized
@@ -345,7 +364,7 @@ class Quaternion extends Base {
    * @param m - a Matrix4 of which the upper 3x3 of matrix is a pure rotation matrix (i.e. unscaled).
    * @returns This instance.
    */
-  setFromRotationMatrix(m: Matrix4): Quaternion {
+  setFromRotationMatrix(m: Matrix4): this {
     // http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
 
     // assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
@@ -400,7 +419,7 @@ class Quaternion extends Base {
    * @param vTo
    * @returns This instance.
    */
-  setFromUnitVectors(vFrom: Vector3, vTo: Vector3): Quaternion {
+  setFromUnitVectors(vFrom: Vector3, vTo: Vector3): this {
     // assumes direction vectors vFrom and vTo are normalized
 
     let r = vFrom.dot(vTo) + 1;
@@ -449,7 +468,7 @@ class Quaternion extends Base {
    * @param step - The angular step in radians
    * @returns This instance.
    */
-  rotateTowards(q: Quaternion, step: number): Quaternion {
+  rotateTowards(q: Quaternion, step: number): this {
     const angle = this.angleTo(q);
 
     if (angle === 0) return this;
@@ -466,7 +485,7 @@ class Quaternion extends Base {
    * to the quaternion that represents "no rotation".
    * @returns This instance
    */
-  identity(): Quaternion {
+  identity(): this {
     return this.set(0, 0, 0, 1);
   }
 
@@ -475,7 +494,7 @@ class Quaternion extends Base {
    * The quaternion is assumed to have unit length.
    * @returns This instance.
    */
-  invert(): Quaternion {
+  invert(): this {
     // quaternion is assumed to have unit length
 
     return this.conjugate();
@@ -487,7 +506,7 @@ class Quaternion extends Base {
    * in the opposite direction about the rotational axis.
    * @returns The conjugate quaternion.
    */
-  conjugate(): Quaternion {
+  conjugate(): this {
     this._x *= -1;
     this._y *= -1;
     this._z *= -1;
@@ -531,7 +550,7 @@ class Quaternion extends Base {
    * performs the same rotation as this one, but has length equal to 1.
    * @returns This instance.
    */
-  normalize(): Quaternion {
+  normalize(): this {
     let l = this.length();
 
     if (l === 0) {
@@ -558,7 +577,7 @@ class Quaternion extends Base {
    * @param q
    * @returns This instance.
    */
-  multiply(q: Quaternion): Quaternion {
+  multiply(q: Quaternion): this {
     return this.multiplyQuaternions(this, q);
   }
 
@@ -567,7 +586,7 @@ class Quaternion extends Base {
    * @param q
    * @returns This instance.
    */
-  premultiply(q: Quaternion): Quaternion {
+  premultiply(q: Quaternion): this {
     return this.multiplyQuaternions(q, this);
   }
 
@@ -577,7 +596,7 @@ class Quaternion extends Base {
    * @param b
    * @returns This instance.
    */
-  multiplyQuaternions(a: Quaternion, b: Quaternion): Quaternion {
+  multiplyQuaternions(a: Quaternion, b: Quaternion): this {
     // from http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/code/index.htm
 
     const qax = a._x; const qay = a._y; const qaz = a._z; const
@@ -604,7 +623,7 @@ class Quaternion extends Base {
    * @param t - interpolation factor in the closed interval [0, 1].
    * @returns This instance.
    */
-  slerp(qb: Quaternion, t: number): Quaternion {
+  slerp(qb: Quaternion, t: number): this {
     if (t === 0) return this;
     if (t === 1) return this.copy(qb);
 
@@ -673,10 +692,36 @@ class Quaternion extends Base {
    * @param t
    * @returns This instance.
    */
-  slerpQuaternions(qa: Quaternion, qb: Quaternion, t: number): Quaternion {
+  slerpQuaternions(qa: Quaternion, qb: Quaternion, t: number): this {
     this.copy(qa).slerp(qb, t);
 
     return this;
+  }
+
+  /**
+   * Sets this quaternion to a uniformly random, normalized quaternion.
+   * @returns This instance.
+   */
+  random(): this {
+
+    // Derived from http://planning.cs.uiuc.edu/node198.html
+    // Note, this source uses w, x, y, z ordering,
+    // so we swap the order below.
+
+    const u1 = Math.random();
+    const sqrt1u1 = Math.sqrt( 1 - u1 );
+    const sqrtu1 = Math.sqrt( u1 );
+
+    const u2 = 2 * Math.PI * Math.random();
+
+    const u3 = 2 * Math.PI * Math.random();
+
+    return this.set(
+      sqrt1u1 * Math.cos( u2 ),
+      sqrtu1 * Math.sin( u3 ),
+      sqrtu1 * Math.cos( u3 ),
+      sqrt1u1 * Math.sin( u2 ),
+    );
   }
 
   /**
@@ -696,7 +741,7 @@ class Quaternion extends Base {
    * @param [offset] - an offset into the array.
    * @returns This instance.
    */
-  fromArray(array: number[], offset = 0): Quaternion {
+  fromArray(array: number[], offset = 0): this {
     this._x = array[offset];
     this._y = array[offset + 1];
     this._z = array[offset + 2];
@@ -730,6 +775,12 @@ class Quaternion extends Base {
   }
 
   _onChangeCallback() {}
+
+  *[ Symbol.iterator ](): IterableIterator<number> {
+    yield this._x;
+    yield this._y;
+    yield this._z;
+    yield this._w;
+  }
 }
 
-export { Quaternion };

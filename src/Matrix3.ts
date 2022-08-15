@@ -1,4 +1,5 @@
 import { Base } from './Base';
+import type { Matrix } from './Matrix';
 import type { Matrix4 } from './Matrix4';
 import type { Vector3 } from './Vector3';
 
@@ -35,9 +36,10 @@ import type { Vector3 } from './Vector3';
  * to take the transpose of any matrices outlined here to make sense of the calculations.
 
  */
-class Matrix3 extends Base {
+export class Matrix3 extends Base implements Matrix {
   /**
    * A column-major list of matrix values.
+   * @default [1, 0, 0, 0, 1, 0, 0, 0, 1]
    */
   elements: number[];
 
@@ -57,6 +59,17 @@ class Matrix3 extends Base {
     }
   }
 
+  /**
+   * Read-only flag to check if a given object is of type Matrix.
+   */
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get isMatrix(): boolean {
+    return true;
+  }
+
+  /**
+   * Read-only flag to check if a given object is of type Matrix3.
+   */
   // eslint-disable-next-line @typescript-eslint/class-literal-property-style
   get isMatrix3(): boolean {
     return true;
@@ -77,7 +90,7 @@ class Matrix3 extends Base {
    */
   set(n11: number, n12: number, n13: number,
     n21: number, n22: number, n23: number,
-    n31: number, n32: number, n33: number): Matrix3 {
+    n31: number, n32: number, n33: number): this {
     const te = this.elements;
 
     te[0] = n11; te[1] = n21; te[2] = n31;
@@ -96,7 +109,7 @@ class Matrix3 extends Base {
    * ```
    * @returns This instance.
    */
-  identity(): Matrix3 {
+  identity(): this {
     this.set(
       1, 0, 0,
       0, 1, 0,
@@ -108,10 +121,10 @@ class Matrix3 extends Base {
 
   /**
    * Copies the elements of matrix m into this matrix.
-   * @param m
+   * @param m - The matrix to copy
    * @returns This instance.
    */
-  copy(m: Matrix3): Matrix3 {
+  copy(m: Matrix3): this {
     const te = this.elements;
     const me = m.elements;
 
@@ -141,7 +154,7 @@ class Matrix3 extends Base {
    * @param zAxis
    * @returns This instance.
    */
-  extractBasis(xAxis: Vector3, yAxis: Vector3, zAxis: Vector3): Matrix3 {
+  extractBasis(xAxis: Vector3, yAxis: Vector3, zAxis: Vector3): this {
     xAxis.setFromMatrix3Column(this, 0);
     yAxis.setFromMatrix3Column(this, 1);
     zAxis.setFromMatrix3Column(this, 2);
@@ -154,7 +167,7 @@ class Matrix3 extends Base {
    * @param m
    * @returns This instance.
    */
-  setFromMatrix4(m: Matrix4) {
+  setFromMatrix4(m: Matrix4): this {
     const me = m.elements;
 
     this.set(
@@ -172,7 +185,7 @@ class Matrix3 extends Base {
    * Post-multiplies this matrix by m.
    * @return This instance.
    */
-  multiply(m: Matrix3): Matrix3 {
+  multiply(m: Matrix3): this {
     return this.multiplyMatrices(this, m);
   }
 
@@ -181,7 +194,7 @@ class Matrix3 extends Base {
    * @param m
    * @returns This instance.
    */
-  premultiply(m: Matrix3): Matrix3 {
+  premultiply(m: Matrix3): this {
     return this.multiplyMatrices(m, this);
   }
 
@@ -191,7 +204,7 @@ class Matrix3 extends Base {
    * @param b
    * @returns This instance.
    */
-  multiplyMatrices(a: Matrix3, b: Matrix3): Matrix3 {
+  multiplyMatrices(a: Matrix3, b: Matrix3): this {
     const ae = a.elements;
     const be = b.elements;
     const te = this.elements;
@@ -224,7 +237,7 @@ class Matrix3 extends Base {
    * @param s
    * @returns This instance.
    */
-  multiplyScalar(s: number): Matrix3 {
+  multiplyScalar(s: number): this {
     const te = this.elements;
 
     te[0] *= s; te[3] *= s; te[6] *= s;
@@ -238,7 +251,7 @@ class Matrix3 extends Base {
    * Computes the determinant of this matrix.
    * @returns A float.
    */
-  determinant() {
+  determinant(): number {
     const te = this.elements;
 
     const a = te[0]; const b = te[1]; const c = te[2];
@@ -255,7 +268,7 @@ class Matrix3 extends Base {
    * If you attempt this, the method produces a zero matrix instead.
    * @returns This instance
    */
-  invert(): Matrix3 {
+  invert(): this {
     const te = this.elements;
 
     const n11 = te[0]; const n21 = te[1]; const n31 = te[2];
@@ -291,7 +304,7 @@ class Matrix3 extends Base {
    * Transposes this matrix in place.
    * @returns This instance.
    */
-  transpose() {
+  transpose(): this {
     let tmp: number;
     const m = this.elements;
 
@@ -308,7 +321,7 @@ class Matrix3 extends Base {
    * @param matrix4
    * @returns This instance.
    */
-  getNormalMatrix(matrix4: Matrix4) {
+  getNormalMatrix(matrix4: Matrix4): this {
     return this.setFromMatrix4(matrix4).invert().transpose();
   }
 
@@ -317,7 +330,7 @@ class Matrix3 extends Base {
    * @param r - array to store the resulting vector in.
    * @returns This instance.
    */
-  transposeIntoArray(r: number[]): Matrix3 {
+  transposeIntoArray(r: number[]): this {
     const m = this.elements;
 
     r[0] = m[0];
@@ -345,7 +358,7 @@ class Matrix3 extends Base {
    * @returns This instance.
    */
   setUvTransform(tx: number, ty: number, sx: number, sy: number,
-    rotation: number, cx: number, cy: number) {
+    rotation: number, cx: number, cy: number): this {
     const c = Math.cos(rotation);
     const s = Math.sin(rotation);
 
@@ -358,7 +371,13 @@ class Matrix3 extends Base {
     return this;
   }
 
-  scale(sx: number, sy: number) {
+  /**
+   * Scales this matrix with the given scalar values.
+   * @param sx - x scale factor
+   * @param sy - y scale factor
+   * @returns This instance.
+   */
+  scale(sx: number, sy: number): this {
     const te = this.elements;
 
     te[0] *= sx; te[3] *= sx; te[6] *= sx;
@@ -367,7 +386,12 @@ class Matrix3 extends Base {
     return this;
   }
 
-  rotate(theta: number) {
+  /**
+   * Rotates this matrix by the given angle (in radians).
+   * @param theta - The angle in radians to rotate
+   * @returns This instance.
+   */
+  rotate(theta: number): this {
     const c = Math.cos(theta);
     const s = Math.sin(theta);
 
@@ -389,7 +413,13 @@ class Matrix3 extends Base {
     return this;
   }
 
-  translate(tx: number, ty: number) {
+  /**
+   * Translates this matrix by the given scalar values.
+   * @param tx - The x direction translation
+   * @param ty - The y direction translation
+   * @returns This instance.
+   */
+  translate(tx: number, ty: number): this {
     const te = this.elements;
 
     te[0] += tx * te[2]; te[3] += tx * te[5]; te[6] += tx * te[8];
@@ -420,7 +450,7 @@ class Matrix3 extends Base {
    * @param [offset] -  index of first element in the array. Default is 0.
    * @returns This instance.
    */
-  fromArray(array: number[], offset = 0): Matrix3 {
+  fromArray(array: number[], offset = 0): this {
     for (let i = 0; i < 9; i++) {
       this.elements[i] = array[i + offset];
     }
@@ -456,9 +486,7 @@ class Matrix3 extends Base {
    * Creates a new Matrix3 and with identical elements to this one.
    * @returns A new instance.
    */
-  clone() {
+  clone(): Matrix3 {
     return new Matrix3().fromArray(this.elements);
   }
 }
-
-export { Matrix3 };

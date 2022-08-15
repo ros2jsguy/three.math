@@ -1,5 +1,5 @@
 import type { Box3 } from './Box3';
-import type { Vector2 } from './Vector2';
+import { Vector2 } from './Vector2';
 import { Vector3 } from './Vector3';
 import { Plane } from './Plane';
 import { Base } from './Base';
@@ -16,7 +16,19 @@ const _vap = new Vector3();
 const _vbp = new Vector3();
 const _vcp = new Vector3();
 
-class Triangle extends Base {
+/**
+ * A geometric triangle as defined by three Vector3s representing its three corners.
+ */
+export class Triangle extends Base {
+
+  /**
+   * 
+   * @param a 
+   * @param b 
+   * @param c 
+   * @param target 
+   * @returns 
+   */
   static getNormal(a: Vector3, b: Vector3, c: Vector3, target = new Vector3()): Vector3 {
     target.subVectors(c, b);
     _v0.subVectors(a, b);
@@ -30,6 +42,15 @@ class Triangle extends Base {
     return target.set(0, 0, 0);
   }
 
+  /**
+   * 
+   * @param point 
+   * @param a 
+   * @param b 
+   * @param c 
+   * @param target 
+   * @returns 
+   */
   // static/instance method to calculate barycentric coordinates
   // based on: http://www.blackpawn.com/texts/pointinpoly/default.html
   // eslint-disable-next-line max-len
@@ -87,10 +108,27 @@ class Triangle extends Base {
     return (_v0.cross(_v1).dot(direction) < 0);
   }
 
+  /**
+   * The first corner of the triangle. Default is a Vector3 at (0, 0, 0).
+   */
   a: Vector3;
+
+  /**
+   * The second corner of the triangle. Default is a Vector3 at (0, 0, 0).
+   */
   b: Vector3;
+
+  /**
+   * The final corner of the triangle. Default is a Vector3 at (0, 0, 0).
+   */
   c: Vector3;
 
+  /**
+   * Creates a new Triangle.
+   * @param a - The first corner of the triangle. Default is a Vector3 at (0, 0, 0).
+   * @param b - The second corner of the triangle. Default is a Vector3 at (0, 0, 0).
+   * @param c - The third corner of the triangle. Default is a Vector3 at (0, 0, 0).
+   */
   constructor(a = new Vector3(), b = new Vector3(), c = new Vector3()) {
     super();
     this.a = a;
@@ -98,12 +136,23 @@ class Triangle extends Base {
     this.c = c;
   }
 
+  /**
+   * Read-only flag to check if a given object is of type Triangle.
+   */
   // eslint-disable-next-line @typescript-eslint/class-literal-property-style
   get isTriangle(): boolean {
     return true;
   }
 
-  set(a: Vector3, b: Vector3, c: Vector3): Triangle {
+  /**
+   * Sets the triangle's a, b and c properties to the passed vector3s.
+   * Please note that this method only copies the values from the given objects.
+   * @param a - The first point
+   * @param b - The second point
+   * @param c - The third point.
+   * @returns This instance.
+   */
+  set(a: Vector3, b: Vector3, c: Vector3): this {
     this.a.copy(a);
     this.b.copy(b);
     this.c.copy(c);
@@ -111,7 +160,15 @@ class Triangle extends Base {
     return this;
   }
 
-  setFromPointsAndIndices(points: Vector3[], i0: number, i1: number, i2: number): Triangle {
+  /**
+   * Sets the triangle's vectors to the vectors in the array.
+   * @param points - Array of Vector3s
+   * @param i0 - index into points array
+   * @param i1 - index into points array
+   * @param i2 - index into points array
+   * @returns This instance
+   */
+  setFromPointsAndIndices(points: Vector3[], i0: number, i1: number, i2: number): this {
     this.a.copy(points[i0]);
     this.b.copy(points[i1]);
     this.c.copy(points[i2]);
@@ -119,11 +176,20 @@ class Triangle extends Base {
     return this;
   }
 
+  /**
+   * Create a new triangle with the same a, b and c properties as this one.
+   * @returns A new Triangle instance equal to this triangle.
+   */
   clone(): Triangle {
     return new Triangle().copy(this);
   }
 
-  copy(triangle: Triangle): Triangle {
+  /**
+   * Copies the values of the passed triangles's a, b and c properties to this triangle.
+   * @param triangle - The source triangle.
+   * @returns This instance.
+   */
+  copy(triangle: Triangle): this {
     this.a.copy(triangle.a);
     this.b.copy(triangle.b);
     this.c.copy(triangle.c);
@@ -131,6 +197,10 @@ class Triangle extends Base {
     return this;
   }
 
+  /**
+   * Copmute the area of the triangle.
+   * @returns The area of the triangle.
+   */
   getArea(): number {
     _v0.subVectors(this.c, this.b);
     _v1.subVectors(this.a, this.b);
@@ -138,51 +208,104 @@ class Triangle extends Base {
     return _v0.cross(_v1).length() * 0.5;
   }
 
+  /**
+   * Calculate the midpoint of the triangle.
+   * @param target - (Optional) The result will be copied into this Vector3.
+   * @returns The midpoint.
+   */
   getMidpoint(target = new Vector3()): Vector3 {
     return target.addVectors(this.a, this.b).add(this.c).multiplyScalar(1 / 3);
   }
 
-  getNormal(target: Vector3): Vector3 {
+  /**
+   * Calculate the normal vector of the triangle.
+   * @param target - (Optional) The result will be copied into this Vector3.
+   * @returns The normal vector.
+   */
+  getNormal(target?: Vector3): Vector3 {
     return Triangle.getNormal(this.a, this.b, this.c, target);
   }
 
+  /**
+   * Calculate a plane based on the triangle. .
+   * @param target - (Optional) The result will be copied into this Plane.
+   * @returns The plane.
+   */
   getPlane(target = new Plane()): Plane {
     return target.setFromCoplanarPoints(this.a, this.b, this.c);
   }
 
-  getBarycoord(point: Vector3, target: Vector3): Vector3 {
+  /**
+   * Compute a barycentric coordinate from the given vector.
+   * @param point - Vector3
+   * @param target - (Optional) The result will be copied into this Vector3.
+   * @returns The barycentric coordinate.
+   */
+  getBarycoord(point: Vector3, target: Vector3 = new Vector3()): Vector3 {
     return Triangle.getBarycoord(point, this.a, this.b, this.c, target);
   }
 
-  getUV(point: Vector3, uv1: Vector2, uv2: Vector2, uv3: Vector2, target: Vector2): Vector2 {
+  /**
+   * Compute the uv coordinates for the given point on the triangle.
+   * @param point - The point on the triangle.
+   * @param uv1 - The uv coordinate of the triangle's first vertex.
+   * @param uv2 - The uv coordinate of the triangle's second vertex.
+   * @param uv3 - The uv coordinate of the triangle's third vertex.
+   * @param target — (optional) The result will be copied into this Vector2
+   * @returns The UV coordinate
+   */
+  getUV(point: Vector3, uv1: Vector2, uv2: Vector2, uv3: Vector2, target: Vector2 =  new Vector2()): Vector2 {
     return Triangle.getUV(point, this.a, this.b, this.c, uv1, uv2, uv3, target);
   }
 
+  /**
+   * Determine if a point, when projected onto the
+   * plane of the triangle, lies within the triangle.
+   * @param point - Vector3 to check.
+   * @returns True if the triangle contains the point.
+   */
   containsPoint(point: Vector3): boolean {
     return Triangle.containsPoint(point, this.a, this.b, this.c);
   }
 
+  /**
+   * Determine if the triangle is oriented towards the given direction or not.
+   * @param direction  - The direction to test.
+   * @returns True if the triangle is oriented towards the direction parameter.
+   */
   isFrontFacing(direction: Vector3): boolean {
     return Triangle.isFrontFacing(this.a, this.b, this.c, direction);
   }
 
+  /**
+   * Determines whether or not this triangle intersects box.
+   * @param box - Box to check for intersection against.
+   * @returns True if the box intersects this triangle.
+   */
   intersectsBox(box: Box3): boolean {
     return box.intersectsTriangle(this);
   }
 
-  closestPointToPoint(p: Vector3, target = new Vector3()): Vector3 {
+  /**
+   * Returns the closest point on the triangle to point.
+   * 
+   * Algorithm thanks to Real-Time Collision Detection by Christer Ericson,
+   * published by Morgan Kaufmann Publishers, (c) 2005 Elsevier Inc.,
+   * under the accompanying license; see chapter 5.1.5 for detailed explanation.
+   * basically, we're distinguishing which of the voronoi regions of the triangle
+   * the point lies in with the minimum amount of redundant computation.
+
+   * @param pt - Vector3
+   * @param target — (Optional) The result will be copied into this Vector3.
+   * @returns The closest point.
+   */
+  closestPointToPoint(pt: Vector3, target = new Vector3()): Vector3 {
     const { a, b, c } = this;
     let v; let w;
 
-    // algorithm thanks to Real-Time Collision Detection by Christer Ericson,
-    // published by Morgan Kaufmann Publishers, (c) 2005 Elsevier Inc.,
-    // under the accompanying license; see chapter 5.1.5 for detailed explanation.
-    // basically, we're distinguishing which of the voronoi regions of the triangle
-    // the point lies in with the minimum amount of redundant computation.
-
     _vab.subVectors(b, a);
     _vac.subVectors(c, a);
-    _vap.subVectors(p, a);
+    _vap.subVectors(pt, a);
     const d1 = _vab.dot(_vap);
     const d2 = _vac.dot(_vap);
     if (d1 <= 0 && d2 <= 0) {
@@ -190,7 +313,7 @@ class Triangle extends Base {
       return target.copy(a);
     }
 
-    _vbp.subVectors(p, b);
+    _vbp.subVectors(pt, b);
     const d3 = _vab.dot(_vbp);
     const d4 = _vac.dot(_vbp);
     if (d3 >= 0 && d4 <= d3) {
@@ -205,7 +328,7 @@ class Triangle extends Base {
       return target.copy(a).addScaledVector(_vab, v);
     }
 
-    _vcp.subVectors(p, c);
+    _vcp.subVectors(pt, c);
     const d5 = _vab.dot(_vcp);
     const d6 = _vac.dot(_vcp);
     if (d6 >= 0 && d5 <= d6) {
@@ -237,9 +360,13 @@ class Triangle extends Base {
     return target.copy(a).addScaledVector(_vab, v).addScaledVector(_vac, w);
   }
 
+  /**
+   * Determing if the two triangles have identical a, b and c properties.
+   * @param triangle - The source triangle 
+   * @returns True if triangle has the same component values as this triangle.
+   */
   equals(triangle: Triangle): boolean {
     return triangle.a.equals(this.a) && triangle.b.equals(this.b) && triangle.c.equals(this.c);
   }
 }
 
-export { Triangle };

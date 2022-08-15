@@ -13,6 +13,11 @@
 <li><a href="../modules.html">@ros2jsguy/three-math-ts</a></li>
 <li><a href="Plane.html">Plane</a></li></ul>
 <h1>Class Plane</h1></div>
+<section class="tsd-panel tsd-comment">
+<div class="tsd-comment tsd-typography"><p>A two dimensional surface that extends infinitely in 3d space, 
+represented in Hessian normal form by a unit length normal 
+vector and a constant.</p>
+</div></section>
 <section class="tsd-panel tsd-hierarchy">
 <h4>Hierarchy</h4>
 <ul class="tsd-hierarchy">
@@ -83,13 +88,19 @@
 <li class="tsd-signature" id="constructor.new_Plane">new <wbr/>Plane<span class="tsd-signature-symbol">(</span>normal<span class="tsd-signature-symbol">?: </span><a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a>, constant<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Create a new instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>normal: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a><span class="tsd-signature-symbol"> = ...</span></h5></li>
+<h5>normal: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a><span class="tsd-signature-symbol"> = ...</span></h5>
+<div class="tsd-comment tsd-typography"><p>(optional) a unit length Vector3 defining the normal of the plane. Default is (1, 0, 0).</p>
+</div></li>
 <li>
-<h5>constant: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></h5></li></ul></div>
+<h5>constant: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></h5>
+<div class="tsd-comment tsd-typography"><p>(optional) the signed distance from the origin to the plane. Default is 0.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4><aside class="tsd-sources">
 <p>Overrides Base.constructor</p></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
@@ -98,12 +109,12 @@
 <h3 class="tsd-anchor-link"><span>constant</span><a href="#constant" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">constant<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ros2jsguy/three.math/blob/a7048e9/src/Plane.ts#L11">Plane.ts:11</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/ros2jsguy/three.math/blob/0096978/src/Plane.ts#L22">Plane.ts:22</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="normal" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>normal</span><a href="#normal" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">normal<span class="tsd-signature-symbol">:</span> <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a><span class="tsd-signature-symbol"> = ...</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ros2jsguy/three.math/blob/a7048e9/src/Plane.ts#L11">Plane.ts:11</a></li></ul></aside></section></section>
+<li>Defined in <a href="https://github.com/ros2jsguy/three.math/blob/0096978/src/Plane.ts#L22">Plane.ts:22</a></li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Accessors</h2>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><a id="isBox2" class="tsd-anchor"></a>
@@ -176,6 +187,8 @@
 <li class="tsd-signature" id="isPlane.isPlane-1"><span class="tsd-signature-symbol">get</span> isPlane<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Read-only flag to check if a given object is of type Plane.</p>
+</div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
 <p>Overrides Base.isPlane</p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><a id="isQuaternion" class="tsd-anchor"></a>
@@ -250,11 +263,21 @@
 <li class="tsd-signature" id="applyMatrix4.applyMatrix4-1">apply<wbr/>Matrix4<span class="tsd-signature-symbol">(</span>matrix<span class="tsd-signature-symbol">: </span><a href="Matrix4.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix4</a>, optionalNormalMatrix<span class="tsd-signature-symbol">?: </span><a href="Matrix3.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix3</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Apply a Matrix4 to the plane. The matrix must be an affine, 
+homogeneous transform.If supplying an optionalNormalMatrix, 
+it can be created like so:</p>
+<pre><code><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">optionalNormalMatrix</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">Matrix3</span><span class="hl-1">().</span><span class="hl-3">getNormalMatrix</span><span class="hl-1">( </span><span class="hl-6">matrix</span><span class="hl-1"> );</span>
+</code></pre>
+
+<h3>Returns</h3><p>This instance</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>matrix: <a href="Matrix4.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix4</a></h5></li>
+<h5>matrix: <a href="Matrix4.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix4</a></h5>
+<div class="tsd-comment tsd-typography"><p>the Matrix4 to apply.</p>
+</div></li>
 <li>
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> optionalNormalMatrix: <a href="Matrix3.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix3</a></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4></li></ul></section>
@@ -264,6 +287,10 @@
 <li class="tsd-signature" id="clone.clone-1">clone<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Create a new plane with the same normal and constant as this one.</p>
+
+<h3>Returns</h3><p>The enw instance.</p>
+</div>
 <h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="coplanarPoint" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>coplanar<wbr/>Point</span><a href="#coplanarPoint" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -271,11 +298,18 @@
 <li class="tsd-signature" id="coplanarPoint.coplanarPoint-1">coplanar<wbr/>Point<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Compute a Vector3 coplanar to the plane, by calculating 
+the projection of the normal vector at the origin onto the plane.</p>
+
+<h3>Returns</h3><p>A vector coplanar to this plane.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>target: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5></li></ul></div>
+<h5>target: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5>
+<div class="tsd-comment tsd-typography"><p>— The result will be copied into this Vector3.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="copy" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>copy</span><a href="#copy" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -283,11 +317,17 @@
 <li class="tsd-signature" id="copy.copy-1">copy<span class="tsd-signature-symbol">(</span>plane<span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Copies the values of the passed plane&#39;s normal and constant properties to this plane.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>plane: <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h5></li></ul></div>
+<h5>plane: <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h5>
+<div class="tsd-comment tsd-typography"><p>The source plane to copy values from.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="distanceToPoint" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>distance<wbr/>To<wbr/>Point</span><a href="#distanceToPoint" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -295,11 +335,17 @@
 <li class="tsd-signature" id="distanceToPoint.distanceToPoint-1">distance<wbr/>To<wbr/>Point<span class="tsd-signature-symbol">(</span>point<span class="tsd-signature-symbol">: </span><a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Compute the signed distance from the point to the plane.</p>
+
+<h3>Returns</h3><p>The signed distance value.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>point: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5></li></ul></div>
+<h5>point: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5>
+<div class="tsd-comment tsd-typography"><p>The point to measure to.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="distanceToSphere" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>distance<wbr/>To<wbr/>Sphere</span><a href="#distanceToSphere" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -307,11 +353,17 @@
 <li class="tsd-signature" id="distanceToSphere.distanceToSphere-1">distance<wbr/>To<wbr/>Sphere<span class="tsd-signature-symbol">(</span>sphere<span class="tsd-signature-symbol">: </span><a href="Sphere.html" class="tsd-signature-type" data-tsd-kind="Class">Sphere</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Compute the signed distance from the sphere to the plane.</p>
+
+<h3>Returns</h3><p>The signed distance value.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>sphere: <a href="Sphere.html" class="tsd-signature-type" data-tsd-kind="Class">Sphere</a></h5></li></ul></div>
+<h5>sphere: <a href="Sphere.html" class="tsd-signature-type" data-tsd-kind="Class">Sphere</a></h5>
+<div class="tsd-comment tsd-typography"><p>The sphere surface to measure to.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="equals" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>equals</span><a href="#equals" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -319,11 +371,17 @@
 <li class="tsd-signature" id="equals.equals-1">equals<span class="tsd-signature-symbol">(</span>plane<span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Checks to see if two planes are equal (their normal and constant properties match).</p>
+
+<h3>Returns</h3><p>True if value-wise equal.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>plane: <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h5></li></ul></div>
+<h5>plane: <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h5>
+<div class="tsd-comment tsd-typography"><p>The plane to compare with.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="intersectLine" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>intersect<wbr/>Line</span><a href="#intersectLine" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -331,13 +389,22 @@
 <li class="tsd-signature" id="intersectLine.intersectLine-1">intersect<wbr/>Line<span class="tsd-signature-symbol">(</span>line<span class="tsd-signature-symbol">: </span><a href="Line3.html" class="tsd-signature-type" data-tsd-kind="Class">Line3</a>, target<span class="tsd-signature-symbol">: </span><a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Compute the intersection point of the passed line and the plane.</p>
+
+<h3>Returns</h3><p>null if the line does not intersect; otherwise returns the 
+line&#39;s starting point if the line is coplanar with the plane.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>line: <a href="Line3.html" class="tsd-signature-type" data-tsd-kind="Class">Line3</a></h5></li>
+<h5>line: <a href="Line3.html" class="tsd-signature-type" data-tsd-kind="Class">Line3</a></h5>
+<div class="tsd-comment tsd-typography"><p>the Line3 to check for intersection.</p>
+</div></li>
 <li>
-<h5>target: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5></li></ul></div>
+<h5>target: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5>
+<div class="tsd-comment tsd-typography"><p>— the result will be copied into this Vector3.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="intersectsBox" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>intersects<wbr/>Box</span><a href="#intersectsBox" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -345,11 +412,17 @@
 <li class="tsd-signature" id="intersectsBox.intersectsBox-1">intersects<wbr/>Box<span class="tsd-signature-symbol">(</span>box<span class="tsd-signature-symbol">: </span><a href="Box3.html" class="tsd-signature-type" data-tsd-kind="Class">Box3</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Determines whether or not this plane intersects box.</p>
+
+<h3>Returns</h3><p>True if box and this plane intersect.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>box: <a href="Box3.html" class="tsd-signature-type" data-tsd-kind="Class">Box3</a></h5></li></ul></div>
+<h5>box: <a href="Box3.html" class="tsd-signature-type" data-tsd-kind="Class">Box3</a></h5>
+<div class="tsd-comment tsd-typography"><p>the Box3 to check for intersection.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="intersectsLine" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>intersects<wbr/>Line</span><a href="#intersectsLine" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -357,11 +430,17 @@
 <li class="tsd-signature" id="intersectsLine.intersectsLine-1">intersects<wbr/>Line<span class="tsd-signature-symbol">(</span>line<span class="tsd-signature-symbol">: </span><a href="Line3.html" class="tsd-signature-type" data-tsd-kind="Class">Line3</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Tests whether a line segment intersects with (passes through) the plane.</p>
+
+<h3>Returns</h3><p>True if the line intersect this plane.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>line: <a href="Line3.html" class="tsd-signature-type" data-tsd-kind="Class">Line3</a></h5></li></ul></div>
+<h5>line: <a href="Line3.html" class="tsd-signature-type" data-tsd-kind="Class">Line3</a></h5>
+<div class="tsd-comment tsd-typography"><p>the Line3 to check for intersection.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="intersectsSphere" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>intersects<wbr/>Sphere</span><a href="#intersectsSphere" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -369,11 +448,17 @@
 <li class="tsd-signature" id="intersectsSphere.intersectsSphere-1">intersects<wbr/>Sphere<span class="tsd-signature-symbol">(</span>sphere<span class="tsd-signature-symbol">: </span><a href="Sphere.html" class="tsd-signature-type" data-tsd-kind="Class">Sphere</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Determines whether or not this plane intersects a sphere.</p>
+
+<h3>Returns</h3><p>True if sphere and this plane intersect.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>sphere: <a href="Sphere.html" class="tsd-signature-type" data-tsd-kind="Class">Sphere</a></h5></li></ul></div>
+<h5>sphere: <a href="Sphere.html" class="tsd-signature-type" data-tsd-kind="Class">Sphere</a></h5>
+<div class="tsd-comment tsd-typography"><p>the Sphere to check for intersection.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="negate" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>negate</span><a href="#negate" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -381,6 +466,10 @@
 <li class="tsd-signature" id="negate.negate-1">negate<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Negates both the normal vector and the constant.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="normalize" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>normalize</span><a href="#normalize" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -388,6 +477,10 @@
 <li class="tsd-signature" id="normalize.normalize-1">normalize<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Normalizes the normal vector, and adjusts the constant value accordingly.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="projectPoint" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>project<wbr/>Point</span><a href="#projectPoint" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -395,13 +488,21 @@
 <li class="tsd-signature" id="projectPoint.projectPoint-1">project<wbr/>Point<span class="tsd-signature-symbol">(</span>point<span class="tsd-signature-symbol">: </span><a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a>, target<span class="tsd-signature-symbol">: </span><a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Projects a point onto the plane.</p>
+
+<h3>Returns</h3><p>The projected point.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>point: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5></li>
+<h5>point: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5>
+<div class="tsd-comment tsd-typography"><p>the Vector3 to project onto the plane.</p>
+</div></li>
 <li>
-<h5>target: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5></li></ul></div>
+<h5>target: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5>
+<div class="tsd-comment tsd-typography"><p>the result will be copied into this Vector3.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="set" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set</span><a href="#set" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -409,13 +510,22 @@
 <li class="tsd-signature" id="set.set-1">set<span class="tsd-signature-symbol">(</span>normal<span class="tsd-signature-symbol">: </span><a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a>, constant<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets this plane&#39;s normal and constant properties by copying 
+the values from the given normal.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>normal: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5></li>
+<h5>normal: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5>
+<div class="tsd-comment tsd-typography"><p>a unit length Vector3 defining the normal of the plane.</p>
+</div></li>
 <li>
-<h5>constant: <span class="tsd-signature-type">number</span></h5></li></ul></div>
+<h5>constant: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>the signed distance from the origin to the plane. Default is 0.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="setComponents" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set<wbr/>Components</span><a href="#setComponents" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -423,17 +533,29 @@
 <li class="tsd-signature" id="setComponents.setComponents-1">set<wbr/>Components<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, w<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Set the individual components that define the plane.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>x: <span class="tsd-signature-type">number</span></h5></li>
+<h5>x: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>x value of the unit length normal vector.</p>
+</div></li>
 <li>
-<h5>y: <span class="tsd-signature-type">number</span></h5></li>
+<h5>y: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>y value of the unit length normal vector.</p>
+</div></li>
 <li>
-<h5>z: <span class="tsd-signature-type">number</span></h5></li>
+<h5>z: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>z value of the unit length normal vector.</p>
+</div></li>
 <li>
-<h5>w: <span class="tsd-signature-type">number</span></h5></li></ul></div>
+<h5>w: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>the value of the plane&#39;s constant property.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="setFromCoplanarPoints" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set<wbr/>From<wbr/>Coplanar<wbr/>Points</span><a href="#setFromCoplanarPoints" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -441,15 +563,27 @@
 <li class="tsd-signature" id="setFromCoplanarPoints.setFromCoplanarPoints-1">set<wbr/>From<wbr/>Coplanar<wbr/>Points<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a>, c<span class="tsd-signature-symbol">: </span><a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Defines the plane based on the 3 provided points. 
+The winding order is assumed to be counter-clockwise, 
+and determines the direction of the normal.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>a: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5></li>
+<h5>a: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5>
+<div class="tsd-comment tsd-typography"><p>first point on the plane.</p>
+</div></li>
 <li>
-<h5>b: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5></li>
+<h5>b: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5>
+<div class="tsd-comment tsd-typography"><p>secpmd point on the plane.</p>
+</div></li>
 <li>
-<h5>c: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5></li></ul></div>
+<h5>c: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5>
+<div class="tsd-comment tsd-typography"><p>third point on the plane.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="setFromNormalAndCoplanarPoint" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set<wbr/>From<wbr/>Normal<wbr/>And<wbr/>Coplanar<wbr/>Point</span><a href="#setFromNormalAndCoplanarPoint" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -457,13 +591,21 @@
 <li class="tsd-signature" id="setFromNormalAndCoplanarPoint.setFromNormalAndCoplanarPoint-1">set<wbr/>From<wbr/>Normal<wbr/>And<wbr/>Coplanar<wbr/>Point<span class="tsd-signature-symbol">(</span>normal<span class="tsd-signature-symbol">: </span><a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a>, point<span class="tsd-signature-symbol">: </span><a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets the plane&#39;s properties as defined by a normal and an arbitrary coplanar point.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>normal: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5></li>
+<h5>normal: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5>
+<div class="tsd-comment tsd-typography"><p>a unit length Vector3 defining the normal of the plane.</p>
+</div></li>
 <li>
-<h5>point: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5></li></ul></div>
+<h5>point: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5>
+<div class="tsd-comment tsd-typography"><p>a Vector3 point</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="translate" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>translate</span><a href="#translate" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -471,11 +613,19 @@
 <li class="tsd-signature" id="translate.translate-1">translate<span class="tsd-signature-symbol">(</span>offset<span class="tsd-signature-symbol">: </span><a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Translates the plane by the distance defined by the offset vector. 
+Note that this only affects the plane constant and will not 
+affect the normal vector.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>offset: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5></li></ul></div>
+<h5>offset: <a href="Vector3.html" class="tsd-signature-type" data-tsd-kind="Class">Vector3</a></h5>
+<div class="tsd-comment tsd-typography"><p>the amount to move the plane by.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Plane.html" class="tsd-signature-type" data-tsd-kind="Class">Plane</a></h4></li></ul></section></section></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
@@ -541,6 +691,4 @@
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Plane.html#setFromCoplanarPoints" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>set<wbr/>From<wbr/>Coplanar<wbr/>Points</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Plane.html#setFromNormalAndCoplanarPoint" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>set<wbr/>From<wbr/>Normal<wbr/>And<wbr/>Coplanar<wbr/>Point</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Plane.html#translate" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>translate</a></li></ul></li></ul></nav></div></div>
-<div class="container tsd-generator">
-<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div>
 <div class="overlay"></div><script src="../assets/main.js"></script></body></html>

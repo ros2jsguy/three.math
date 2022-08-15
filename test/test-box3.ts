@@ -19,7 +19,7 @@ import {
   zero3,
   one3,
   two3,
-} from './constants.tests';
+} from './Constants.tests';
 
 function compareBox(a: Box3, b: Box3, threshold?: number) {
   threshold = threshold || 0.0001;

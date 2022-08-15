@@ -13,12 +13,37 @@
 <li><a href="../modules.html">@ros2jsguy/three-math-ts</a></li>
 <li><a href="Vector2.html">Vector2</a></li></ul>
 <h1>Class Vector2</h1></div>
+<section class="tsd-panel tsd-comment">
+<div class="tsd-comment tsd-typography"><p>Class representing a 2D vector. A 2D vector is an ordered pair of
+numbers (labeled x and y), which can be used to represent a number
+of things, such as:</p>
+<ul>
+<li>A point in 2D space (i.e. a position on a plane).</li>
+<li>A direction and length across a plane. In three.js the length will
+ always be the Euclidean distance (straight-line distance) 
+ from (0, 0) to (x, y) and the direction is also measured
+ from (0, 0) towards (x, y).</li>
+<li>Any arbitrary ordered pair of numbers.</li>
+</ul>
+<p>There are other things a 2D vector can be used to represent,
+such as momentum vectors, complex numbers and so on.
+However these are the most common uses in three.js.</p>
+<p>Iterating through a Vector2 instance will yield its
+components (x, y) in the corresponding order.</p>
+
+<h3>Example</h3><pre><code><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">a</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-2">THREE</span><span class="hl-1">.</span><span class="hl-3">Vector2</span><span class="hl-1">( </span><span class="hl-5">0</span><span class="hl-1">, </span><span class="hl-5">1</span><span class="hl-1"> );</span><br/><br/><span class="hl-9">//no arguments; will be initialised to (0, 0)</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">b</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-2">THREE</span><span class="hl-1">.</span><span class="hl-3">Vector2</span><span class="hl-1">( );</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">d</span><span class="hl-1"> = </span><span class="hl-6">a</span><span class="hl-1">.</span><span class="hl-3">distanceTo</span><span class="hl-1">( </span><span class="hl-6">b</span><span class="hl-1"> );</span>
+</code></pre>
+</div></section>
 <section class="tsd-panel tsd-hierarchy">
 <h4>Hierarchy</h4>
 <ul class="tsd-hierarchy">
 <li><span class="tsd-signature-type">Base</span>
 <ul class="tsd-hierarchy">
 <li><span class="target">Vector2</span></li></ul></li></ul></section>
+<section class="tsd-panel">
+<h4>Implements</h4>
+<ul class="tsd-hierarchy">
+<li><a href="../interfaces/Vector.html" class="tsd-signature-type" data-tsd-kind="Interface">Vector</a></li></ul></section>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -50,6 +75,7 @@
 <a href="Vector2.html#isSphere" class="tsd-index-link tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-262144-path"></use><use href="#icon-262144-text"></use></svg><span>is<wbr/>Sphere</span></a>
 <a href="Vector2.html#isSpherical" class="tsd-index-link tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-262144-path"></use><use href="#icon-262144-text"></use></svg><span>is<wbr/>Spherical</span></a>
 <a href="Vector2.html#isTriangle" class="tsd-index-link tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-262144-path"></use><use href="#icon-262144-text"></use></svg><span>is<wbr/>Triangle</span></a>
+<a href="Vector2.html#isVector" class="tsd-index-link tsd-kind-accessor tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-262144-path"></use><use href="#icon-262144-text"></use></svg><span>is<wbr/>Vector</span></a>
 <a href="Vector2.html#isVector2" class="tsd-index-link tsd-kind-accessor tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-262144-path"></use><use href="#icon-262144-text"></use></svg><span>is<wbr/>Vector2</span></a>
 <a href="Vector2.html#isVector3" class="tsd-index-link tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-262144-path"></use><use href="#icon-262144-text"></use></svg><span>is<wbr/>Vector3</span></a>
 <a href="Vector2.html#isVector4" class="tsd-index-link tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-262144-path"></use><use href="#icon-262144-text"></use></svg><span>is<wbr/>Vector4</span></a>
@@ -57,7 +83,8 @@
 </div></section>
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading">Methods</h3>
-<div class="tsd-index-list"><a href="Vector2.html#add" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="#FF4DB8" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12" id="icon-2048-path"></rect><path d="M9.162 16V7.24H10.578L11.514 10.072C11.602 10.328 11.674 10.584 11.73 10.84C11.794 11.088 11.842 11.28 11.874 11.416C11.906 11.28 11.954 11.088 12.018 10.84C12.082 10.584 12.154 10.324 12.234 10.06L13.122 7.24H14.538V16H13.482V12.82C13.482 12.468 13.49 12.068 13.506 11.62C13.53 11.172 13.558 10.716 13.59 10.252C13.622 9.78 13.654 9.332 13.686 8.908C13.726 8.476 13.762 8.1 13.794 7.78L12.366 12.16H11.334L9.894 7.78C9.934 8.092 9.97 8.456 10.002 8.872C10.042 9.28 10.078 9.716 10.11 10.18C10.142 10.636 10.166 11.092 10.182 11.548C10.206 12.004 10.218 12.428 10.218 12.82V16H9.162Z" fill="var(--color-text)" id="icon-2048-text"></path></svg><span>add</span></a>
+<div class="tsd-index-list"><a href="Vector2.html#_iterator_" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="#FF4DB8" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12" id="icon-2048-path"></rect><path d="M9.162 16V7.24H10.578L11.514 10.072C11.602 10.328 11.674 10.584 11.73 10.84C11.794 11.088 11.842 11.28 11.874 11.416C11.906 11.28 11.954 11.088 12.018 10.84C12.082 10.584 12.154 10.324 12.234 10.06L13.122 7.24H14.538V16H13.482V12.82C13.482 12.468 13.49 12.068 13.506 11.62C13.53 11.172 13.558 10.716 13.59 10.252C13.622 9.78 13.654 9.332 13.686 8.908C13.726 8.476 13.762 8.1 13.794 7.78L12.366 12.16H11.334L9.894 7.78C9.934 8.092 9.97 8.456 10.002 8.872C10.042 9.28 10.078 9.716 10.11 10.18C10.142 10.636 10.166 11.092 10.182 11.548C10.206 12.004 10.218 12.428 10.218 12.82V16H9.162Z" fill="var(--color-text)" id="icon-2048-text"></path></svg><span>[iterator]</span></a>
+<a href="Vector2.html#add" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>add</span></a>
 <a href="Vector2.html#addScalar" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>add<wbr/>Scalar</span></a>
 <a href="Vector2.html#addScaledVector" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>add<wbr/>Scaled<wbr/>Vector</span></a>
 <a href="Vector2.html#addVectors" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>add<wbr/>Vectors</span></a>
@@ -114,13 +141,19 @@
 <li class="tsd-signature" id="constructor.new_Vector2">new <wbr/>Vector2<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Creates a new Vector2.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>x: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></h5></li>
+<h5>x: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></h5>
+<div class="tsd-comment tsd-typography"><p>(Optional) The x value of this vector. Default is 0.</p>
+</div></li>
 <li>
-<h5>y: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></h5></li></ul></div>
+<h5>y: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></h5>
+<div class="tsd-comment tsd-typography"><p>(Optional) The y value of this vector. Default is 0.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4><aside class="tsd-sources">
 <p>Overrides Base.constructor</p></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
@@ -129,12 +162,12 @@
 <h3 class="tsd-anchor-link"><span>x</span><a href="#x" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">x<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ros2jsguy/three.math/blob/a7048e9/src/Vector2.ts#L5">Vector2.ts:5</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/ros2jsguy/three.math/blob/0096978/src/Vector2.ts#L37">Vector2.ts:37</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="y" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>y</span><a href="#y" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">y<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/ros2jsguy/three.math/blob/a7048e9/src/Vector2.ts#L6">Vector2.ts:6</a></li></ul></aside></section></section>
+<li>Defined in <a href="https://github.com/ros2jsguy/three.math/blob/0096978/src/Vector2.ts#L38">Vector2.ts:38</a></li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Accessors</h2>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class"><a id="height" class="tsd-anchor"></a>
@@ -144,6 +177,8 @@
 <li class="tsd-signature" id="height.height-2"><span class="tsd-signature-symbol">set</span> height<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Alias for y.</p>
+</div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li>
 <li class="tsd-description">
 <div class="tsd-parameters">
@@ -264,12 +299,24 @@
 <li class="tsd-description">
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
 <p>Inherited from Base.isTriangle</p></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class"><a id="isVector" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>is<wbr/>Vector</span><a href="#isVector" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+<li class="tsd-signature" id="isVector.isVector-1"><span class="tsd-signature-symbol">get</span> isVector<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li></ul>
+<ul class="tsd-descriptions">
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Read-only flag to check if a given object is of type Vector.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#isVector">isVector</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class"><a id="isVector2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>is<wbr/>Vector2</span><a href="#isVector2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
 <li class="tsd-signature" id="isVector2.isVector2-1"><span class="tsd-signature-symbol">get</span> isVector2<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Read-only flag to check if a given object is of type Vector2.</p>
+</div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
 <p>Overrides Base.isVector2</p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><a id="isVector3" class="tsd-anchor"></a>
@@ -295,6 +342,8 @@
 <li class="tsd-signature" id="width.width-2"><span class="tsd-signature-symbol">set</span> width<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Alias for x.</p>
+</div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li>
 <li class="tsd-description">
 <div class="tsd-parameters">
@@ -305,64 +354,107 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Methods</h2>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="_iterator_" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>[iterator]</span><a href="#_iterator_" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature" id="_iterator_._iterator_-1">[iterator]<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li></ul>
+<ul class="tsd-descriptions">
+<li class="tsd-description">
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="add" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>add</span><a href="#add" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="add.add-1">add<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Adds a vector to this vector.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
+<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>The vector to add to this vector.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#add">add</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="addScalar" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>add<wbr/>Scalar</span><a href="#addScalar" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="addScalar.addScalar-1">add<wbr/>Scalar<span class="tsd-signature-symbol">(</span>s<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Adds the scalar value s to this vector&#39;s x and y values.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>s: <span class="tsd-signature-type">number</span></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
+<h5>s: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>The scalar to add to this vector.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#addScalar">addScalar</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="addScaledVector" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>add<wbr/>Scaled<wbr/>Vector</span><a href="#addScaledVector" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="addScaledVector.addScaledVector-1">add<wbr/>Scaled<wbr/>Vector<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a>, s<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Adds the multiple of v and s to this vector.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li>
+<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>The vector to add to this vector.</p>
+</div></li>
 <li>
-<h5>s: <span class="tsd-signature-type">number</span></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
+<h5>s: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>The scalar to multiply this vectory by.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#addScaledVector">addScaledVector</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="addVectors" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>add<wbr/>Vectors</span><a href="#addVectors" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="addVectors.addVectors-1">add<wbr/>Vectors<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets this vector to a + b.</p>
+
+<h3>Returns</h3><p>This instance</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>a: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li>
+<h5>a: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>The 1st vector</p>
+</div></li>
 <li>
-<h5>b: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
+<h5>b: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>The 2nd vector</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#addVectors">addVectors</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="angle" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>angle</span><a href="#angle" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="angle.angle-1">angle<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Computes the angle in radians of this vector with respect to the positive x-axis.</p>
+
+<h3>Returns</h3><p>The angle (radians)</p>
+</div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="applyMatrix3" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>apply<wbr/>Matrix3</span><a href="#applyMatrix3" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -370,11 +462,17 @@
 <li class="tsd-signature" id="applyMatrix3.applyMatrix3-1">apply<wbr/>Matrix3<span class="tsd-signature-symbol">(</span>m<span class="tsd-signature-symbol">: </span><a href="Matrix3.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix3</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Multiplies this vector (with an implicit 1 as the 3rd component) by m.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>m: <a href="Matrix3.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix3</a></h5></li></ul></div>
+<h5>m: <a href="Matrix3.html" class="tsd-signature-type" data-tsd-kind="Class">Matrix3</a></h5>
+<div class="tsd-comment tsd-typography"><p>The matrix to apply.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="ceil" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>ceil</span><a href="#ceil" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -382,6 +480,10 @@
 <li class="tsd-signature" id="ceil.ceil-1">ceil<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The x and y components of this vector are rounded up to the nearest integer value.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="clamp" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>clamp</span><a href="#clamp" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -389,13 +491,24 @@
 <li class="tsd-signature" id="clamp.clamp-1">clamp<span class="tsd-signature-symbol">(</span>min<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a>, max<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>If this vector&#39;s x or y value is greater than the max 
+vector&#39;s x or y value, it is replaced by the corresponding value.</p>
+<p>If this vector&#39;s x or y value is less than the min vector&#39;s x or y
+value, it is replaced by the corresponding value.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>min: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li>
+<h5>min: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>The minimum x and y values.</p>
+</div></li>
 <li>
-<h5>max: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li></ul></div>
+<h5>max: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>The maximum x and y values in the desired range</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="clampLength" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>clamp<wbr/>Length</span><a href="#clampLength" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -403,13 +516,24 @@
 <li class="tsd-signature" id="clampLength.clampLength-1">clamp<wbr/>Length<span class="tsd-signature-symbol">(</span>min<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, max<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>If this vector&#39;s length is greater than the max value,
+it is replaced by the max value.</p>
+<p>If this vector&#39;s length is less than the min value,
+it is replaced by the min value.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>min: <span class="tsd-signature-type">number</span></h5></li>
+<h5>min: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>The minimum value the length will be clamped to</p>
+</div></li>
 <li>
-<h5>max: <span class="tsd-signature-type">number</span></h5></li></ul></div>
+<h5>max: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>The maximum value the length will be clamped to</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="clampScalar" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>clamp<wbr/>Scalar</span><a href="#clampScalar" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -417,13 +541,24 @@
 <li class="tsd-signature" id="clampScalar.clampScalar-1">clamp<wbr/>Scalar<span class="tsd-signature-symbol">(</span>minVal<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, maxVal<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>If this vector&#39;s x or y values are greater than the max value,
+they are replaced by the max value.</p>
+<p>If this vector&#39;s x or y values are less than the min value,
+they are replaced by the min value.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>minVal: <span class="tsd-signature-type">number</span></h5></li>
+<h5>minVal: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>the minimum value the components will be clamped to</p>
+</div></li>
 <li>
-<h5>maxVal: <span class="tsd-signature-type">number</span></h5></li></ul></div>
+<h5>maxVal: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>the maximum value the components will be clamped to</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="clone" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>clone</span><a href="#clone" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -431,30 +566,51 @@
 <li class="tsd-signature" id="clone.clone-1">clone<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
-<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
+<div class="tsd-comment tsd-typography"><p>Create a Vector2 with the same x and y values as this one.</p>
+
+<h3>Returns</h3><p>A new Vector2 instance.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#clone">clone</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="copy" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>copy</span><a href="#copy" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-<li class="tsd-signature" id="copy.copy-1">copy<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
+<li class="tsd-signature" id="copy.copy-1">copy<span class="tsd-signature-symbol">(</span>vec<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Copies the values of the passed Vector2&#39;s x and y properties to this Vector2.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
+<h5>vec: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>The source vector.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#copy">copy</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="cross" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>cross</span><a href="#cross" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="cross.cross-1">cross<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Calculates the cross product of this vector and v. 
+Note that a &#39;cross-product&#39; in 2D is not well-defined. 
+This function computes a geometric cross-product often 
+used in 2D graphics</p>
+
+<h3>Returns</h3><p>The cross product.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li></ul></div>
+<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>The other vector.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="distanceTo" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>distance<wbr/>To</span><a href="#distanceTo" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -462,35 +618,58 @@
 <li class="tsd-signature" id="distanceTo.distanceTo-1">distance<wbr/>To<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Computes the distance from this vector to v.</p>
+
+<h3>Returns</h3><p>The distance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li></ul></section>
+<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>The vector to compute destance to.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#distanceTo">distanceTo</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="distanceToSquared" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>distance<wbr/>To<wbr/>Squared</span><a href="#distanceToSquared" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="distanceToSquared.distanceToSquared-1">distance<wbr/>To<wbr/>Squared<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Computes the squared distance from this vector to v.
+If you are just comparing the distance with another
+distance, you should compare the distance squared
+instead as it is slightly more efficient to calculate.</p>
+
+<h3>Returns</h3><p>The distance squared.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li></ul></section>
+<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>The other vector.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#distanceToSquared">distanceToSquared</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="divide" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>divide</span><a href="#divide" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="divide.divide-1">divide<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Divides this vector by v.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li></ul></div>
+<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>The vector to device into this vector.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="divideScalar" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>divide<wbr/>Scalar</span><a href="#divideScalar" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -498,42 +677,66 @@
 <li class="tsd-signature" id="divideScalar.divideScalar-1">divide<wbr/>Scalar<span class="tsd-signature-symbol">(</span>scalar<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Divides this vector by scalar s.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
 <h5>scalar: <span class="tsd-signature-type">number</span></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
+<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#divideScalar">divideScalar</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="dot" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>dot</span><a href="#dot" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="dot.dot-1">dot<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Calculates the dot product of this vector and v.</p>
+
+<h3>Returns</h3><p>The dot product.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li></ul></section>
+<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>The other vector.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#dot">dot</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="equals" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>equals</span><a href="#equals" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="equals.equals-1">equals<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Compare a vector with this vector for equality.</p>
+
+<h3>Returns</h3><p>Returns true if the components of this vector
+ and v are strictly equal; false otherwise.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4></li></ul></section>
+<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>The other vector.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#equals">equals</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="floor" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>floor</span><a href="#floor" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="floor.floor-1">floor<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The components of this vector are rounded down to the nearest integer value.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fromArray" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>from<wbr/>Array</span><a href="#fromArray" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -541,13 +744,21 @@
 <li class="tsd-signature" id="fromArray.fromArray-1">from<wbr/>Array<span class="tsd-signature-symbol">(</span>array<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span>, offset<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets this vector&#39;s x value to be array[ offset ] and y value to be array[ offset + 1 ].</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>array: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5></li>
+<h5>array: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+<div class="tsd-comment tsd-typography"><p>The source array.</p>
+</div></li>
 <li>
-<h5>offset: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></h5></li></ul></div>
+<h5>offset: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></h5>
+<div class="tsd-comment tsd-typography"><p>(Optional) Offset into the array. Default is 0.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="getComponent" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>get<wbr/>Component</span><a href="#getComponent" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -555,55 +766,98 @@
 <li class="tsd-signature" id="getComponent.getComponent-1">get<wbr/>Component<span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Get the component (x or y) indicated by index parameter.</p>
+
+<h3>Returns</h3><p>The component value</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>index: <span class="tsd-signature-type">number</span></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li></ul></section>
+<h5>index: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>If index equals 0 returns the x value. If index equals 1 returns the y value.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#getComponent">getComponent</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="length" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>length</span><a href="#length" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="length.length-1">length<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li></ul></section>
+<div class="tsd-comment tsd-typography"><p>Computes the Euclidean length (straight-line length) from (0, 0) to (x, y).</p>
+
+<h3>Returns</h3><p>The length.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#length">length</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="lengthSq" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>length<wbr/>Sq</span><a href="#lengthSq" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="lengthSq.lengthSq-1">length<wbr/>Sq<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li></ul></section>
+<div class="tsd-comment tsd-typography"><p>Computes the square of the Euclidean length (straight-line length)
+from (0, 0) to (x, y). If you are comparing the lengths of vectors,
+you should compare the length squared instead as it is slightly
+more efficient to calculate.</p>
+
+<h3>Returns</h3><p>The length squared.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#lengthSq">lengthSq</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="lerp" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>lerp</span><a href="#lerp" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="lerp.lerp-1">lerp<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a>, alpha<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Linearly interpolates between this vector and v, where alpha is the percent
+distance along the line - alpha = 0 will be this vector, and
+alpha = 1 will be v.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li>
+<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>Vector2 to interpolate towards.</p>
+</div></li>
 <li>
-<h5>alpha: <span class="tsd-signature-type">number</span></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
+<h5>alpha: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>interpolation factor, typically in the closed interval [0, 1].</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#lerp">lerp</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="lerpVectors" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>lerp<wbr/>Vectors</span><a href="#lerpVectors" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="lerpVectors.lerpVectors-1">lerp<wbr/>Vectors<span class="tsd-signature-symbol">(</span>v1<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a>, v2<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a>, alpha<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets this vector to be the vector linearly interpolated between v1 and v2 where
+alpha is the percent distance along the line connecting the two vectors - 
+alpha = 0 will be v1, and alpha = 1 will be v2.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>v1: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li>
+<h5>v1: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>the starting Vector2.</p>
+</div></li>
 <li>
-<h5>v2: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li>
+<h5>v2: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>Vector2 to interpolate towards.</p>
+</div></li>
 <li>
-<h5>alpha: <span class="tsd-signature-type">number</span></h5></li></ul></div>
+<h5>alpha: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>interpolation factor, typically in the closed interval [0, 1].</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="manhattanDistanceTo" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>manhattan<wbr/>Distance<wbr/>To</span><a href="#manhattanDistanceTo" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -611,11 +865,17 @@
 <li class="tsd-signature" id="manhattanDistanceTo.manhattanDistanceTo-1">manhattan<wbr/>Distance<wbr/>To<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Computes the Manhattan distance from this vector to v.</p>
+
+<h3>Returns</h3><p>The distance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li></ul></div>
+<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>The other vector</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="manhattanLength" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>manhattan<wbr/>Length</span><a href="#manhattanLength" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -623,6 +883,11 @@
 <li class="tsd-signature" id="manhattanLength.manhattanLength-1">manhattan<wbr/>Length<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Computes the <a href="https://en.wikipedia.org/wiki/Taxicab_geometry">Manhattan length</a>
+of this vector.</p>
+
+<h3>Returns</h3><p>The manhattan length.</p>
+</div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="max" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>max</span><a href="#max" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -630,6 +895,11 @@
 <li class="tsd-signature" id="max.max-1">max<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>If this vector&#39;s x or y value is less than v&#39;s x or y value,
+replace that value with the corresponding max value.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
@@ -642,6 +912,11 @@
 <li class="tsd-signature" id="min.min-1">min<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>If this vector&#39;s x or y value is greater than v&#39;s x or y value,
+replace that value with the corresponding min value.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
@@ -654,11 +929,17 @@
 <li class="tsd-signature" id="multiply.multiply-1">multiply<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Multiplies this vector by v.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li></ul></div>
+<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>The vector to multiply this vector by.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="multiplyScalar" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>multiply<wbr/>Scalar</span><a href="#multiplyScalar" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -666,32 +947,55 @@
 <li class="tsd-signature" id="multiplyScalar.multiplyScalar-1">multiply<wbr/>Scalar<span class="tsd-signature-symbol">(</span>scalar<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Multiplies this vector by scalar s.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>scalar: <span class="tsd-signature-type">number</span></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
+<h5>scalar: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>The scalar to multiple this vector by.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#multiplyScalar">multiplyScalar</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="negate" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>negate</span><a href="#negate" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="negate.negate-1">negate<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
-<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
+<div class="tsd-comment tsd-typography"><p>Inverts this vector - i.e. sets x = -x and y = -y.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#negate">negate</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="normalize" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>normalize</span><a href="#normalize" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="normalize.normalize-1">normalize<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
-<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
+<div class="tsd-comment tsd-typography"><p>Converts this vector to a unit vector - that is,
+sets it equal to a vector with the same direction
+as this one, but length 1.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#normalize">normalize</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="random" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>random</span><a href="#random" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="random.random-1">random<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Set the component of this vector to random values between 0-1.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="rotateAround" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>rotate<wbr/>Around</span><a href="#rotateAround" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -699,13 +1003,21 @@
 <li class="tsd-signature" id="rotateAround.rotateAround-1">rotate<wbr/>Around<span class="tsd-signature-symbol">(</span>center<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a>, angle<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Rotates this vector around center by angle radians.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>center: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li>
+<h5>center: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>The point around which to rotate.</p>
+</div></li>
 <li>
-<h5>angle: <span class="tsd-signature-type">number</span></h5></li></ul></div>
+<h5>angle: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>The angle to rotate, in radians.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="round" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>round</span><a href="#round" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -713,6 +1025,10 @@
 <li class="tsd-signature" id="round.round-1">round<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The components of this vector are rounded to the nearest integer value.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="roundToZero" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>round<wbr/>To<wbr/>Zero</span><a href="#roundToZero" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -720,6 +1036,11 @@
 <li class="tsd-signature" id="roundToZero.roundToZero-1">round<wbr/>To<wbr/>Zero<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>The components of this vector are rounded towards zero 
+(up if negative, down if positive) to an integer value.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="set" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set</span><a href="#set" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -727,52 +1048,84 @@
 <li class="tsd-signature" id="set.set-1">set<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets the x and y components of this vector.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>x: <span class="tsd-signature-type">number</span></h5></li>
+<h5>x: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>The new x component</p>
+</div></li>
 <li>
-<h5>y: <span class="tsd-signature-type">number</span></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
+<h5>y: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>The new y component</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#set">set</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="setComponent" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set<wbr/>Component</span><a href="#setComponent" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="setComponent.setComponent-1">set<wbr/>Component<span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Update the component value.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>index: <span class="tsd-signature-type">number</span></h5></li>
+<h5>index: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>If index equals 0 set x to value. If index equals 1 set y to value</p>
+</div></li>
 <li>
-<h5>value: <span class="tsd-signature-type">number</span></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
+<h5>value: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>The new component value</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#setComponent">setComponent</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="setLength" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set<wbr/>Length</span><a href="#setLength" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="setLength.setLength-1">set<wbr/>Length<span class="tsd-signature-symbol">(</span>length<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets this vector to a vector with the same direction as this one, but length l.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>length: <span class="tsd-signature-type">number</span></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
+<h5>length: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>The new length of this vector.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#setLength">setLength</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="setScalar" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set<wbr/>Scalar</span><a href="#setScalar" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="setScalar.setScalar-1">set<wbr/>Scalar<span class="tsd-signature-symbol">(</span>scalar<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets the x and y values of this vector both equal to scalar.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>scalar: <span class="tsd-signature-type">number</span></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
+<h5>scalar: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>The scalar value to set.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#setScalar">setScalar</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="setX" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>setX</span><a href="#setX" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -803,23 +1156,36 @@
 <li class="tsd-signature" id="sub.sub-1">sub<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Subtracts v from this vector.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
+<h5>v: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5>
+<div class="tsd-comment tsd-typography"><p>The vector to subtract from this vector.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#sub">sub</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="subScalar" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>sub<wbr/>Scalar</span><a href="#subScalar" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="subScalar.subScalar-1">sub<wbr/>Scalar<span class="tsd-signature-symbol">(</span>s<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Subtracts s from this vector&#39;s x and y components.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>s: <span class="tsd-signature-type">number</span></h5></li></ul></div>
+<h5>s: <span class="tsd-signature-type">number</span></h5>
+<div class="tsd-comment tsd-typography"><p>The scalar to subtract from each of this vector&#39;s components.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="subVectors" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>sub<wbr/>Vectors</span><a href="#subVectors" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
@@ -827,6 +1193,10 @@
 <li class="tsd-signature" id="subVectors.subVectors-1">sub<wbr/>Vectors<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a>, b<span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets this vector to a - b.</p>
+
+<h3>Returns</h3><p>This instance.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
@@ -834,20 +1204,30 @@
 <h5>a: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li>
 <li>
 <h5>b: <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h5></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4></li></ul></section>
+<h4 class="tsd-returns-title">Returns <a href="Vector2.html" class="tsd-signature-type" data-tsd-kind="Class">Vector2</a></h4><aside class="tsd-sources">
+<p>Implementation of <a href="../interfaces/Vector.html">Vector</a>.<a href="../interfaces/Vector.html#subVectors">subVectors</a></p></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="toArray" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>to<wbr/>Array</span><a href="#toArray" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 <li class="tsd-signature" id="toArray.toArray-1">to<wbr/>Array<span class="tsd-signature-symbol">(</span>array<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span>, offset<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></li></ul>
 <ul class="tsd-descriptions">
 <li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Returns an array [x, y], or copies x and y into the provided array.</p>
+
+<h3>Returns</h3><p>An array.</p>
+</div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
 <ul class="tsd-parameter-list">
 <li>
-<h5>array: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></h5></li>
+<h5>array: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></h5>
+<div class="tsd-comment tsd-typography"><p>(optional) array to store this vector to.
+   If this is not provided, a new array will be created.</p>
+</div></li>
 <li>
-<h5>offset: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></h5></li></ul></div>
+<h5>offset: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></h5>
+<div class="tsd-comment tsd-typography"><p>(optional) optional offset into the array.</p>
+</div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h4></li></ul></section></section></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
@@ -892,10 +1272,12 @@
 <li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><a href="Vector2.html#isSphere" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-262144-path"></use><use href="#icon-262144-text"></use></svg>is<wbr/>Sphere</a></li>
 <li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><a href="Vector2.html#isSpherical" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-262144-path"></use><use href="#icon-262144-text"></use></svg>is<wbr/>Spherical</a></li>
 <li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><a href="Vector2.html#isTriangle" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-262144-path"></use><use href="#icon-262144-text"></use></svg>is<wbr/>Triangle</a></li>
+<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="Vector2.html#isVector" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-262144-path"></use><use href="#icon-262144-text"></use></svg>is<wbr/>Vector</a></li>
 <li class="tsd-kind-accessor tsd-parent-kind-class"><a href="Vector2.html#isVector2" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-262144-path"></use><use href="#icon-262144-text"></use></svg>is<wbr/>Vector2</a></li>
 <li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><a href="Vector2.html#isVector3" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-262144-path"></use><use href="#icon-262144-text"></use></svg>is<wbr/>Vector3</a></li>
 <li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><a href="Vector2.html#isVector4" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-262144-path"></use><use href="#icon-262144-text"></use></svg>is<wbr/>Vector4</a></li>
 <li class="tsd-kind-accessor tsd-parent-kind-class"><a href="Vector2.html#width" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-262144-path"></use><use href="#icon-262144-text"></use></svg>width</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector2.html#_iterator_" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>[iterator]</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector2.html#add" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>add</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector2.html#addScalar" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>add<wbr/>Scalar</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector2.html#addScaledVector" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>add<wbr/>Scaled<wbr/>Vector</a></li>
@@ -944,6 +1326,4 @@
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector2.html#subScalar" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>sub<wbr/>Scalar</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector2.html#subVectors" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>sub<wbr/>Vectors</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Vector2.html#toArray" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>to<wbr/>Array</a></li></ul></li></ul></nav></div></div>
-<div class="container tsd-generator">
-<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div>
 <div class="overlay"></div><script src="../assets/main.js"></script></body></html>

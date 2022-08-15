@@ -876,5 +876,29 @@ describe('Vector3', () => {
 
     assert.ok(a.clone().lerp(b, 1).equals(b), 'Passed!');
   });
+
+  
+  it('randomDirection', () => {
+    const vec = new Vector3();
+    vec.randomDirection();
+    
+    const zero = new Vector3();
+    assert.notDeepEqual(
+      vec,
+      zero,
+      'randomizes at least one component of the vector'
+    );
+
+    assert.ok( ( 1 - vec.length() ) <= Number.EPSILON, 'produces a unit vector' );
+  });
+
+  it('iterable', () => {
+    var v = new Vector3( 0, 0.5, 1 );
+    var array = [ ...v ];
+    assert.strictEqual( array[ 0 ], 0, 'Vector3 is iterable.' );
+    assert.strictEqual( array[ 1 ], 0.5, 'Vector3 is iterable.' );
+    assert.strictEqual( array[ 2 ], 1, 'Vector3 is iterable.' );
+  });
+
 });
 
