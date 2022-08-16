@@ -1,6 +1,6 @@
 {
   "name": "@ros2jsguy/three-math-ts",
-  "version": "0.143.0",
+  "version": "0.143.1",
   "description": "Stand-alone TypeScript version of three.js math",
   "keywords": [
     "math",
@@ -23,10 +23,9 @@
   ],
   "scripts": {
     "clean": "npx rimraf -rf es lib buld-test",
-    "build": "tsc -p tsconfig.es.json && tsc -p tsconfig.lib.json",
-    "build:release": "npm run clean && tsc -p tsconfig.lib.json",
+    "build": "npm run clean && tsc -p tsconfig.es.json && tsc -p tsconfig.lib.json",
     "build:docs": "typedoc -out ./docs --hideGenerator true --cleanOutputDir false ./src",
-    "prepare": "npm run clean && npm run build:release && npm run build:docs",
+    "prepare": "npm run clean && npm run build && npm run build:docs",
     "pretest": "tsc -p tsconfig.test.json",
     "test": "mocha build-test",
     "testx": "set TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' && set && mocha -r 'ts-node/register test/**/*.ts' "
