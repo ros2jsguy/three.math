@@ -1,3 +1,4 @@
+# DEPRECATED - PLEASE USE threejs-math
 # Stand-alone TypeScript version of three.js math
 
 This module is a rewrite of the following [three.js math](https://threejs.org/docs/#api/en/math/Box2) classes in TypeScript:
